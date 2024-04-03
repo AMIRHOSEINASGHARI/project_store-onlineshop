@@ -13,3 +13,7 @@
 .mainGap {
   @apply gap-[15px];
 }
+
+.maxWidth {
+  @apply max-w-[1400px] mx-auto;
+}

@@ -4,7 +4,7 @@ const PagesLayout = ({ children }) => {
   return (
     <div>
       <Navbar />
-      <main>{children}</main>
+      <main className="mt-[90px] maxWidth px-6">{children}</main>
     </div>
   );
 };
