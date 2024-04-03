@@ -1,18 +1,13 @@
 "use client";
 
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { signIn } from "next-auth/react";
-import toast from "react-hot-toast";
-import Loader from "../shared/Loader";
+import Link from "next/link";
 import Image from "next/image";
-import { images } from "@/constants";
+import { icons, images } from "@/constants";
+import Loader from "../shared/Loader";
 
 const LoginPage = () => {
   const [loader, setLoader] = useState(false);
-  const router = useRouter();
-
   const [form, setForm] = useState({
     username: "",
     password: "",
@@ -27,60 +22,41 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!form.username || !form.password) {
-      return toast.error("Fill all fields requiered!");
-    } else {
-      setLoader(true);
-      const result = await signIn("credentials", {
-        ...form,
-        redirect: false,
-      });
-      if (result.error) {
-        setLoader(false);
-        return toast.error(result.error);
-      } else {
-        toast.success("Welcome");
-        router.replace("/");
-      }
-    }
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex items-center gap-[150px] bg-white p-[30px]"
+      className="flex items-center bg-white max-sm:p-6"
     >
-      <div className="max-xl:hidden bg-gray-100 rounded-3xl h-screen w-1/2 flex items-center justify-center">
+      <div className="max-xl:hidden w-full">
         <Image
           src={images.authLogin}
-          width={450}
-          height={450}
+          width={1950}
+          height={1300}
           alt="auth-login"
           priority
+          className="w-full h-screen object-cover"
         />
       </div>
-      <div className="max-xl:flex max-xl:items-center max-xl:justify-center max-xl:w-full max-xl:h-screen">
-        <div className="sm:w-[400px]">
+      <div className="flex items-center justify-center xl:w-[70%] max-xl:w-full max-xl:h-screen">
+        <div className="sm:w-[400px] max-xl:w-full">
           <div className="mb-[30px]">
             <Image
-              src={images.logo1}
+              src={images.logo}
               width={40}
               height={40}
               alt="logo"
               priority
             />
           </div>
-          <h1 className="font-medium text-gray-600 text-[30px] mb-[10px]">
-            Welcome back! 👋🏻
+          <h1 className="font-medium text-gray-600 text-[30px] mb-[5px]">
+            Adventure starts here 🚀
           </h1>
-          <p className="text-gray-500 tracking-tight">
-            Please sign-in to your account and start the adventure
+          <p className="text-gray-500 text-[13px] tracking-tight mb-[25px]">
+            Welcome to OnlineShop! You must be logged in to your account to
+            finalize your purchases
           </p>
-          <div className="bg-violet-100 text-violet-600 rounded-lg px-5 py-3 mt-[30px] mb-[20px] text-sm">
-            Username: <span className="font-bold">my-test</span> / Pass:{" "}
-            <span className="font-bold">test</span>
-          </div>
           <div className="space-y-5">
             <div className="flex flex-col gap-1">
               <label className="font-normal text-sm">Username</label>
@@ -90,7 +66,7 @@ const LoginPage = () => {
                 value={form.username}
                 onChange={changeHandler}
                 placeholder="Username"
-                className="placeholder:text-xs border border-violet-200 focus:outline focus:border-violet-100 py-2 px-4 rounded-lg"
+                className="placeholder:text-xs border border-gray-200 focus:outline focus:outline-black outline-none py-2 px-4 rounded-lg"
               />
             </div>
             <div className="flex flex-col gap-1">
@@ -101,7 +77,7 @@ const LoginPage = () => {
                 value={form.password}
                 onChange={changeHandler}
                 placeholder="Password"
-                className="placeholder:text-xs border border-violet-200 focus:outline focus:border-violet-100 py-2 px-4 rounded-lg"
+                className="placeholder:text-xs border border-gray-200 focus:outline focus:outline-black outline-none py-2 px-4 rounded-lg"
               />
             </div>
             <button
@@ -120,6 +96,16 @@ const LoginPage = () => {
                 className="bg-gray-100 border text-center py-1 px-4 rounded-lg"
               >
                 Register
+              </Link>
+            </div>
+            <hr />
+            <div className="flex justify-center">
+              <Link
+                href="/"
+                className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 transition1 rounded-xl py-1 px-4 border text-center w-fit"
+              >
+                <div>{icons.home}</div>
+                <p className="text-[13px] font-light">Home Page</p>
               </Link>
             </div>
           </div>
