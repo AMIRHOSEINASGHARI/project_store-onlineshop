@@ -5,3 +5,11 @@
 .transition1 {
   @apply transition duration-200 ease-in-out;
 }
+
+.iconSize {
+  @apply text-[24px];
+}
+
+.mainGap {
+  @apply gap-[15px];
+}

@@ -1,5 +1,12 @@
+import Navbar from "@/components/shared/Navbar";
+
 const PagesLayout = ({ children }) => {
-  return <div>{children}</div>;
+  return (
+    <div>
+      <Navbar />
+      <main>{children}</main>
+    </div>
+  );
 };
 
 export default PagesLayout;

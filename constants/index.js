@@ -19,10 +19,18 @@ import {
   PiArrowBendRightDownLight,
   PiBoundingBoxLight,
   PiQuestionLight,
+  PiUserLight,
+  PiShoppingBagLight,
 } from "react-icons/pi";
 import { GoHome, GoTasklist } from "react-icons/go";
 import { IoIosNotificationsOutline } from "react-icons/io";
-import { CiDark, CiDeliveryTruck, CiSearch, CiSettings } from "react-icons/ci";
+import {
+  CiDark,
+  CiDeliveryTruck,
+  CiMenuBurger,
+  CiSearch,
+  CiSettings,
+} from "react-icons/ci";
 import { TfiClose } from "react-icons/tfi";
 
 export const images = {
@@ -38,9 +46,11 @@ export const icons = {
   deliveryTruck: <CiDeliveryTruck />,
   dollar: <PiCurrencyDollarSimpleThin />,
   basket: <PiBasketThin />,
+  cart: <PiShoppingBagLight />,
   plus: <PiPlusSquareThin />,
   paper: <PiPaperPlaneThin />,
   users: <PiUsersThin />,
+  user: <PiUserLight />,
   layout: <PiLayoutLight />,
   textB: <PiTextBLight />,
   textBox: <PiTextboxLight />,
@@ -62,6 +72,7 @@ export const icons = {
   fallingArrow: <PiArrowBendRightDownLight />,
   category: <PiBoundingBoxLight />,
   question: <PiQuestionLight />,
+  menu: <CiMenuBurger />,
 };
 
 export const navLinks = [
