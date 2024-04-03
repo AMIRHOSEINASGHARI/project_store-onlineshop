@@ -26,11 +26,11 @@ import { CiDark, CiDeliveryTruck, CiSearch, CiSettings } from "react-icons/ci";
 import { TfiClose } from "react-icons/tfi";
 
 export const images = {
-  logo: "/logo.svg",
-  authLogin: "/auth-login.png",
-  authRegister: "/auth-register.png",
-  person_1: "/person.png",
-  notFound: "/404.svg",
+  logo: "/images/logo.svg",
+  authLogin: "/images/auth-login.png",
+  authRegister: "/images/auth-register.png",
+  person_1: "/images/person.png",
+  notFound: "/images/404.svg",
 };
 
 export const icons = {
