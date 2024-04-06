@@ -103,3 +103,26 @@ export const navLinks = [
     link: "/about-us",
   },
 ];
+
+export const ourPoints = [
+  {
+    title: "Worldwide Delivery",
+    subtitle: "We offer competitive prices on",
+    icon: icons.deliveryTruck,
+  },
+  {
+    title: "Safe Payment",
+    subtitle: "We offer competitive prices on",
+    icon: icons.deliveryTruck,
+  },
+  {
+    title: "Shop With Confidence",
+    subtitle: "We offer competitive prices on",
+    icon: icons.deliveryTruck,
+  },
+  {
+    title: "24/7 Support",
+    subtitle: "We offer competitive prices on",
+    icon: icons.deliveryTruck,
+  },
+];

@@ -2,9 +2,9 @@ import HeroSection from "./ui/HeroSection";
 
 const HomePage = () => {
   return (
-    <section>
+    <main className="space-y-[100px]">
       <HeroSection />
-    </section>
+    </main>
   );
 };
 

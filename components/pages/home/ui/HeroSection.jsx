@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const HeroSection = () => {
   return (
-    <div className="w-full h-screen relative">
+    <section className="w-full h-[85vh] relative">
       <Image
         src={images.hero_image}
         width={1920}
@@ -21,7 +21,7 @@ const HeroSection = () => {
           priority
         />
       </div>
-    </div>
+    </section>
   );
 };
 
