@@ -17,3 +17,15 @@
 .maxWidth {
   @apply max-w-[1400px] mx-auto;
 }
+
+.cardShadow {
+  @apply shadow-[0_5px_15px_#e2e8f0];
+}
+
+.cardShadow2 {
+  @apply shadow-[0_5px_3px_#e2e8f0];
+}
+
+.cardShadow3 {
+  @apply shadow-[0_10px_50px_-12px_rgba(0,0,0,0.1)];
+}
