@@ -1,8 +1,10 @@
 const TextHeader = ({ title, subtitle }) => {
   return (
     <>
-      <h1 className="text-[35px] font-bold capitalize">{title}</h1>
-      {subtitle && <p className="text-[15px] text-gray-500">{subtitle}</p>}
+      <h1 className="md:text-[35px] text-[25px] font-bold capitalize">
+        {title}
+      </h1>
+      {subtitle && <p className="md:text-[15px] subtitle">{subtitle}</p>}
     </>
   );
 };

@@ -29,3 +29,23 @@
 .cardShadow3 {
   @apply shadow-[0_10px_50px_-12px_rgba(0,0,0,0.1)];
 }
+
+.textHeaderPosition {
+  @apply mb-[20px] w-full flex md:items-center flex-col;
+}
+
+.subtitle {
+  @apply text-[14px] text-gray-500 font-light;
+}
+
+.subheader {
+  @apply font-semibold text-[18px];
+}
+
+.price {
+  @apply font-semibold text-[18px];
+}
+
+.discountPrice {
+  @apply font-medium text-[14px] line-through text-gray-400;
+}

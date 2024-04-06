@@ -4,7 +4,7 @@ import { ourPoints } from "@/constants";
 const OurPoints = () => {
   return (
     <section>
-      <div className="mb-[20px] w-full flex items-center flex-col">
+      <div className="textHeaderPosition">
         <TextHeader
           title="Our Best Points"
           subtitle="See our best points as a shopping website"
@@ -19,11 +19,9 @@ const OurPoints = () => {
             <div className="text-[25px] p-3 rounded-full shadow-md">
               {el.icon}
             </div>
-            <div className="">
-              <h3 className="font-medium text-[18px]">{el.title}</h3>
-              <p className="font-light text-[12px] text-gray-500">
-                {el.subtitle}
-              </p>
+            <div>
+              <h3 className="subheader">{el.title}</h3>
+              <p className="subtitle">{el.subtitle}</p>
             </div>
           </div>
         ))}
