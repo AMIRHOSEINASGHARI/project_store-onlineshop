@@ -34,6 +34,10 @@
   @apply mb-[20px] w-full flex md:items-center flex-col;
 }
 
+.textHeaderPosition2 {
+  @apply mb-[20px] w-full;
+}
+
 .subtitle {
   @apply text-[14px] text-gray-500 font-light;
 }

@@ -40,6 +40,16 @@ export const images = {
   person_1: "/images/person.png",
   notFound: "/images/404.svg",
   hero_image: "/images/hero.jpg",
+  category_camera: "/images/categories/camera.jpg",
+  category_gaming: "/images/categories/gaming.jpg",
+  category_headphone: "/images/categories/headphone.jpg",
+  category_laptop: "/images/categories/laptop.jpg",
+  category_phone: "/images/categories/phone.jpg",
+  category_printer: "/images/categories/printer.jpg",
+  category_speaker: "/images/categories/speaker.jpg",
+  category_tablet: "/images/categories/tablet.jpg",
+  category_tv: "/images/categories/tv.jpg",
+  category_watch: "/images/categories/watch.jpg",
 };
 
 export const icons = {
@@ -124,5 +134,58 @@ export const ourPoints = [
     title: "24/7 Support",
     subtitle: "We offer competitive prices on",
     icon: icons.deliveryTruck,
+  },
+];
+
+export const categories = [
+  {
+    image: images.category_camera,
+    title: "Camera",
+    route: "/products?category=camera",
+  },
+  {
+    image: images.category_gaming,
+    title: "Gaming",
+    route: "/products?category=gaming",
+  },
+  {
+    image: images.category_headphone,
+    title: "Headphone",
+    route: "/products?category=headphone",
+  },
+  {
+    image: images.category_laptop,
+    title: "Laptop",
+    route: "/products?category=laptop",
+  },
+  {
+    image: images.category_phone,
+    title: "Phone",
+    route: "/products?category=phone",
+  },
+  {
+    image: images.category_printer,
+    title: "Printer",
+    route: "/products?category=printer",
+  },
+  {
+    image: images.category_speaker,
+    title: "Speaker",
+    route: "/products?category=speaker",
+  },
+  {
+    image: images.category_tablet,
+    title: "Tablet",
+    route: "/products?category=tablet",
+  },
+  {
+    image: images.category_tv,
+    title: "Television",
+    route: "/products?category=tv",
+  },
+  {
+    image: images.category_watch,
+    title: "Watch",
+    route: "/products?category=watch",
   },
 ];

@@ -40,7 +40,7 @@ const products = [
 const BestSeller = () => {
   return (
     <section>
-      <div className="textHeaderPosition">
+      <div className="textHeaderPosition2">
         <TextHeader
           title="Best Seller Products"
           subtitle="There are many variations passages"

@@ -1,4 +1,5 @@
 import BestSeller from "./ui/BestSeller";
+import CategorySection from "./ui/CategorySection";
 import HeroSection from "./ui/HeroSection";
 import OurPoints from "./ui/OurPoints";
 
@@ -8,6 +9,7 @@ const HomePage = () => {
       <HeroSection />
       <OurPoints />
       <BestSeller />
+      <CategorySection />
     </main>
   );
 };

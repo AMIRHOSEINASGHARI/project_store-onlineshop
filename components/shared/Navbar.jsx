@@ -11,7 +11,7 @@ const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <header className="border-b fixed w-full top-0 z-10 bg-white">
+    <header className="border-b fixed w-full top-0 z-[1000] bg-white">
       <div className="maxWidth w-full flex items-center justify-between px-4 max-lg:py-4">
         <div className="flex items-center lg:gap-[50px]">
           <MobileNavMenu />
