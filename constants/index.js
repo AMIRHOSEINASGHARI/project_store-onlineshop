@@ -39,6 +39,7 @@ export const images = {
   authRegister: "/images/auth-register.png",
   person_1: "/images/person.png",
   notFound: "/images/404.svg",
+  hero_image: "/images/hero.jpg",
 };
 
 export const icons = {
