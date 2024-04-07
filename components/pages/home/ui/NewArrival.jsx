@@ -35,46 +35,14 @@ const products = [
     price: 250,
     discount: 50,
   },
-  {
-    id: "5",
-    image: "/images/products/1.png",
-    title: "Samsung A54 5G",
-    description: "Powerful sensors, advanced",
-    price: 250,
-    discount: 50,
-  },
-  {
-    id: "6",
-    image: "/images/products/2.png",
-    title: "Samsung S24 Ultra",
-    description: "Powerful sensors, advanced",
-    price: 250,
-    discount: 50,
-  },
-  {
-    id: "7",
-    image: "/images/products/3.png",
-    title: "Samsung A14 5G",
-    description: "Powerful sensors, advanced",
-    price: 250,
-    discount: 50,
-  },
-  {
-    id: "8",
-    image: "/images/products/4.png",
-    title: "Samsung S24 Ultra",
-    description: "Powerful sensors, advanced",
-    price: 250,
-    discount: 50,
-  },
 ];
 
-const BestSeller = () => {
+const NewArrival = () => {
   return (
     <section>
       <div className="textHeaderPosition2">
         <TextHeader
-          title="Best Seller Products"
+          title="New Arrival Products"
           subtitle="There are many variations passages"
         />
       </div>
@@ -108,4 +76,4 @@ const BestSeller = () => {
   );
 };
 
-export default BestSeller;
+export default NewArrival;

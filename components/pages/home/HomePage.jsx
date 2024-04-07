@@ -1,6 +1,7 @@
 import BestSeller from "./ui/BestSeller";
 import CategorySection from "./ui/CategorySection";
 import HeroSection from "./ui/HeroSection";
+import NewArrival from "./ui/NewArrival";
 import OurPoints from "./ui/OurPoints";
 
 const HomePage = () => {
@@ -10,6 +11,7 @@ const HomePage = () => {
       <OurPoints />
       <BestSeller />
       <CategorySection />
+      <NewArrival />
     </main>
   );
 };

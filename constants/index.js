@@ -21,6 +21,9 @@ import {
   PiQuestionLight,
   PiUserLight,
   PiShoppingBagLight,
+  PiCheckSquareLight,
+  PiShieldCheckLight,
+  PiHeadphonesLight,
 } from "react-icons/pi";
 import { GoHome, GoTasklist } from "react-icons/go";
 import { IoIosNotificationsOutline } from "react-icons/io";
@@ -40,6 +43,8 @@ export const images = {
   person_1: "/images/person.png",
   notFound: "/images/404.svg",
   hero_image: "/images/hero.jpg",
+  home_watch: "/images/products/watch.png",
+  home_watch_banner_bg: "/images/watch-banner-bg.png",
   category_camera: "/images/categories/camera.jpg",
   category_gaming: "/images/categories/gaming.jpg",
   category_headphone: "/images/categories/headphone.jpg",
@@ -84,6 +89,9 @@ export const icons = {
   category: <PiBoundingBoxLight />,
   question: <PiQuestionLight />,
   menu: <CiMenuBurger />,
+  checkSquare: <PiCheckSquareLight />,
+  shield: <PiShieldCheckLight />,
+  headphone: <PiHeadphonesLight />,
 };
 
 export const navLinks = [
@@ -123,17 +131,17 @@ export const ourPoints = [
   {
     title: "Safe Payment",
     subtitle: "We offer competitive prices on",
-    icon: icons.deliveryTruck,
+    icon: icons.checkSquare,
   },
   {
     title: "Shop With Confidence",
     subtitle: "We offer competitive prices on",
-    icon: icons.deliveryTruck,
+    icon: icons.shield,
   },
   {
     title: "24/7 Support",
     subtitle: "We offer competitive prices on",
-    icon: icons.deliveryTruck,
+    icon: icons.headphone,
   },
 ];
 
