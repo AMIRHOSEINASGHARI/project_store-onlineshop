@@ -5,7 +5,7 @@ const PagesLayout = ({ children }) => {
   return (
     <div>
       <Navbar />
-      <main className="mt-[90px] pb-[100px] maxWidth pagesPaddingX">
+      <main className="mt-[90px] pb-[150px] maxWidth pagesPaddingX min-h-screen">
         {children}
       </main>
       <Footer />
