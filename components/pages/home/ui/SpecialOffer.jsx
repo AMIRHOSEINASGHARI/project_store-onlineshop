@@ -17,7 +17,7 @@ const SpecialOffer = () => {
           <Link href="/products?category=gaming" target="_blank">
             <div className="h-full w-full flex flex-col justify-center bg-gradient-to-br from-[#e3cf5f22] to-[#feea71] py-[50px] px-[30px] sm:pl-[50px]">
               <span className="text-gray-800">PlayStation Controller</span>
-              <h1 className="text-gray-800 font-bold text-[30px] sm:text-[40px] sm:w-[80%] xl:w-[40%] leading-[45px] mt-2 mb-5 lg:mb-[50px]">
+              <h1 className="text-gray-800 font-bold text-[30px] sm:text-[40px] sm:w-[80%] xl:w-[40%] xl:leading-[45px] leading-[35px] mt-2 mb-5 lg:mb-[50px]">
                 DualSense Wireless Controller
               </h1>
               <span className="text-white bg-gray-800 text-[14px] font-semibold w-fit rounded-full py-2 px-7">
@@ -39,7 +39,7 @@ const SpecialOffer = () => {
           <Link href="/products?category=phone" target="_blank">
             <div className="h-full w-full flex flex-col justify-center bg-gradient-to-br from-[#262626e1] to-[#1a1a1a] py-[50px] px-[30px] sm:pl-[50px]">
               <span className="text-white">iPhone 15</span>
-              <h1 className="text-white font-bold text-[30px] sm:text-[40px] sm:w-[80%] xl:w-[40%] leading-[45px] mt-2 mb-5 lg:mb-[50px]">
+              <h1 className="text-white font-bold text-[30px] sm:text-[40px] sm:w-[80%] xl:w-[40%] xl:leading-[45px] leading-[35px] mt-2 mb-5 lg:mb-[50px]">
                 Apple iPhone 15 Pro Max
               </h1>
               <span className="text-white bg-gray-700 text-[14px] font-semibold w-fit rounded-full py-2 px-7">

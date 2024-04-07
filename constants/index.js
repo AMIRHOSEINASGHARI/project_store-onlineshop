@@ -26,6 +26,11 @@ import {
   PiHeadphonesLight,
   PiArrowDownLight,
   PiArrowRightLight,
+  PiTwitterLogoLight,
+  PiGoogleLogoLight,
+  PiInstagramLogoLight,
+  PiTelegramLogoLight,
+  PiYoutubeLogoLight,
 } from "react-icons/pi";
 import { GoHome, GoTasklist } from "react-icons/go";
 import { IoIosNotificationsOutline } from "react-icons/io";
@@ -37,6 +42,7 @@ import {
   CiSettings,
 } from "react-icons/ci";
 import { TfiClose } from "react-icons/tfi";
+import { FcLike } from "react-icons/fc";
 
 export const images = {
   logo: "/images/logo.svg",
@@ -86,6 +92,7 @@ export const icons = {
   document: <PiNewspaperLight />,
   upload: <PiUploadLight />,
   heart: <PiHeartLight />,
+  redHeart: <FcLike />,
   clock: <PiClockLight />,
   lock: <PiLockSimpleOpenLight />,
   growArrow: <PiArrowBendRightUpLight />,
@@ -98,6 +105,11 @@ export const icons = {
   checkSquare: <PiCheckSquareLight />,
   shield: <PiShieldCheckLight />,
   headphone: <PiHeadphonesLight />,
+  twitter: <PiTwitterLogoLight />,
+  google: <PiGoogleLogoLight />,
+  instagram: <PiInstagramLogoLight />,
+  telegram: <PiTelegramLogoLight />,
+  youtube: <PiYoutubeLogoLight />,
 };
 
 export const navLinks = [
@@ -201,5 +213,70 @@ export const categories = [
     image: images.category_watch,
     title: "Watch",
     route: "/products?category=watch",
+  },
+];
+
+export const footerLinks = [
+  {
+    isLink: true,
+    title: "About Us",
+    id: 1,
+    links: [
+      "Careers",
+      "Our Stores",
+      "Our Cares",
+      "Terms & Conditions",
+      "Privacy Policy",
+    ],
+  },
+  {
+    isLink: true,
+    title: "Customer Care",
+    id: 2,
+    links: [
+      "Help Center",
+      "Track Your Order",
+      "Corporate & Bulk Purchasing",
+      "Returns & Refunds",
+    ],
+  },
+  {
+    isLink: false,
+    title: "Contact Us",
+    id: 3,
+    names: [
+      "Help Center",
+      "Track Your Order",
+      "Corporate & Bulk Purchasing",
+      "Returns & Refunds",
+    ],
+  },
+];
+
+export const socialMedia = [
+  {
+    icon: icons.youtube,
+    link: "/",
+    id: 1,
+  },
+  {
+    icon: icons.twitter,
+    link: "/",
+    id: 2,
+  },
+  {
+    icon: icons.google,
+    link: "/",
+    id: 3,
+  },
+  {
+    icon: icons.instagram,
+    link: "/",
+    id: 4,
+  },
+  {
+    icon: icons.telegram,
+    link: "/",
+    id: 5,
   },
 ];

@@ -18,6 +18,18 @@
   @apply max-w-[1400px] mx-auto;
 }
 
+.paddingX {
+  @apply px-[12px];
+}
+
+.paddingIcon {
+  @apply p-[6px];
+}
+
+.pagesPaddingX {
+  @apply px-[18px]; /* paddingX + paddingIcon */
+}
+
 .cardShadow {
   @apply shadow-[0_5px_15px_#e2e8f0];
 }

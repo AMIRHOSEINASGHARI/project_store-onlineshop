@@ -12,10 +12,10 @@ const Navbar = () => {
 
   return (
     <header className="border-b fixed w-full top-0 z-[1000] bg-white">
-      <div className="maxWidth w-full flex items-center justify-between px-4 max-lg:py-4">
+      <div className="maxWidth w-full flex items-center justify-between max-lg:py-4 paddingX">
         <div className="flex items-center lg:gap-[50px]">
           <MobileNavMenu />
-          <Link href="/" className="flex items-center gap-[10px] px-2">
+          <Link href="/" className="flex items-center gap-[10px] paddingIcon">
             <Image
               src={images.logo}
               alt="logo"
@@ -34,7 +34,7 @@ const Navbar = () => {
         <div className="flex items-center mainGap">
           <Link
             href="/profile"
-            className={`iconSize p-2 rounded-full hover:bg-gray-100 transition1 border ${
+            className={`iconSize paddingIcon rounded-full hover:bg-gray-100 transition1 border ${
               pathname === "/profile"
                 ? "border-violet-500 text-violet-600"
                 : "text-gray-500 border-transparent"
@@ -43,7 +43,7 @@ const Navbar = () => {
             {icons.user}
           </Link>
           <button
-            className={`iconSize p-2 rounded-full hover:bg-gray-100 transition1 border ${
+            className={`iconSize paddingIcon rounded-full hover:bg-gray-100 transition1 border ${
               pathname === "/cart"
                 ? "border-violet-500 text-violet-600"
                 : "text-gray-500 border-transparent"

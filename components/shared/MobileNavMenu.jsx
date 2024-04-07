@@ -5,7 +5,7 @@ const MobileNavMenu = () => {
   // TODO: antd Drawer cmp
   return (
     <>
-      <button className="iconSize lg:hidden p-2">{icons.menu}</button>
+      <button className="iconSize lg:hidden paddingIcon">{icons.menu}</button>
     </>
   );
 };

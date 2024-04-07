@@ -9,7 +9,7 @@ import SpecialOffer from "./ui/SpecialOffer";
 
 const HomePage = () => {
   return (
-    <main className="space-y-[100px] pb-52">
+    <main className="space-y-[100px]">
       <HeroSection />
       <OurPoints />
       <BestSeller />
