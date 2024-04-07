@@ -25,6 +25,7 @@ import {
   PiShieldCheckLight,
   PiHeadphonesLight,
   PiArrowDownLight,
+  PiArrowRightLight,
 } from "react-icons/pi";
 import { GoHome, GoTasklist } from "react-icons/go";
 import { IoIosNotificationsOutline } from "react-icons/io";
@@ -46,6 +47,8 @@ export const images = {
   hero_image: "/images/hero.jpg",
   home_watch: "/images/products/watch.png",
   home_watch_banner_bg: "/images/watch-banner-bg.png",
+  ip15: "/images/products/ip15.png",
+  ps5_controller_black: "/images/products/ps5-conroller-black.png",
   category_camera: "/images/categories/camera.jpg",
   category_gaming: "/images/categories/gaming.jpg",
   category_headphone: "/images/categories/headphone.jpg",
@@ -87,6 +90,7 @@ export const icons = {
   lock: <PiLockSimpleOpenLight />,
   growArrow: <PiArrowBendRightUpLight />,
   downArrow: <PiArrowDownLight />,
+  rightArrow: <PiArrowRightLight />,
   fallingArrow: <PiArrowBendRightDownLight />,
   category: <PiBoundingBoxLight />,
   question: <PiQuestionLight />,
