@@ -1,5 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import TextHeader from "@/components/reusable/TextHeader";
+import { icons } from "@/constants";
 
 // TODO: soon, fetch data and make this dynamic
 const products = [
@@ -77,6 +79,14 @@ const BestSeller = () => {
           title="Best Seller Products"
           subtitle="There are many variations passages"
         />
+      </div>
+      <div className="w-full flex justify-end mb-3">
+        <Link
+          href="/products"
+          className="flex items-center gap-3 hover:bg-gray-200 bg-gray-100 font-semibold text-[14px] rounded-xl py-2 px-4 w-fit group-hover:text-violet-500  transition1"
+        >
+          See all {icons.rightArrow}
+        </Link>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
         {products.map((el) => (
