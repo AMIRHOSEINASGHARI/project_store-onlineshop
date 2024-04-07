@@ -5,8 +5,12 @@ import { images } from "@/constants";
 const ProductBanner = () => {
   return (
     <section className="w-full">
-      <div className="w-full h-[250px] lg:h-[350px] relative">
-        <Link href="/product?category=watch" className="rounded-3xl">
+      <div className="w-full h-[250px] lg:h-[350px] relative group">
+        <Link
+          href="/products?category=watch"
+          target="_blank"
+          className="rounded-3xl"
+        >
           <Image
             src={images.home_watch_banner_bg}
             width={1920}
@@ -24,7 +28,7 @@ const ProductBanner = () => {
               Shop Now
             </span>
           </div>
-          <div className="w-[360px] absolute bottom-0 z-20 right-[20px] xl:right-[50px] max-lg:hidden">
+          <div className="w-[360px] animate-pulse group-hover:animate-none absolute bottom-0 z-20 right-[20px] xl:right-[50px] max-lg:hidden group-hover:-translate-x-[20px] group-hover:-translate-y-[10px] group-hover:rotate-2 transition1">
             <Image
               src={images.home_watch}
               width={682}

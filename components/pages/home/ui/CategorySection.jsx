@@ -27,7 +27,7 @@ const CategorySection = () => {
               priority
             />
             <div className="bg-black/30 backdrop-blur-sm inset-0 z-10 absolute hidden group-hover:block">
-              <p className="text-center absolute z-20 bottom-3 right-0 left-0 text-white font-bold">
+              <p className="text-center absolute z-20 bottom-3 right-0 left-0 text-white font-bold animate-bounce">
                 {el.title}
               </p>
             </div>
