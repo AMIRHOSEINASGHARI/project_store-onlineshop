@@ -24,6 +24,7 @@ import {
   PiCheckSquareLight,
   PiShieldCheckLight,
   PiHeadphonesLight,
+  PiArrowDownLight,
 } from "react-icons/pi";
 import { GoHome, GoTasklist } from "react-icons/go";
 import { IoIosNotificationsOutline } from "react-icons/io";
@@ -85,6 +86,7 @@ export const icons = {
   clock: <PiClockLight />,
   lock: <PiLockSimpleOpenLight />,
   growArrow: <PiArrowBendRightUpLight />,
+  downArrow: <PiArrowDownLight />,
   fallingArrow: <PiArrowBendRightDownLight />,
   category: <PiBoundingBoxLight />,
   question: <PiQuestionLight />,

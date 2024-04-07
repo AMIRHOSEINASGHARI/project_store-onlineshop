@@ -1,4 +1,4 @@
-import { images } from "@/constants";
+import { icons, images } from "@/constants";
 import Image from "next/image";
 
 const HeroSection = () => {
@@ -20,6 +20,9 @@ const HeroSection = () => {
           alt="down"
           priority
         />
+      </div>
+      <div className="absolute bottom-1 text-[20px] animate-bounce w-full flex justify-center">
+        {icons.downArrow}
       </div>
     </section>
   );
