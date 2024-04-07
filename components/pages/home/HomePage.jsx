@@ -5,6 +5,7 @@ import LatestBlogs from "./ui/LatestBlogs";
 import NewArrival from "./ui/NewArrival";
 import OurPoints from "./ui/OurPoints";
 import ProductBanner from "./ui/ProductBanner";
+import SpecialOffer from "./ui/SpecialOffer";
 
 const HomePage = () => {
   return (
@@ -16,6 +17,7 @@ const HomePage = () => {
       <NewArrival />
       <ProductBanner />
       <LatestBlogs />
+      <SpecialOffer />
     </main>
   );
 };
