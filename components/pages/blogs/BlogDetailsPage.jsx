@@ -4,6 +4,7 @@ import moment from "moment";
 import { getBlog } from "@/actions/blogs";
 import { icons } from "@/constants";
 import { createSlug } from "@/utils/functions";
+import LikeBlog from "./ui/LikeBlog";
 
 const BlogDetailsPage = async ({ id }) => {
   const data = await getBlog(id);
@@ -41,6 +42,7 @@ const BlogDetailsPage = async ({ id }) => {
         </div>
       </div>
       <p className="text-justify">{description}</p>
+      <LikeBlog id={JSON.parse(JSON.stringify(_id))} />
       <div className="mt-[30px] border-t py-[10px]">
         <h1 className="mb-[6px]">Keywords:</h1>
         <div className="flex flex-wrap gap-[5px]">
