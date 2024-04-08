@@ -1,4 +1,4 @@
-import { getBlogs } from "@/actions/blogs";
+import { getBlogs } from "@/actions/blog.action";
 import BlogCard from "./ui/BlogCard";
 
 const BlogsPage = async () => {
