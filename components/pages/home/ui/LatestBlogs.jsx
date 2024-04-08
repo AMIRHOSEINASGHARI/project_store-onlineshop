@@ -5,30 +5,6 @@ import moment from "moment";
 import { shorterText } from "@/utils/functions";
 import { getLatestBlogs } from "@/actions/blog.action";
 
-// TODO: soon, fetch data and make this dynamic
-const blogs = [
-  {
-    createdAt: "07 April, 2024",
-    title: "GameStop Will Provide Up to $1 Billion in",
-    _id: "1",
-  },
-  {
-    createdAt: "07 April, 2024",
-    title: "GameStop Will Provide Up to $1 Billion in",
-    _id: "2",
-  },
-  {
-    createdAt: "07 April, 2024",
-    title: "GameStop Will Provide Up to $1 Billion in",
-    _id: "3",
-  },
-  {
-    createdAt: "07 April, 2024",
-    title: "GameStop Will Provide Up to $1 Billion in",
-    _id: "4",
-  },
-];
-
 const LatestBlogs = async () => {
   const data = await getLatestBlogs();
 
