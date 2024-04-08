@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import moment from "moment";
 import { shorterText } from "@/utils/functions";

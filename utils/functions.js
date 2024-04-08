@@ -5,3 +5,8 @@ export const shorterText = (text, maxCharacter) => {
     return text;
   }
 };
+
+export const createSlug = (title) => {
+  const slug = title.split(" ").join("-");
+  return slug;
+};
