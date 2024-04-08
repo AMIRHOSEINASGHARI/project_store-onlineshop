@@ -3,6 +3,25 @@
 import connectDB from "@/utils/connectDB";
 import { Products } from "@/utils/models/product";
 
+// Gets All Products By Filter
+export const getProducts = async ({ page }) => {
+  try {
+    await connectDB();
+    const res = await Products.find().sort({ createdAt: -1 });
+    return {
+      products: res,
+      status: "success",
+      code: 200,
+    };
+  } catch (error) {
+    return {
+      products: null,
+      status: "failed",
+      code: 500,
+    };
+  }
+};
+
 // Gets last 4 Products Published
 export const getLatestProducts = async () => {
   try {
