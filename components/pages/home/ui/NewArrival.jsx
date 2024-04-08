@@ -3,7 +3,7 @@ import Link from "next/link";
 import TextHeader from "@/components/reusable/TextHeader";
 import { icons } from "@/constants";
 import { getLatestProducts } from "@/actions/product.action";
-import { shorterText } from "@/utils/functions";
+import { reducePrice, shorterText } from "@/utils/functions";
 
 const NewArrival = async () => {
   const data = await getLatestProducts();
@@ -52,15 +52,25 @@ const NewArrival = async () => {
             </div>
             <div className="flex w-full justify-between">
               <div>
-                <p className="subheader">{shorterText(el.title, 20)}</p>
+                <p className="subheader">{shorterText(el.title, 15)}</p>
                 <span className="subtitle">
-                  {shorterText(el.description, 20)}
+                  {shorterText(el.description, 25)}
                 </span>
               </div>
-              <div className="flex flex-col items-end">
-                <span className="discountPrice">${el.price}</span>
-                <p className="price">${el.price}</p>
-              </div>
+              {el.discount > 0 ? (
+                <div className="flex flex-col items-end">
+                  <span className="discountPrice">
+                    ${el.price.toLocaleString()}
+                  </span>
+                  <p className="price">
+                    ${reducePrice(el.discount, el.price).toLocaleString()}
+                  </p>
+                </div>
+              ) : (
+                <div className="flex flex-col justify-end">
+                  <p className="price">${el.price.toLocaleString()}</p>
+                </div>
+              )}
             </div>
           </Link>
         ))}
