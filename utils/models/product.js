@@ -23,6 +23,6 @@ const productSchema = new Schema({
   },
 });
 
-export const Product =
+export const Products =
   models?.StoreDashboardProduct ||
   model("StoreDashboardProduct", productSchema);
