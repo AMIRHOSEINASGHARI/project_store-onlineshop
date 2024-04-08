@@ -7,7 +7,11 @@ import { Products } from "@/utils/models/product";
 export const getProducts = async ({ page }) => {
   try {
     await connectDB();
-    const res = await Products.find().sort({ createdAt: -1 });
+    const perPage = 12;
+    const res = await Products.find()
+      .skip((page - 1) * perPage)
+      .limit(perPage)
+      .sort({ createdAt: -1 });
     return {
       products: res,
       status: "success",
