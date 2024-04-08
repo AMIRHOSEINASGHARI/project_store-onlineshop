@@ -4,14 +4,18 @@ import connectDB from "@/utils/connectDB";
 import { Products } from "@/utils/models/product";
 
 // Gets All Products By Filter
-export const getProducts = async ({ page }) => {
+export const getProducts = async (page) => {
   try {
     await connectDB();
-    const perPage = 12;
+
+    const pageNumber = page || 1;
+    const perPage = 9;
+
     const res = await Products.find()
-      .skip((page - 1) * perPage)
+      .skip((pageNumber - 1) * perPage)
       .limit(perPage)
       .sort({ createdAt: -1 });
+
     return {
       products: res,
       status: "success",
