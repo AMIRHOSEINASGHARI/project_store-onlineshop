@@ -4,6 +4,7 @@ import TextHeader from "@/components/reusable/TextHeader";
 import { icons } from "@/constants";
 import { getLatestProducts } from "@/actions/product.action";
 import { reducePrice, shorterText } from "@/utils/functions";
+import ProductCard from "../../products/ui/ProductCard";
 
 const NewArrival = async () => {
   const data = await getLatestProducts();
@@ -34,45 +35,7 @@ const NewArrival = async () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
         {data.products.map((el) => (
-          <Link
-            href={`/products/${el._id}`}
-            target="_blank"
-            key={el.id}
-            className="rounded-2xl p-4 cardShadow3"
-          >
-            <div className="w-full flex justify-center mx-3 my-10">
-              <Image
-                src={el.image}
-                width={400}
-                height={400}
-                alt={el.title}
-                priority
-                className="w-[200px] h-[200px]"
-              />
-            </div>
-            <div className="flex w-full justify-between">
-              <div>
-                <p className="subheader">{shorterText(el.title, 15)}</p>
-                <span className="subtitle">
-                  {shorterText(el.description, 25)}
-                </span>
-              </div>
-              {el.discount > 0 ? (
-                <div className="flex flex-col items-end">
-                  <span className="discountPrice">
-                    ${el.price.toLocaleString()}
-                  </span>
-                  <p className="price">
-                    ${reducePrice(el.discount, el.price).toLocaleString()}
-                  </p>
-                </div>
-              ) : (
-                <div className="flex flex-col justify-end">
-                  <p className="price">${el.price.toLocaleString()}</p>
-                </div>
-              )}
-            </div>
-          </Link>
+          <ProductCard {...el} key={el._id} />
         ))}
       </div>
     </section>
