@@ -10,14 +10,17 @@ export const getProducts = async (page) => {
 
     const pageNumber = page || 1;
     const perPage = 9;
+    const totalProducts = await Products.countDocuments();
+    const totalPages = Math.ceil(totalProducts / perPage);
 
-    const res = await Products.find()
+    const products = await Products.find()
       .skip((pageNumber - 1) * perPage)
       .limit(perPage)
       .sort({ createdAt: -1 });
 
     return {
-      products: res,
+      products,
+      totalPages,
       status: "success",
       code: 200,
     };

@@ -1,7 +1,7 @@
 import ProductsPage from "@/components/pages/products/ProductsPage";
 
-const Products = () => {
-  return <ProductsPage />;
+const Products = ({ searchParams }) => {
+  return <ProductsPage searchParams={searchParams} />;
 };
 
 export default Products;
