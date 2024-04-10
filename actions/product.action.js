@@ -37,8 +37,8 @@ export const getProducts = async (page) => {
 export const getLatestProducts = async () => {
   try {
     await connectDB();
-    const res = await Products.find().sort({ createdAt: -1 });
-    const products = res.slice(0, 4);
+    const products = await Products.find().limit(8).sort({ createdAt: -1 });
+
     return {
       products,
       status: "success",
