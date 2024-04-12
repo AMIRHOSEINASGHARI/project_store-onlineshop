@@ -8,17 +8,18 @@ export const getProducts = async (searchParams) => {
   try {
     await connectDB();
     const { page, search } = searchParams;
+    let query = {};
+
+    if (search) {
+      query = { $text: { $search: search } };
+    }
 
     const pageNumber = page || 1;
     const perPage = 9;
-    const totalProducts = await Products.countDocuments(
-      search && { $text: { $search: search } }
-    );
+    const totalProducts = await Products.countDocuments(query);
     const totalPages = Math.ceil(totalProducts / perPage);
 
-    const products = await Products.find(
-      search && { $text: { $search: search } }
-    )
+    const products = await Products.find(query)
       .skip((pageNumber - 1) * perPage)
       .limit(perPage)
       .sort({ createdAt: -1 });
