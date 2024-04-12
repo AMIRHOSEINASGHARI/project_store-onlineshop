@@ -4,16 +4,21 @@ import connectDB from "@/utils/connectDB";
 import { Products } from "@/utils/models/product";
 
 // Gets All Products By Filter
-export const getProducts = async (page) => {
+export const getProducts = async (searchParams) => {
   try {
     await connectDB();
+    const { page, search } = searchParams;
 
     const pageNumber = page || 1;
     const perPage = 9;
-    const totalProducts = await Products.countDocuments();
+    const totalProducts = await Products.countDocuments(
+      search && { $text: { $search: search } }
+    );
     const totalPages = Math.ceil(totalProducts / perPage);
 
-    const products = await Products.find()
+    const products = await Products.find(
+      search && { $text: { $search: search } }
+    )
       .skip((pageNumber - 1) * perPage)
       .limit(perPage)
       .sort({ createdAt: -1 });

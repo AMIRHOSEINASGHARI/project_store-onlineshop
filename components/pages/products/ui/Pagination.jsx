@@ -45,9 +45,9 @@ const Pagination = ({ totalPages, searchParams }) => {
       <button
         type="button"
         onClick={() => nextPage()}
-        disabled={searchParams.page == totalPages}
+        disabled={searchParams.page == totalPages || totalPages === 1}
         className={`${
-          searchParams.page == totalPages
+          searchParams.page == totalPages || totalPages === 1
             ? "bg-gray-200 text-gray-600 cursor-not-allowed"
             : "bg-black text-white"
         } rounded-xl py-2 px-4 text-[14px]`}
