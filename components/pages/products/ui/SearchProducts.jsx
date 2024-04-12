@@ -1,16 +1,18 @@
 "use client";
 
+import React, { useState } from "react";
 import { icons } from "@/constants";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
 
 const SearchProducts = () => {
-  const [query, setQuery] = useState("");
   const router = useRouter();
+  const search = new URLSearchParams(window.location.search);
+  const [query, setQuery] = useState(
+    search.has("search") ? search.get("search") : ""
+  );
 
   const submitSearch = (e) => {
     e.preventDefault();
-    const search = new URLSearchParams(window.location.search);
 
     if (!query) {
       router.push("/products");
@@ -24,6 +26,11 @@ const SearchProducts = () => {
     search.set("search", query);
     const newPathName = `${window.location.pathname}?${search.toString()}`;
     router.push(newPathName);
+  };
+
+  const clearSearchHandler = () => {
+    setQuery("");
+    router.push("/products");
   };
 
   return (
@@ -43,6 +50,20 @@ const SearchProducts = () => {
             placeholder="Searching for ..."
             className="py-3 pr-4 bg-transparent w-full placeholder:text-[14px] placeholder:font-light outline-none"
           />
+          {query && (
+            <>
+              <div className="h-full py-[13px]">
+                <div className="w-[1px] h-full bg-gray-300" />
+              </div>
+              <button
+                type="button"
+                className="p-4  text-gray-500"
+                onClick={() => clearSearchHandler()}
+              >
+                {icons.close}
+              </button>
+            </>
+          )}
         </div>
       </form>
     </section>
