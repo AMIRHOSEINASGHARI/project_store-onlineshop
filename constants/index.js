@@ -37,6 +37,7 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import {
   CiDark,
   CiDeliveryTruck,
+  CiFilter,
   CiMenuBurger,
   CiSearch,
   CiSettings,
@@ -110,6 +111,7 @@ export const icons = {
   instagram: <PiInstagramLogoLight />,
   telegram: <PiTelegramLogoLight />,
   youtube: <PiYoutubeLogoLight />,
+  filter: <CiFilter />,
 };
 
 export const navLinks = [
@@ -278,5 +280,28 @@ export const socialMedia = [
     icon: icons.telegram,
     link: "/",
     id: 5,
+  },
+];
+
+export const sortProducts = [
+  {
+    sortName: "newest",
+    sortId: 1,
+  },
+  {
+    sortName: "oldest",
+    sortId: 2,
+  },
+  {
+    sortName: "most expensive",
+    sortId: 3,
+  },
+  {
+    sortName: "cheapest",
+    sortId: 4,
+  },
+  {
+    sortName: "bestselling",
+    sortId: 5,
   },
 ];

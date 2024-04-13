@@ -34,9 +34,9 @@ const SearchProducts = () => {
   };
 
   return (
-    <section className="mb-[20px]">
+    <section className="w-full">
       <form className="flex justify-center" onSubmit={submitSearch}>
-        <div className="flex items-center w-full lg:w-[70%] bg-gray-100 rounded-lg">
+        <div className="flex items-center w-full bg-gray-100 rounded-lg">
           <button type="submit" className="p-4 iconSize text-gray-500">
             {icons.search}
           </button>

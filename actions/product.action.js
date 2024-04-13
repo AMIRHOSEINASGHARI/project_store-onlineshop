@@ -7,22 +7,55 @@ import { Products } from "@/utils/models/product";
 export const getProducts = async (searchParams) => {
   try {
     await connectDB();
-    const { page, search } = searchParams;
-    let query = {};
+    const { page, search, has_selling_stock, has_discount, sort, category } =
+      searchParams;
 
+    let query = {};
+    let filters = {};
+
+    // search query filter
     if (search) {
       query = { $text: { $search: search } };
+    }
+    // product stock filter
+    if (has_selling_stock) {
+      filters.stock = { $gt: 0 };
+    }
+    // product discount filter
+    if (has_discount) {
+      has_discount == 1
+        ? (filters.discount = { $gt: 0 })
+        : (filters.discount = 0);
+    }
+    // product category filter
+    if (category) {
+      filters.category = category;
     }
 
     const pageNumber = page || 1;
     const perPage = 9;
-    const totalProducts = await Products.countDocuments(query);
+    const totalProducts = await Products.countDocuments({
+      ...query,
+      ...filters,
+    });
     const totalPages = Math.ceil(totalProducts / perPage);
 
-    const products = await Products.find(query)
+    const products = await Products.find({ ...query, ...filters })
       .skip((pageNumber - 1) * perPage)
       .limit(perPage)
-      .sort({ createdAt: -1 });
+      .sort(
+        sort &&
+          (sort == 1
+            ? { createdAt: -1 }
+            : sort == 2
+            ? { createdAt: 1 }
+            : sort == 3
+            ? { price: -1 }
+            : sort == 4
+            ? { price: 1 }
+            : sort == 5 && { orders: -1 })
+      )
+      .lean();
 
     return {
       products,

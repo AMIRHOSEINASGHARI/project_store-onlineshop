@@ -3,7 +3,7 @@ import Image from "next/image";
 import { reducePrice, shorterText } from "@/utils/functions";
 
 const ProductCard = (props) => {
-  const { _id, image, title, description, discount, price } = props._doc;
+  const { _id, image, title, description, discount, price } = props;
 
   return (
     <Link

@@ -2,6 +2,7 @@ import { getProducts } from "@/actions/product.action";
 import ProductCard from "./ui/ProductCard";
 import Pagination from "./ui/Pagination";
 import SearchProducts from "./ui/SearchProducts";
+import FilterProducts from "./ui/FilterProducts";
 
 const ProductsPage = async ({ searchParams }) => {
   const data = await getProducts(searchParams);
@@ -12,7 +13,11 @@ const ProductsPage = async ({ searchParams }) => {
 
   return (
     <main>
-      <SearchProducts />
+      <div className="flex items-center gap-2 w-full mb-[20px]">
+        <FilterProducts />
+        <SearchProducts />
+      </div>
+
       {data.products.length !== 0 ? (
         <>
           <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[15px]">
