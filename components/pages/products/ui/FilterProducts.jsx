@@ -10,11 +10,13 @@ const FilterProducts = () => {
   const router = useRouter();
   const search = new URLSearchParams(window.location.search);
   const [filterForm, setFilterForm] = useState({
-    has_selling_stock: false,
-    sort: 0,
-    category: "",
-    has_discount: 0,
+    has_selling_stock: search.get("has_selling_stock") || false,
+    sort: search.get("sort") || 0,
+    category: search.get("category") || "",
+    has_discount: search.get("has_discount") || 0,
   });
+
+  console.log(filterForm);
 
   const showDrawer = () => {
     setOpen(true);
@@ -24,15 +26,6 @@ const FilterProducts = () => {
   };
 
   const submitFilter = () => {
-    if (
-      !filterForm.has_selling_stock &&
-      filterForm.sort === "0" &&
-      filterForm.category === "" &&
-      filterForm.has_discount === "-1"
-    ) {
-      return;
-    }
-
     if (search.has("page")) {
       search.delete("page");
     }
@@ -43,6 +36,17 @@ const FilterProducts = () => {
         const newPathName = `${window.location.pathname}?${search.toString()}`;
         router.push(newPathName);
         onClose();
+      } else {
+        if (search.has(key)) {
+          search.delete(key);
+          const newPathName = `${
+            window.location.pathname
+          }?${search.toString()}`;
+          router.push(newPathName);
+          onClose();
+        } else {
+          onClose();
+        }
       }
     }
   };
@@ -87,7 +91,12 @@ const FilterProducts = () => {
                 <button
                   key={el.sortId}
                   type="button"
-                  className="capitalize bg-gray-100 rounded-xl py-1 px-3 hover:bg-gray-200 transition1"
+                  className={`${
+                    search.get("sort") == el.sortId &&
+                    "bg-gray-700 hover:bg-gray-800 text-white"
+                  } ${
+                    filterForm.sort == el.sortId && "bg-gray-200"
+                  } capitalize rounded-xl py-1 px-3 hover:bg-gray-200 transition1`}
                   onClick={() =>
                     setFilterForm({ ...filterForm, sort: el.sortId })
                   }
@@ -103,7 +112,13 @@ const FilterProducts = () => {
                 <button
                   key={el.title}
                   type="button"
-                  className="capitalize bg-gray-100 rounded-xl py-1 px-3 hover:bg-gray-200 transition1"
+                  className={`${
+                    search.get("category").toLowerCase() ==
+                      el.title.toLowerCase() && "bg-gray-700 text-white"
+                  } ${
+                    filterForm.category.toLowerCase() ==
+                      el.title.toLowerCase() && "bg-gray-200"
+                  } capitalize rounded-xl py-1 px-3 hover:bg-gray-200 transition1`}
                   onClick={() =>
                     setFilterForm({
                       ...filterForm,

@@ -41,20 +41,22 @@ export const getProducts = async (searchParams) => {
     const totalPages = Math.ceil(totalProducts / perPage);
 
     const products = await Products.find({ ...query, ...filters })
+      .sort({
+        ...(sort == 1
+          ? { createdAt: -1 }
+          : sort == 2
+          ? { createdAt: 1 }
+          : sort == 3
+          ? { price: -1 }
+          : sort == 4
+          ? { price: 1 }
+          : sort == 5
+          ? { orders: -1 }
+          : {}),
+        stock: -1,
+      })
       .skip((pageNumber - 1) * perPage)
       .limit(perPage)
-      .sort(
-        sort &&
-          (sort == 1
-            ? { createdAt: -1 }
-            : sort == 2
-            ? { createdAt: 1 }
-            : sort == 3
-            ? { price: -1 }
-            : sort == 4
-            ? { price: 1 }
-            : sort == 5 && { orders: -1 })
-      )
       .lean();
 
     return {
