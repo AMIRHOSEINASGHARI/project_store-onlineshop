@@ -13,15 +13,13 @@ const FilterProducts = () => {
     has_selling_stock: search.get("has_selling_stock") || false,
     sort: search.get("sort") || 0,
     category: search.get("category") || "",
-    has_discount: search.get("has_discount") || 0,
+    has_discount: Number(search.get("has_discount")) || 0,
   });
-
-  console.log(filterForm);
 
   const showDrawer = () => {
     setOpen(true);
   };
-  const onClose = () => {
+  const closeDrawer = () => {
     setOpen(false);
   };
 
@@ -35,7 +33,7 @@ const FilterProducts = () => {
         search.set(key, filterForm[key]);
         const newPathName = `${window.location.pathname}?${search.toString()}`;
         router.push(newPathName);
-        onClose();
+        closeDrawer();
       } else {
         if (search.has(key)) {
           search.delete(key);
@@ -43,12 +41,23 @@ const FilterProducts = () => {
             window.location.pathname
           }?${search.toString()}`;
           router.push(newPathName);
-          onClose();
+          closeDrawer();
         } else {
-          onClose();
+          closeDrawer();
         }
       }
     }
+  };
+
+  const clearFilters = () => {
+    setFilterForm({
+      has_selling_stock: false,
+      sort: 0,
+      category: "",
+      has_discount: 0,
+    });
+    router.push("/products");
+    closeDrawer();
   };
 
   return (
@@ -65,13 +74,13 @@ const FilterProducts = () => {
         title={
           <div className="flex items-center justify-between">
             <h1>Filter Products</h1>
-            <button type="button" onClick={() => onClose()}>
+            <button type="button" onClick={() => closeDrawer()}>
               {icons.close}
             </button>
           </div>
         }
         placement="left"
-        onClose={onClose}
+        onClose={closeDrawer}
         open={open}
         closeIcon={false}
       >
@@ -92,6 +101,7 @@ const FilterProducts = () => {
                   key={el.sortId}
                   type="button"
                   className={`${
+                    search.has("sort") &&
                     search.get("sort") == el.sortId &&
                     "bg-gray-700 hover:bg-gray-800 text-white"
                   } ${
@@ -113,8 +123,10 @@ const FilterProducts = () => {
                   key={el.title}
                   type="button"
                   className={`${
+                    search.has("category") &&
                     search.get("category").toLowerCase() ==
-                      el.title.toLowerCase() && "bg-gray-700 text-white"
+                      el.title.toLowerCase() &&
+                    "bg-gray-700 hover:bg-gray-800 text-white"
                   } ${
                     filterForm.category.toLowerCase() ==
                       el.title.toLowerCase() && "bg-gray-200"
@@ -153,6 +165,13 @@ const FilterProducts = () => {
             className="bg-black text-white w-full py-2 rounded-lg font-medium"
           >
             Submit Filter
+          </button>
+          <button
+            type="button"
+            onClick={() => clearFilters()}
+            className="bg-white text-black border w-full py-2 rounded-lg font-medium"
+          >
+            Clear Filter
           </button>
         </div>
       </Drawer>

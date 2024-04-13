@@ -29,14 +29,12 @@ const ProductCard = (props) => {
         <span className="subtitle">{shorterText(description, 25)}</span>
         {discount > 0 ? (
           <div className="flex flex-col items-end">
-            <span className="discountPrice">${price.toLocaleString()}</span>
-            <p className="price">
-              ${reducePrice(discount, price).toLocaleString()}
-            </p>
+            <span className="discountPrice">${price}</span>
+            <p className="price">${reducePrice(discount, price)}</p>
           </div>
         ) : (
           <div className="flex flex-col justify-end">
-            <p className="price">${price.toLocaleString()}</p>
+            <p className="price">${price}</p>
           </div>
         )}
       </div>

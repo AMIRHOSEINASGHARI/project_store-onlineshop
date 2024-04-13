@@ -78,7 +78,10 @@ export const getProducts = async (searchParams) => {
 export const getLatestProducts = async () => {
   try {
     await connectDB();
-    const products = await Products.find().limit(8).sort({ createdAt: -1 });
+    const products = await Products.find({ stock: { $gt: 0 } })
+      .limit(8)
+      .sort({ createdAt: -1 })
+      .lean();
 
     return {
       products,

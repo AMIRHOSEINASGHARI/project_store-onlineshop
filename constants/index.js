@@ -208,7 +208,7 @@ export const categories = [
   },
   {
     image: images.category_tv,
-    title: "Television",
+    title: "TV",
     route: "/products?category=tv",
   },
   {
