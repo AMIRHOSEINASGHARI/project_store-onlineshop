@@ -33,7 +33,7 @@ export const getProducts = async (searchParams) => {
     }
 
     const pageNumber = page || 1;
-    const perPage = 9;
+    const perPage = 12;
     const totalProducts = await Products.countDocuments({
       ...query,
       ...filters,
