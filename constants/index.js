@@ -169,52 +169,52 @@ export const categories = [
   {
     image: images.category_camera,
     title: "Camera",
-    route: "/products?category=camera",
+    query: "camera",
   },
   {
     image: images.category_gaming,
     title: "Gaming",
-    route: "/products?category=gaming",
+    query: "gaming",
   },
   {
     image: images.category_headphone,
     title: "Headphone",
-    route: "/products?category=headphone",
+    query: "headphone",
   },
   {
     image: images.category_laptop,
     title: "Laptop",
-    route: "/products?category=laptop",
+    query: "laptop",
   },
   {
     image: images.category_phone,
     title: "Phone",
-    route: "/products?category=phone",
+    query: "phone",
   },
   {
     image: images.category_printer,
     title: "Printer",
-    route: "/products?category=printer",
+    query: "printer",
   },
   {
     image: images.category_speaker,
     title: "Speaker",
-    route: "/products?category=speaker",
+    query: "speaker",
   },
   {
     image: images.category_tablet,
     title: "Tablet",
-    route: "/products?category=tablet",
+    query: "tablet",
   },
   {
     image: images.category_tv,
     title: "TV",
-    route: "/products?category=tv",
+    query: "tv",
   },
   {
     image: images.category_watch,
     title: "Watch",
-    route: "/products?category=watch",
+    query: "watch",
   },
 ];
 

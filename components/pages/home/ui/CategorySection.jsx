@@ -15,8 +15,11 @@ const CategorySection = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5">
         {categories.map((el) => (
           <Link
-            href={el.route}
-            key={el.route}
+            href={{
+              pathname: "/products",
+              query: { category: el.query },
+            }}
+            key={el.query}
             className="group relative overflow-hidden rounded-2xl"
           >
             <Image

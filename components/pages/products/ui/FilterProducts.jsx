@@ -60,8 +60,6 @@ const FilterProducts = () => {
     closeDrawer();
   };
 
-  console.log(filterForm);
-
   return (
     <section>
       <button
