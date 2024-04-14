@@ -96,3 +96,22 @@ export const getLatestProducts = async () => {
     };
   }
 };
+
+export const getProduct = async (id) => {
+  try {
+    await connectDB();
+    const product = await Products.findOne({ _id: id }).lean();
+
+    return {
+      product,
+      status: "success",
+      code: 200,
+    };
+  } catch (error) {
+    return {
+      product: null,
+      status: "failed",
+      code: 500,
+    };
+  }
+};
