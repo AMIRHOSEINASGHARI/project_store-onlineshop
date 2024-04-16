@@ -121,3 +121,19 @@ export const getProduct = async (id) => {
     };
   }
 };
+
+export const addProductComment = async (content, productId) => {
+  try {
+    await connectDB();
+
+    return {
+      status: "success",
+      code: 200,
+    };
+  } catch (error) {
+    return {
+      status: "failed",
+      code: 500,
+    };
+  }
+};
