@@ -1,6 +1,7 @@
 import { getProduct } from "@/actions/product.action";
 import ProductSection from "./ui/ProductSection";
 import ProductComments from "./ui/ProductComments";
+import ProductReview from "./ui/ProductReview";
 
 const ProductDetailsPage = async ({ id }) => {
   const data = await getProduct(id);
@@ -12,6 +13,7 @@ const ProductDetailsPage = async ({ id }) => {
   return (
     <main className="lg:pt-[30px] space-y-[50px]">
       <ProductSection {...data.product} />
+      <ProductReview {...data.product} />
       <ProductComments comments={data.product.comments} />
     </main>
   );
