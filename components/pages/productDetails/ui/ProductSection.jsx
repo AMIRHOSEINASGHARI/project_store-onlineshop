@@ -1,25 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import { reducePrice, shorterText } from "@/utils/functions";
-import { Span } from "next/dist/trace";
 import AddToCart from "./AddToCart";
+import AddToFave from "./AddToFave";
 
 const ProductSection = (props) => {
-  const {
-    _id,
-    title,
-    image,
-    price,
-    stock,
-    discount,
-    description,
-    category,
-    likes,
-  } = props;
+  const { _id, title, image, price, stock, discount, description, category } =
+    props;
 
   return (
     <section className="flex max-lg:flex-col gap-5">
-      <div className="w-full lg:w-[50%] flex justify-center items-center bg-gray-100 rounded-lg p-4">
+      <div className="w-full lg:w-[50%] flex justify-center items-center bg-gray-100 rounded-lg p-4 relative">
         <Image
           src={image}
           width={400}
@@ -28,6 +19,7 @@ const ProductSection = (props) => {
           priority
           className="max-md:w-[300px] max-w-[400px] max-h-[400px] object-cover"
         />
+        <AddToFave />
       </div>
       <div className="space-y-2 lg:w-[50%]">
         <h1 className="font-black text-[30px]">{title}</h1>
@@ -75,7 +67,9 @@ const ProductSection = (props) => {
               <p>{shorterText(description, 500)}</p>
             </div>
           )}
-          {stock > 0 && <AddToCart productId={_id} />}
+          {stock > 0 && (
+            <AddToCart productId={JSON.parse(JSON.stringify(_id))} />
+          )}
           {stock === 0 && (
             <div className="flex justify-center bg-gray-200 rounded-xl py-3 mt-2">
               <p className="font-bold">Out of stock!</p>
