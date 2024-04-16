@@ -4,6 +4,8 @@ import TextHeader from "@/components/reusable/TextHeader";
 import { categories } from "@/constants";
 
 const CategorySection = () => {
+  // TODO: there is a bug in '/products?category=...' fix it later
+
   return (
     <section>
       <div className="textHeaderPosition2">
