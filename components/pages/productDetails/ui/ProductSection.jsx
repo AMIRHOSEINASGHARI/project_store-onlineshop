@@ -17,7 +17,7 @@ const ProductSection = (props) => {
           height={400}
           alt={title}
           priority
-          className="max-md:w-[300px] max-w-[400px] max-h-[400px] object-cover"
+          className="max-md:w-[250px] max-w-[400px] max-h-[400px] object-cover"
         />
         <AddToFave />
       </div>
