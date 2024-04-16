@@ -1,4 +1,5 @@
 import TextHeader from "@/components/reusable/TextHeader";
+import { reducePrice } from "@/utils/functions";
 import moment from "moment";
 
 const ProductReview = (props) => {
@@ -21,11 +22,21 @@ const ProductReview = (props) => {
       <ul className="ml-[20px]">
         <li className="flex items-center gap-2">
           <p className="font-semibold text-[14px]">Price: </p>
-          <p className="font-light text-[14px]">{price.toLocaleString()}</p>
+          <div className="font-light text-[14px] flex items-center gap-2">
+            <p>$ {reducePrice(discount, price).toLocaleString()}</p>
+            {discount > 0 && (
+              <>
+                <span>|</span>
+                <p className="line-through text-[12px] font-light">
+                  {price.toLocaleString()}
+                </p>
+              </>
+            )}
+          </div>
         </li>
         <li className="flex items-center gap-2">
           <p className="font-semibold text-[14px]">Discount: </p>
-          <p className="font-light text-[14px]">{discount}</p>
+          <p className="font-light text-[14px]">% {discount}</p>
         </li>
         <li className="flex items-center gap-2">
           <p className="font-semibold text-[14px]">Stock: </p>
@@ -41,15 +52,21 @@ const ProductReview = (props) => {
         </li>
         <li className="flex items-center gap-2">
           <p className="font-semibold text-[14px]">Likes: </p>
-          <p className="font-light text-[14px]">{likes.length}</p>
+          <p className="font-light text-[14px]">
+            {likes.length.toLocaleString()}
+          </p>
         </li>
         <li className="flex items-center gap-2">
           <p className="font-semibold text-[14px]">Comments: </p>
-          <p className="font-light text-[14px]">{comments.length}</p>
+          <p className="font-light text-[14px]">
+            {comments.length.toLocaleString()}
+          </p>
         </li>
         <li className="flex items-center gap-2">
           <p className="font-semibold text-[14px]">Orders: </p>
-          <p className="font-light text-[14px]">{orders.length}</p>
+          <p className="font-light text-[14px]">
+            {orders.length.toLocaleString()}
+          </p>
         </li>
         <li className="flex items-center gap-2">
           <p className="font-semibold text-[14px]">Created At: </p>
