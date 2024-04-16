@@ -1,4 +1,5 @@
 import { getProduct } from "@/actions/product.action";
+import ProductSection from "./ui/ProductSection";
 
 const ProductDetailsPage = async ({ id }) => {
   const data = await getProduct(id);
@@ -7,7 +8,11 @@ const ProductDetailsPage = async ({ id }) => {
     return <h1>Error!</h1>;
   }
 
-  return <main>ProductDetailsPage</main>;
+  return (
+    <main className="lg:pt-[30px]">
+      <ProductSection {...data.product} />
+    </main>
+  );
 };
 
 export default ProductDetailsPage;

@@ -101,9 +101,15 @@ export const getProduct = async (id) => {
   try {
     await connectDB();
     const product = await Products.findOne({ _id: id }).lean();
+    const productCategory = product.category;
+    const relatedProducts = await Products.find({
+      category: productCategory,
+      stock: { $gt: 0 },
+    }).lean();
 
     return {
       product,
+      relatedProducts,
       status: "success",
       code: 200,
     };

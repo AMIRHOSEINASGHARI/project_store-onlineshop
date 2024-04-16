@@ -37,9 +37,9 @@ const ProductCard = (props) => {
                 $ {reducePrice(discount, price).toLocaleString()}
               </p>
               {discount > 0 && (
-                <div className="bg-red-100 rounded-xl py-1 px-2  text-red-500">
+                <span className="bg-red-100 rounded-xl py-1 px-2 text-red-500">
                   %{discount}
-                </div>
+                </span>
               )}
             </div>
             {discount > 0 && (
