@@ -1,4 +1,4 @@
-import { hash } from "bcryptjs";
+import { compare, hash } from "bcryptjs";
 
 export const shorterText = (text, maxCharacter) => {
   if (String(text).length > maxCharacter) {
@@ -22,4 +22,9 @@ export const reducePrice = (discount, price) => {
 export const hashPassword = async (password) => {
   const hashedPassword = await hash(password, 12);
   return hashedPassword;
+};
+
+export const verifyPassword = async (password, hashedPassword) => {
+  const isValid = await compare(password, hashedPassword);
+  return isValid;
 };
