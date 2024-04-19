@@ -21,6 +21,7 @@ const CategorySection = () => {
               pathname: "/products",
               query: { category: el.query },
             }}
+            target="_blank"
             key={el.query}
             className="group relative overflow-hidden rounded-2xl"
           >

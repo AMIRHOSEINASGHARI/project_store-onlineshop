@@ -12,7 +12,7 @@ const AddComment = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
 
     // TODO: submit form

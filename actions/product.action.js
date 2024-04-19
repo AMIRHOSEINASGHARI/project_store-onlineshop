@@ -122,9 +122,11 @@ export const getProduct = async (id) => {
   }
 };
 
-export const addProductComment = async (content, productId) => {
+export const addProductComment = async (formData, productId) => {
   try {
     await connectDB();
+
+    const product = await Products.findById(productId);
 
     return {
       status: "success",
