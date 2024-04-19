@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { icons, images } from "@/constants";
 import Loader from "../shared/Loader";
+import toast from "react-hot-toast";
 
 const RegisterPage = () => {
   const [loader, setLoader] = useState(false);
@@ -23,6 +24,11 @@ const RegisterPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!form.username || !form.password || !form.confirmPassword) {
+      toast.error("Fill All Fields");
+      return;
+    }
   };
 
   return (
@@ -84,7 +90,7 @@ const RegisterPage = () => {
             <div className="flex flex-col gap-1">
               <label className="font-normal text-sm">Confirm Password</label>
               <input
-                name="password"
+                name="confirmPassword"
                 type="password"
                 value={form.confirmPassword}
                 onChange={changeHandler}

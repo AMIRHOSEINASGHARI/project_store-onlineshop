@@ -6,7 +6,7 @@ const blogSchema = new Schema({
   image: { type: String, required: true },
   slug: { type: String, required: true, unique: true },
   keywords: { type: [String], default: [] },
-  likes: [{ type: Schema.Types.ObjectId, ref: "StoreShopUser", default: [] }],
+  likes: [{ type: Schema.Types.ObjectId, ref: "User", default: [] }],
   createdAt: {
     type: Date,
     default: () => Date.now(),
@@ -14,5 +14,4 @@ const blogSchema = new Schema({
   },
 });
 
-export const Blogs =
-  models?.StoreShopBlog || model("StoreShopBlog", blogSchema);
+export const Blogs = models?.Blog || model("Blog", blogSchema);

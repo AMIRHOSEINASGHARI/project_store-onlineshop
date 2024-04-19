@@ -10,16 +10,10 @@ const productSchema = new Schema({
   category: { type: String, required: true },
   colors: { type: [String], default: [] },
   keywords: { type: [String], default: [] },
-  orders: [
-    { type: Schema.Types.ObjectId, ref: "StoreDashboardOrders", default: [] },
-  ],
+  orders: [{ type: Schema.Types.ObjectId, ref: "Order", default: [] }],
   brand: { type: String, required: true },
-  likes: [
-    { type: Schema.Types.ObjectId, ref: "StoreDashboardLikes", default: [] },
-  ],
-  comments: [
-    { type: Schema.Types.ObjectId, ref: "StoreDashboardComments", default: [] },
-  ],
+  likes: [{ type: Schema.Types.ObjectId, ref: "Like", default: [] }],
+  comments: [{ type: Schema.Types.ObjectId, ref: "Comment", default: [] }],
   createdAt: {
     type: Date,
     default: () => Date.now(),
@@ -27,6 +21,4 @@ const productSchema = new Schema({
   },
 });
 
-export const Products =
-  models?.StoreDashboardProduct ||
-  model("StoreDashboardProduct", productSchema);
+export const Products = models?.Product || model("Product", productSchema);

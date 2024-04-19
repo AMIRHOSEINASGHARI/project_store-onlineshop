@@ -97,6 +97,7 @@ export const getLatestProducts = async () => {
   }
 };
 
+// Gets A Single Product using Product ID
 export const getProduct = async (id) => {
   try {
     await connectDB();
@@ -122,6 +123,7 @@ export const getProduct = async (id) => {
   }
 };
 
+// TODO: complete this server action
 export const addProductComment = async (formData, productId) => {
   try {
     await connectDB();

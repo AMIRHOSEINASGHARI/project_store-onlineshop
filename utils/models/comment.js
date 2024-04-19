@@ -5,8 +5,8 @@ const commentSchema = new Schema({
   description: { type: String, required: true },
   answer: { type: String, default: "" },
   status: { type: String, default: "Not-Answered" },
-  productId: { type: Schema.Types.ObjectId, ref: "StoreDashboardProduct" },
-  senderId: { type: Schema.Types.ObjectId, ref: "StoreShopUser" },
+  productId: { type: Schema.Types.ObjectId, ref: "Product" },
+  senderId: { type: Schema.Types.ObjectId, ref: "User" },
   published: { type: Boolean, default: false },
   createdAt: {
     type: Date,
@@ -15,5 +15,4 @@ const commentSchema = new Schema({
   },
 });
 
-export const Comments =
-  models?.StoreShopComment || model("StoreShopComment", commentSchema);
+export const Comments = models?.Comment || model("Comment", commentSchema);
