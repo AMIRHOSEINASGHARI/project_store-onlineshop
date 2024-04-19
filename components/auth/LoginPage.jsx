@@ -8,7 +8,6 @@ import Loader from "../shared/Loader";
 import toast from "react-hot-toast";
 import { loginUser } from "@/actions/auth.action";
 import { useRouter } from "next/navigation";
-import { cookies } from "next/headers";
 
 const LoginPage = () => {
   const [loader, setLoader] = useState(false);
@@ -47,8 +46,6 @@ const LoginPage = () => {
       return;
     } else {
       toast.success(result.message);
-      router.replace("/profile");
-      return;
     }
   };
 
