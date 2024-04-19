@@ -5,9 +5,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { icons, images } from "@/constants";
 import Loader from "../shared/Loader";
+import toast from "react-hot-toast";
+import { loginUser } from "@/actions/auth.action";
+import { useRouter } from "next/navigation";
+import { cookies } from "next/headers";
 
 const LoginPage = () => {
   const [loader, setLoader] = useState(false);
+  const router = useRouter();
   const [form, setForm] = useState({
     username: "",
     password: "",
@@ -22,6 +27,29 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!form.username || !form.password) {
+      toast.error("Fill All Fields");
+      return;
+    }
+
+    setLoader(() => true);
+
+    const result = await loginUser({
+      username: form.username,
+      password: form.password,
+    });
+
+    setLoader(() => false);
+
+    if (result.status !== "success") {
+      toast.error(result.message);
+      return;
+    } else {
+      toast.success(result.message);
+      router.replace("/profile");
+      return;
+    }
   };
 
   return (

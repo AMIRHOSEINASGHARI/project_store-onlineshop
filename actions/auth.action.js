@@ -57,7 +57,7 @@ export const loginUser = async (data) => {
     // verify password
     const isValidPassword = await verifyPassword(password, user.password);
 
-    if (isValidPassword) {
+    if (!isValidPassword) {
       return {
         message: "Username or password is In-Correct!",
         status: "failed",
@@ -74,7 +74,7 @@ export const loginUser = async (data) => {
     cookies().set("accessToken", accessToken, {
       httpOnly: true,
       secure: true,
-      expires: SESSION_EXPIRATION,
+      expires: new Date(Date.now() + SESSION_EXPIRATION),
       sameSite: "lax",
       path: "/",
     });
