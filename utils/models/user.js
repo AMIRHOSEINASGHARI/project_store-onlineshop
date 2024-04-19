@@ -11,17 +11,20 @@ const userSchema = new Schema({
   likes: [{ type: Schema.Types.ObjectId, ref: "Like", default: [] }],
   comments: [{ type: Schema.Types.ObjectId, ref: "Comment", default: [] }],
   cart: {
-    selectedItems: { type: Array, default: [] },
-    totalProducts: { type: Number, default: 0 },
+    items: [
+      {
+        productId: { type: Schema.Types.ObjectId, ref: "Product" },
+        quantity: { type: Number, default: 0 },
+      },
+    ],
+    selectedItems: [{ type: Schema.Types.ObjectId, ref: "Product" }],
+    totalProductsCount: { type: Number, default: 0 },
     totalPrice: { type: Number, default: 0 },
     totalDiscountPrice: { type: Number, default: 0 },
-    checkout: {
-      status: { type: Boolean, default: false },
-      date: {
-        type: Date,
-        default: "",
-        immutabale: false,
-      },
+    checkoutStatus: {
+      type: String,
+      enum: ["pending", "completed"],
+      default: "pending",
     },
   },
   createdAt: {
