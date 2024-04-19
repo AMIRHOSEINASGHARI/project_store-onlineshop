@@ -3,12 +3,15 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { createUser } from "@/actions/auth.action";
 import { icons, images } from "@/constants";
 import Loader from "../shared/Loader";
 import toast from "react-hot-toast";
 
 const RegisterPage = () => {
   const [loader, setLoader] = useState(false);
+  const router = useRouter();
   const [form, setForm] = useState({
     username: "",
     password: "",
@@ -27,6 +30,28 @@ const RegisterPage = () => {
 
     if (!form.username || !form.password || !form.confirmPassword) {
       toast.error("Fill All Fields");
+      return;
+    }
+    if (form.password !== form.confirmPassword) {
+      toast.error("Confirm Password is In-Correct!");
+      return;
+    }
+
+    setLoader(() => true);
+
+    const result = await createUser({
+      username: form.username,
+      password: form.password,
+    });
+
+    setLoader(() => false);
+
+    if (result.status !== "success") {
+      toast.error(result.message);
+      return;
+    } else {
+      toast.success(result.message);
+      router.push("/login");
       return;
     }
   };
