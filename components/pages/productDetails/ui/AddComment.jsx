@@ -1,8 +1,12 @@
 "use client";
 
+import useSession from "@/hooks/session";
 import { useState } from "react";
 
 const AddComment = () => {
+  const session = useSession();
+  console.log(session);
+
   const [form, setForm] = useState({
     title: "",
     description: "",
