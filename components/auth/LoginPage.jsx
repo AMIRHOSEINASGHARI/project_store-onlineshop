@@ -7,11 +7,9 @@ import { icons, images } from "@/constants";
 import Loader from "../shared/Loader";
 import toast from "react-hot-toast";
 import { loginUser } from "@/actions/auth.action";
-import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
   const [loader, setLoader] = useState(false);
-  const router = useRouter();
   const [form, setForm] = useState({
     username: "",
     password: "",
