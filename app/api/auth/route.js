@@ -7,12 +7,12 @@ export async function GET() {
 
     if (session) {
       return NextResponse.json(
-        { session, message: "You are authorized" },
+        { session, status: "authorized" },
         { status: 200 }
       );
     } else {
       return NextResponse.json(
-        { session: null, message: "Error! You are un-authorized!" },
+        { session: null, status: "un-authorized" },
         { status: 200 }
       );
     }
