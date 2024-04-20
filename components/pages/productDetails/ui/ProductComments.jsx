@@ -1,14 +1,14 @@
 import TextHeader from "@/components/reusable/TextHeader";
 import AddComment from "./AddComment";
 
-const ProductComments = ({ comments }) => {
+const ProductComments = ({ comments, productId }) => {
   return (
     <section>
       <TextHeader
         title="Product Comments"
         subtitle={`${comments.length} comments`}
       />
-      <AddComment />
+      <AddComment productId={productId} />
       {comments.length > 0 && (
         <div>
           {comments.map((comment) => (

@@ -15,7 +15,7 @@ const ProductDetailsPage = async ({ id }) => {
     <main className="lg:pt-[30px] space-y-[50px]">
       <ProductSection {...data.product} />
       <ProductReview {...data.product} />
-      <ProductComments comments={data.product.comments} />
+      <ProductComments comments={data.product.comments} productId={id} />
       <RelatedProducts relatedProducts={data.relatedProducts} />
     </main>
   );

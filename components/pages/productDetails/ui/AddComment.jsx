@@ -3,10 +3,14 @@
 import { useState } from "react";
 import useSession from "@/hooks/session";
 import { useRouter } from "next/navigation";
+import { addProductComment } from "@/actions/product.action";
+import toast from "react-hot-toast";
+import Loader from "@/components/shared/Loader";
 
-const AddComment = () => {
+const AddComment = ({ productId }) => {
   const session = useSession();
   const router = useRouter();
+  const [loading, setIsLoading] = useState(false);
   const [form, setForm] = useState({
     title: "",
     description: "",
@@ -22,6 +26,28 @@ const AddComment = () => {
     if (session?.data?.status === "un-authorized") {
       router.push("/login");
       return;
+    }
+    if (!form.title || !form.description) {
+      toast.error("Please fill all fields!");
+      return;
+    }
+
+    setIsLoading(() => true);
+    const result = await addProductComment(
+      form,
+      productId,
+      session?.data?.session?.userId
+    );
+    setIsLoading(() => false);
+
+    if (result.code !== 200) {
+      toast.error(result.message);
+    } else {
+      toast.success(result.message);
+      setForm({
+        title: "",
+        description: "",
+      });
     }
   };
 
@@ -47,9 +73,11 @@ const AddComment = () => {
         />
         <button
           type="submit"
-          className="py-2 px-5 bg-black rounded-lg text-white w-fit text-[13px]"
+          className={`${
+            loading ? "bg-gray-100" : "bg-black"
+          } text-white rounded-lg w-[100px] h-[35px] text-[14px] flex items-center justify-center`}
         >
-          Submit
+          {loading ? <Loader h={20} w={20} /> : "Submit"}
         </button>
       </form>
     </div>

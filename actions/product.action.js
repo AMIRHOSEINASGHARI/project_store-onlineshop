@@ -3,6 +3,7 @@
 import connectDB from "@/utils/connectDB";
 import { Comments } from "@/utils/models/comment";
 import { Products } from "@/utils/models/product";
+import { getServerSession } from "@/utils/session";
 
 // Gets All Products By Filter
 export const getProducts = async (searchParams) => {
@@ -127,6 +128,15 @@ export const getProduct = async (id) => {
 // TODO: complete this server action
 export const addProductComment = async (formData, productId, userId) => {
   try {
+    const session = getServerSession();
+    if (!session) {
+      return {
+        message: "You are un-authorized!",
+        status: "failed",
+        code: 422,
+      };
+    }
+
     await connectDB();
     const { title, description } = formData;
 
@@ -148,6 +158,7 @@ export const addProductComment = async (formData, productId, userId) => {
     };
   } catch (error) {
     return {
+      message: "Server Error!",
       status: "failed",
       code: 500,
     };
