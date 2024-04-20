@@ -1,12 +1,12 @@
 "use client";
 
-import useSession from "@/hooks/session";
 import { useState } from "react";
+import useSession from "@/hooks/session";
+import { useRouter } from "next/navigation";
 
 const AddComment = () => {
   const session = useSession();
-  console.log(session);
-
+  const router = useRouter();
   const [form, setForm] = useState({
     title: "",
     description: "",
@@ -19,7 +19,10 @@ const AddComment = () => {
   const submitForm = async (e) => {
     e.preventDefault();
 
-    // TODO: submit form
+    if (session?.data?.status === "un-authorized") {
+      router.push("/login");
+      return;
+    }
   };
 
   return (

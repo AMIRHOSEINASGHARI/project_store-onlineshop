@@ -1,6 +1,7 @@
 "use server";
 
 import connectDB from "@/utils/connectDB";
+import { Comments } from "@/utils/models/comment";
 import { Products } from "@/utils/models/product";
 
 // Gets All Products By Filter
@@ -124,13 +125,24 @@ export const getProduct = async (id) => {
 };
 
 // TODO: complete this server action
-export const addProductComment = async (formData, productId) => {
+export const addProductComment = async (formData, productId, userId) => {
   try {
     await connectDB();
+    const { title, description } = formData;
 
     const product = await Products.findById(productId);
+    const newComment = await Comments.create({
+      title,
+      description,
+      productId,
+      senderId: userId,
+    });
+
+    await product.comments.push(newComment?._id);
+    await product.save();
 
     return {
+      message: "Your comment has send!",
       status: "success",
       code: 200,
     };
