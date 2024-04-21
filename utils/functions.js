@@ -28,3 +28,15 @@ export const verifyPassword = async (password, hashedPassword) => {
   const isValid = await compare(password, hashedPassword);
   return isValid;
 };
+
+export const calculateTotalPrice = (items) => {
+  return items.reduce((total, item) => {
+    return total + item.quantity * item.productId.price;
+  }, 0);
+};
+
+export const calculateTotalDiscountPrice = (items) => {
+  return items.reduce((total, item) => {
+    return total + item.quantity * item.productId.discount;
+  }, 0);
+};

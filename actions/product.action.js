@@ -1,8 +1,13 @@
 "use server";
 
 import connectDB from "@/utils/connectDB";
+import {
+  calculateTotalDiscountPrice,
+  calculateTotalPrice,
+} from "@/utils/functions";
 import { Comments } from "@/utils/models/comment";
 import { Products } from "@/utils/models/product";
+import { User } from "@/utils/models/user";
 import { getServerSession } from "@/utils/session";
 
 // Gets All Products By Filter
@@ -125,7 +130,6 @@ export const getProduct = async (id) => {
   }
 };
 
-// TODO: complete this server action
 export const addProductComment = async (formData, productId, userId) => {
   try {
     const session = getServerSession();
@@ -156,6 +160,63 @@ export const addProductComment = async (formData, productId, userId) => {
       status: "success",
       code: 200,
     };
+  } catch (error) {
+    return {
+      message: "Server Error!",
+      status: "failed",
+      code: 500,
+    };
+  }
+};
+
+export const addToCart = async (productId) => {
+  try {
+    const session = getServerSession();
+    if (!session) {
+      return {
+        message: "You are un-authorized!",
+        status: "failed",
+        code: 422,
+      };
+    }
+
+    await connectDB();
+
+    const user = await User.findById(session?.userId);
+    await user.populate("cart.items.productId").execPopulate();
+    await user.populate("cart.selectedItems").execPopulate();
+
+    if (!user) {
+      return {
+        message: "User not found!",
+        status: "failed",
+        code: 404,
+      };
+    }
+
+    // Update the cart field of the user document with the new item
+    const existingCartItemIndex = user.cart.items.findIndex(
+      (item) => item.productId.toString() === productId.toString()
+    );
+
+    if (existingCartItemIndex !== -1) {
+      // If the product already exists in the cart, update its quantity
+      user.cart.items[existingCartItemIndex].quantity += quantity;
+    } else {
+      // If the product is not in the cart, add it as a new item
+      user.cart.items.push({ productId, quantity: 1 });
+    }
+
+    // Update other fields of the cart as necessary
+    user.cart.selectedItems = user.cart.items.map((item) => item.productId);
+    user.cart.totalProductsCount = user.cart.items.reduce(
+      (total, item) => total + item.quantity,
+      0
+    );
+    user.cart.totalPrice = calculateTotalPrice(user.cart.items);
+    user.cart.totalDiscountPrice = calculateTotalDiscountPrice(user.cart.items);
+
+    await user.save();
   } catch (error) {
     return {
       message: "Server Error!",
