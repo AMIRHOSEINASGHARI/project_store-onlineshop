@@ -1,14 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { addToCart } from "@/actions/product.action";
 import toast from "react-hot-toast";
 import Loader from "@/components/shared/Loader";
+import { useQuery } from "@tanstack/react-query";
+import { QUERY_KEY } from "@/services/queryKeys";
+import { getUser } from "@/services/queries";
 
 const AddToCart = ({ productId, session }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+
+  const { data, isLoading, isError, refetch } = useQuery({
+    queryKey: [QUERY_KEY.user_data],
+    queryFn: getUser,
+    cacheTime: 0,
+    staleTime: 0,
+    enabled: false,
+  });
 
   const addHandler = async () => {
     if (!session) {
@@ -18,6 +29,7 @@ const AddToCart = ({ productId, session }) => {
 
     setLoading(() => true);
     const result = await addToCart(productId);
+    refetch();
     setLoading(() => false);
 
     if (result.code !== 200) {
@@ -26,6 +38,12 @@ const AddToCart = ({ productId, session }) => {
       toast.success(result.message);
     }
   };
+
+  useEffect(() => {
+    if (session) {
+      refetch();
+    }
+  }, [session]);
 
   return (
     <div className="mt-[20px]">
