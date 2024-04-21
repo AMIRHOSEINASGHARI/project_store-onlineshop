@@ -217,6 +217,12 @@ export const addToCart = async (productId) => {
     user.cart.totalDiscountPrice = calculateTotalDiscountPrice(user.cart.items);
 
     await user.save();
+
+    return {
+      message: "Proccess finished",
+      status: "success",
+      code: 200,
+    };
   } catch (error) {
     return {
       message: "Server Error!",
