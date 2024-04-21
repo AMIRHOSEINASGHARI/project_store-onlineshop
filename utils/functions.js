@@ -28,3 +28,8 @@ export const verifyPassword = async (password, hashedPassword) => {
   const isValid = await compare(password, hashedPassword);
   return isValid;
 };
+
+export const isInCart = (productId, selectedItems) => {
+  const existingIndex = !!selectedItems.findIndex((item) => item === productId);
+  return existingIndex;
+};
