@@ -8,7 +8,7 @@ import Loader from "@/components/shared/Loader";
 
 const AddToCart = ({ productId, session }) => {
   const router = useRouter();
-  const [loading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const addHandler = async () => {
     if (!session) {
@@ -16,9 +16,9 @@ const AddToCart = ({ productId, session }) => {
       return;
     }
 
-    setIsLoading(() => true);
+    setLoading(() => true);
     const result = await addToCart(productId);
-    setIsLoading(() => false);
+    setLoading(() => false);
 
     if (result.code !== 200) {
       toast.error(result.message);
