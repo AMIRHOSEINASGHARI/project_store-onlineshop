@@ -1,14 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import useSession from "@/hooks/session";
 import { useRouter } from "next/navigation";
 import { addProductComment } from "@/actions/product.action";
 import toast from "react-hot-toast";
 import Loader from "@/components/shared/Loader";
 
-const AddComment = ({ productId }) => {
-  const session = useSession();
+const AddComment = ({ productId, session }) => {
   const router = useRouter();
   const [loading, setIsLoading] = useState(false);
   const [form, setForm] = useState({
@@ -23,7 +21,7 @@ const AddComment = ({ productId }) => {
   const submitForm = async (e) => {
     e.preventDefault();
 
-    if (session?.data?.status === "un-authorized") {
+    if (!session) {
       router.push("/login");
       return;
     }
@@ -33,11 +31,7 @@ const AddComment = ({ productId }) => {
     }
 
     setIsLoading(() => true);
-    const result = await addProductComment(
-      form,
-      productId,
-      session?.data?.session?.userId
-    );
+    const result = await addProductComment(form, productId, session?.userId);
     setIsLoading(() => false);
 
     if (result.code !== 200) {

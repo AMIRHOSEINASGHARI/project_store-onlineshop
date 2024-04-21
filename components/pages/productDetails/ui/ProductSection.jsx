@@ -5,8 +5,17 @@ import AddToCart from "./AddToCart";
 import AddToFave from "./AddToFave";
 
 const ProductSection = (props) => {
-  const { _id, title, image, price, stock, discount, description, category } =
-    props;
+  const {
+    _id,
+    title,
+    image,
+    price,
+    stock,
+    discount,
+    description,
+    category,
+    session,
+  } = props;
 
   return (
     <section className="flex max-lg:flex-col gap-5">
@@ -68,7 +77,10 @@ const ProductSection = (props) => {
             </div>
           )}
           {stock > 0 && (
-            <AddToCart productId={JSON.parse(JSON.stringify(_id))} />
+            <AddToCart
+              productId={JSON.parse(JSON.stringify(_id))}
+              session={session}
+            />
           )}
           {stock === 0 && (
             <div className="flex justify-center bg-gray-200 rounded-xl py-3 mt-2">

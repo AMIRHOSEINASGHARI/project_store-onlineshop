@@ -1,10 +1,6 @@
 "use server";
 
 import connectDB from "@/utils/connectDB";
-import {
-  calculateTotalDiscountPrice,
-  calculateTotalPrice,
-} from "@/utils/functions";
 import { Comments } from "@/utils/models/comment";
 import { Products } from "@/utils/models/product";
 import { User } from "@/utils/models/user";
@@ -182,9 +178,7 @@ export const addToCart = async (productId) => {
 
     await connectDB();
 
-    const user = await User.findById(session?.userId);
-    await user.populate("cart.items.productId").execPopulate();
-    await user.populate("cart.selectedItems").execPopulate();
+    const user = await User.findById(session.userId);
 
     if (!user) {
       return {
@@ -195,13 +189,13 @@ export const addToCart = async (productId) => {
     }
 
     // Update the cart field of the user document with the new item
-    const existingCartItemIndex = user.cart.items.findIndex(
-      (item) => item.productId.toString() === productId.toString()
+    const existingCartItemIndex = user.cart.items.findIndex((item) =>
+      item.productId.equals(productId)
     );
 
     if (existingCartItemIndex !== -1) {
       // If the product already exists in the cart, update its quantity
-      user.cart.items[existingCartItemIndex].quantity += quantity;
+      user.cart.items[existingCartItemIndex].quantity += 1;
     } else {
       // If the product is not in the cart, add it as a new item
       user.cart.items.push({ productId, quantity: 1 });
@@ -213,8 +207,6 @@ export const addToCart = async (productId) => {
       (total, item) => total + item.quantity,
       0
     );
-    user.cart.totalPrice = calculateTotalPrice(user.cart.items);
-    user.cart.totalDiscountPrice = calculateTotalDiscountPrice(user.cart.items);
 
     await user.save();
 
@@ -224,6 +216,7 @@ export const addToCart = async (productId) => {
       code: 200,
     };
   } catch (error) {
+    console.log(error);
     return {
       message: "Server Error!",
       status: "failed",

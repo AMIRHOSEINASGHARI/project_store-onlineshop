@@ -19,8 +19,6 @@ const userSchema = new Schema({
     ],
     selectedItems: [{ type: Schema.Types.ObjectId, ref: "Product" }],
     totalProductsCount: { type: Number, default: 0 },
-    totalPrice: { type: Number, default: 0 },
-    totalDiscountPrice: { type: Number, default: 0 },
     checkoutStatus: {
       type: String,
       enum: ["pending", "completed"],
