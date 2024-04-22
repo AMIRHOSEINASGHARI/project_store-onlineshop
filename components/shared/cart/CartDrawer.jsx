@@ -33,6 +33,7 @@ const CartDrawer = ({ openCart, setOpenCart, cart, session }) => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
+          gap: "30px",
         },
       }}
     >

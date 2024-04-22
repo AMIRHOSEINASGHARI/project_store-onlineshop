@@ -1,9 +1,10 @@
+import Link from "next/link";
 import { icons } from "@/constants";
 import { reducePrice, shorterText } from "@/utils/functions";
 import { Image } from "antd";
 
 const CartItemCard = ({
-  productId: { image, title, price, discount },
+  productId: { image, title, price, discount, _id },
   quantity,
 }) => {
   return (
@@ -11,7 +12,13 @@ const CartItemCard = ({
       <div className="flex items-center gap-[20px]">
         <Image src={image} width={35} height={35} />
         <div>
-          <h1 className="font-medium text-[14px]">{shorterText(title, 20)}</h1>
+          <Link
+            href={`/products/${_id}`}
+            target="_blank"
+            className="font-medium text-[14px]"
+          >
+            {shorterText(title, 20)}
+          </Link>
           <div className="flex items-center gap-2">
             <p>$ {reducePrice(discount, price)}</p>
             <div className="text-[8px]">{icons.close}</div>
@@ -19,7 +26,7 @@ const CartItemCard = ({
           </div>
         </div>
       </div>
-      <button>{icons.close}</button>
+      <button className="iconSize">{icons.trash}</button>
     </div>
   );
 };
