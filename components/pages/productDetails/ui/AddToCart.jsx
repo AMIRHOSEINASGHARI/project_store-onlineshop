@@ -47,6 +47,14 @@ const AddToCart = ({ productId, session }) => {
     }
   }, [session]);
 
+  if (isError) {
+    return (
+      <div className="mt-[20px] text-center bg-red-100 rounded-lg py-2">
+        <p className="text-red-500">Error!</p>
+      </div>
+    );
+  }
+
   const buttonOptions = {
     className: `text-white font-semibold w-full py-3 rounded-lg flex justify-center ${
       loading || isLoading ? "bg-gray-100" : "bg-black"
