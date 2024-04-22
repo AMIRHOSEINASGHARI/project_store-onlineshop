@@ -308,8 +308,8 @@ export const sortProducts = [
 
 export const profilePages = [
   {
-    name: "Personal Info",
-    route: "personal-info",
+    name: "Personal Information",
+    route: "personal-information",
     icon: icons.user,
   },
   {

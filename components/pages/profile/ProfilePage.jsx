@@ -1,12 +1,28 @@
 import { profilePages } from "@/constants";
+import PersonalInformation from "./ui/PersonalInformation";
+import Orders from "./ui/Orders";
+import Comments from "./ui/Comments";
+import Likes from "./ui/Likes";
 
 const ProfilePage = ({ page }) => {
-  const activePage = profilePages.findIndex((p) => p.route === page);
+  const activePageIndex = profilePages.findIndex((p) => p.route === page);
 
-  if (activePage < 0) {
+  const pageComponent = {
+    "personal-information": <PersonalInformation />,
+    orders: <Orders />,
+    comments: <Comments />,
+    likes: <Likes />,
+  };
+
+  if (activePageIndex < 0) {
     return <p>page not found</p>;
   }
-  return <div>{page}</div>;
+  return (
+    <section>
+      <h1 className="subheader">{profilePages[activePageIndex].name}</h1>
+      {pageComponent[page]}
+    </section>
+  );
 };
 
 export default ProfilePage;

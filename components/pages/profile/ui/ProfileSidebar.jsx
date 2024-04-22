@@ -4,7 +4,7 @@ import { images, profilePages } from "@/constants";
 
 const ProfileSidebar = ({ session }) => {
   return (
-    <aside className="max-lg:hidden fixed bg-white flex flex-col gap-[30px]">
+    <aside className="max-lg:hidden fixed z-10 bg-white flex flex-col gap-[30px]">
       <h1 className="font-black text-[20px] lg:text-[30px] mb-[30px]">
         My Profile
       </h1>
