@@ -22,6 +22,10 @@
   @apply max-w-[1400px] mx-auto;
 }
 
+.maxWidth2 {
+  @apply max-w-[1200px] mx-auto;
+}
+
 .paddingX {
   @apply px-[12px];
 }

@@ -305,3 +305,5 @@ export const sortProducts = [
     sortId: 5,
   },
 ];
+
+export const profilePages = ["personal-info", "orders", "likes", "comments"];

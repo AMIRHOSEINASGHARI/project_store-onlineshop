@@ -12,7 +12,7 @@ const ProfileLayout = ({ children }) => {
   return (
     <div>
       <Navbar />
-      <main className="mt-[90px] pb-[150px] maxWidth pagesPaddingX min-h-screen">
+      <main className="mt-[90px] pb-[150px] maxWidth2 pagesPaddingX min-h-screen">
         {children}
       </main>
       <div className="border-t border-gray-100 bg-gray-50 w-full flex justify-center py-[15px]">
