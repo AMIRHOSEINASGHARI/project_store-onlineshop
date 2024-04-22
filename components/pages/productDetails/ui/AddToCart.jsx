@@ -8,6 +8,8 @@ import Loader from "@/components/shared/Loader";
 import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEY } from "@/services/queryKeys";
 import { getUser } from "@/services/queries";
+import { isInCart } from "@/utils/functions";
+import { icons } from "@/constants";
 
 const AddToCart = ({ productId, session }) => {
   const router = useRouter();
@@ -45,16 +47,37 @@ const AddToCart = ({ productId, session }) => {
     }
   }, [session]);
 
+  const buttonOptions = {
+    className: `text-white font-semibold w-full py-3 rounded-lg flex justify-center ${
+      loading || isLoading ? "bg-gray-100" : "bg-black"
+    }`,
+    disabled:
+      loading ||
+      isLoading ||
+      isInCart(productId, data?.user?.cart?.selectedItems) >= 0,
+    text:
+      !loading &&
+      !isLoading &&
+      (isInCart(productId, data?.user?.cart?.selectedItems) >= 0 ? (
+        <div className="flex items-center gap-2 ">
+          <div className="iconSize">{icons.checkSquare}</div>
+          <span>View In Cart</span>
+        </div>
+      ) : (
+        "Add To Cart"
+      )),
+  };
+
   return (
     <div className="mt-[20px]">
       <button
         type="button"
-        className={`text-white font-semibold w-full py-3 rounded-lg flex justify-center ${
-          loading ? "bg-gray-100" : "bg-black"
-        }`}
+        className={buttonOptions.className}
         onClick={addHandler}
+        disabled={buttonOptions.disabled}
       >
-        {loading ? <Loader h={20} w={20} /> : "Add To Cart"}
+        {(loading || isLoading) && <Loader h={20} w={20} />}
+        {buttonOptions.text}
       </button>
     </div>
   );
