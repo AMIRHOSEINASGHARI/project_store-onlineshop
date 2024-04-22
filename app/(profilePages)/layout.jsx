@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import Navbar from "@/components/shared/Navbar";
-import { icons } from "@/constants";
+import { icons, images } from "@/constants";
 import { getServerSession } from "@/utils/session";
 import ProfileSidebar from "@/components/pages/profile/ui/ProfileSidebar";
+import Image from "next/image";
 
 const ProfileLayout = ({ children }) => {
   const session = getServerSession();
@@ -13,10 +14,12 @@ const ProfileLayout = ({ children }) => {
   return (
     <div>
       <Navbar />
-      <main className="mt-[90px] pb-[150px] maxWidth2 pagesPaddingX min-h-screen">
-        <ProfileSidebar />
-        {children}
-      </main>
+      <div className="mt-[90px] pb-[150px] maxWidth2 pagesPaddingX min-h-screen">
+        <div>
+          <ProfileSidebar session={session} />
+          <main className="lg:pl-[300px] lg:pt-[115px]">{children}</main>
+        </div>
+      </div>
       <div className="border-t border-gray-100 bg-gray-50 w-full flex justify-center py-[15px]">
         <div className="maxWidth pagesPaddingX flex items-center gap-2">
           <span className="subtitle">Made with</span>{" "}

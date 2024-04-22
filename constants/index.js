@@ -49,7 +49,7 @@ export const images = {
   logo: "/images/logo.svg",
   authLogin: "/images/auth-login.png",
   authRegister: "/images/auth-register.png",
-  person_1: "/images/person.png",
+  person_1: "/images/person.jpg",
   notFound: "/images/404.svg",
   hero_image: "/images/hero.jpg",
   home_watch: "/images/products/watch.png",
