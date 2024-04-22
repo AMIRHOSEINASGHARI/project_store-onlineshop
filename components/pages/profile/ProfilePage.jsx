@@ -7,23 +7,30 @@ import { getUser } from "@/actions/user.action";
 
 const ProfilePage = async ({ page }) => {
   const activePageIndex = profilePages.findIndex((p) => p.route === page);
-  const user = await getUser();
-  console.log(user);
+  const data = await getUser();
+  console.log(data);
 
   if (activePageIndex < 0) {
     return <p>page not found</p>;
   }
+  if (data.code !== 200) {
+    return <p>Error!</p>;
+  }
 
   const pageComponent = {
-    "personal-information": <PersonalInformation />,
-    orders: <Orders />,
-    comments: <Comments />,
-    likes: <Likes />,
+    "personal-information": (
+      <PersonalInformation {...JSON.parse(JSON.stringify(data?.user))} />
+    ),
+    orders: <Orders orders={data?.orders} />,
+    comments: <Comments comments={data?.comments} />,
+    likes: <Likes likes={data?.likes} />,
   };
 
   return (
     <section>
-      <h1 className="subheader">{profilePages[activePageIndex].name}</h1>
+      <h1 className="subheader mb-[20px]">
+        {profilePages[activePageIndex].name}
+      </h1>
       {pageComponent[page]}
     </section>
   );

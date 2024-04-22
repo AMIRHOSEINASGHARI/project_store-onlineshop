@@ -20,10 +20,13 @@ export const getUser = async () => {
       };
     }
 
-    const user = await User.findById(session?.userId).populate({
-      path: "comments",
-      model: Comments,
-    });
+    const user = await User.findById(session?.userId)
+      .populate({
+        path: "comments",
+        model: Comments,
+      })
+      .select("-password -cart")
+      .lean();
 
     return {
       user,
