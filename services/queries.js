@@ -5,5 +5,5 @@ export const getSession = () => {
 };
 
 export const getUser = () => {
-  return api.get("/api/user").then((res) => res.data);
+  return api.get("/api/user/data").then((res) => res.data);
 };

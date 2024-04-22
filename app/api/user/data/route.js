@@ -1,9 +1,9 @@
+import { NextResponse } from "next/server";
 import connectDB from "@/utils/connectDB";
 import { Comments } from "@/utils/models/comment";
 import { Products } from "@/utils/models/product";
 import { User } from "@/utils/models/user";
 import { getServerSession } from "@/utils/session";
-import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
