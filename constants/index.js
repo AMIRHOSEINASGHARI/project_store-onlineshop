@@ -306,4 +306,25 @@ export const sortProducts = [
   },
 ];
 
-export const profilePages = ["personal-info", "orders", "likes", "comments"];
+export const profilePages = [
+  {
+    name: "Personal Info",
+    route: "personal-info",
+    icon: icons.user,
+  },
+  {
+    name: "Orders",
+    route: "orders",
+    icon: icons.deliveryTruck,
+  },
+  {
+    name: "Comments",
+    route: "comments",
+    icon: icons.paper,
+  },
+  {
+    name: "Likes",
+    route: "likes",
+    icon: icons.heart,
+  },
+];
