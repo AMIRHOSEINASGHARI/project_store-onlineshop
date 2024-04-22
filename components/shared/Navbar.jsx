@@ -58,9 +58,9 @@ const Navbar = () => {
         </div>
         <div className="flex items-center mainGap">
           <Link
-            href="/profile"
+            href="/profile/personal-info"
             className={`iconSize paddingIcon rounded-full hover:bg-gray-100 transition1 border ${
-              pathname === "/profile"
+              pathname.includes("/profile")
                 ? "border-violet-500 text-violet-600"
                 : "text-gray-500 border-transparent"
             }`}
