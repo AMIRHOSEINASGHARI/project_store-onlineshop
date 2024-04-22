@@ -30,6 +30,10 @@ export const verifyPassword = async (password, hashedPassword) => {
 };
 
 export const isInCart = (productId, selectedItems) => {
-  const existingIndex = selectedItems.findIndex((item) => item === productId);
-  return existingIndex;
+  if (selectedItems) {
+    const existingIndex = selectedItems.findIndex((item) => item === productId);
+    return existingIndex;
+  } else {
+    return -1;
+  }
 };

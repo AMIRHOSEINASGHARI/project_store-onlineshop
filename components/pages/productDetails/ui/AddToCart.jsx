@@ -15,7 +15,7 @@ const AddToCart = ({ productId, session }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
-  const { data, isLoading, isError, refetch } = useQuery({
+  const { data, isLoading, isFetching, isError, refetch } = useQuery({
     queryKey: [QUERY_KEY.user_cart],
     queryFn: getUserCart,
     cacheTime: 0,
@@ -55,9 +55,9 @@ const AddToCart = ({ productId, session }) => {
     );
   }
 
-  if (isLoading) {
+  if (isLoading && isFetching) {
     return (
-      <div className="mt-[20px] text-white bg-gray-100 font-semibold w-full py-3 rounded-lg flex justify-center">
+      <div className="mt-[20px] text-white bg-gray-800 font-semibold w-full py-3 rounded-lg flex justify-center">
         <Loader h={20} w={20} />
       </div>
     );
@@ -65,15 +65,15 @@ const AddToCart = ({ productId, session }) => {
 
   const buttonOptions = {
     className: `text-white font-semibold w-full py-3 rounded-lg flex justify-center ${
-      loading || isLoading ? "bg-gray-100" : "bg-black"
+      loading || isFetching ? "bg-gray-100" : "bg-black"
     }`,
     disabled:
       loading ||
-      isLoading ||
+      isFetching ||
       isInCart(productId, data?.cart?.selectedItems) >= 0,
     text:
       !loading &&
-      !isLoading &&
+      !isFetching &&
       (isInCart(productId, data?.cart?.selectedItems) >= 0 ? (
         <div className="flex items-center gap-2 ">
           <div className="iconSize">{icons.checkSquare}</div>
@@ -92,7 +92,7 @@ const AddToCart = ({ productId, session }) => {
         onClick={addHandler}
         disabled={buttonOptions.disabled}
       >
-        {(loading || isLoading) && <Loader h={20} w={20} />}
+        {(loading || isFetching) && <Loader h={20} w={20} />}
         {buttonOptions.text}
       </button>
     </div>

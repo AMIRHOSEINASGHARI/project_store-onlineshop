@@ -7,12 +7,12 @@ import { usePathname } from "next/navigation";
 import MobileNavMenu from "./MobileNavMenu";
 import DesktopNavMenu from "./DesktopNavMenu";
 import { icons, images } from "@/constants";
-import CartDrawer from "./CartDrawer";
 import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEY } from "@/services/queryKeys";
 import { getUserCart } from "@/services/queries";
 import useSession from "@/hooks/session";
 import Loader from "./Loader";
+import CartDrawer from "./cart/CartDrawer";
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -22,7 +22,6 @@ const Navbar = () => {
   const {
     data: cartData,
     isFetching,
-    isError,
     refetch,
   } = useQuery({
     queryKey: [QUERY_KEY.user_cart],
@@ -89,6 +88,7 @@ const Navbar = () => {
               openCart={openCart}
               setOpenCart={setOpenCart}
               cart={cartData?.cart}
+              session={session}
             />
           )}
         </div>
