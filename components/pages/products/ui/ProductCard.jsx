@@ -8,7 +8,6 @@ const ProductCard = (props) => {
   return (
     <Link
       href={`/products/${_id}`}
-      target="_blank"
       key={_id}
       className="rounded-2xl p-4 cardShadow3 flex flex-col justify-between"
     >

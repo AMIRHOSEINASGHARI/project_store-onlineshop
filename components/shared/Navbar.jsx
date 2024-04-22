@@ -1,14 +1,40 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import MobileNavMenu from "./MobileNavMenu";
 import Image from "next/image";
-import { icons, images } from "@/constants";
-import DesktopNavMenu from "./DesktopNavMenu";
 import { usePathname } from "next/navigation";
+import MobileNavMenu from "./MobileNavMenu";
+import DesktopNavMenu from "./DesktopNavMenu";
+import { icons, images } from "@/constants";
+import CartDrawer from "./CartDrawer";
+import { useQuery } from "@tanstack/react-query";
+import { QUERY_KEY } from "@/services/queryKeys";
+import { getUserCart } from "@/services/queries";
+import useSession from "@/hooks/session";
+import Loader from "./Loader";
 
 const Navbar = () => {
+  const { data: session } = useSession();
+  const [openCart, setOpenCart] = useState(false);
   const pathname = usePathname();
+
+  const {
+    data: cartData,
+    isFetching,
+    isError,
+    refetch,
+  } = useQuery({
+    queryKey: [QUERY_KEY.user_cart],
+    queryFn: getUserCart,
+    enabled: false,
+  });
+
+  useEffect(() => {
+    if (session?.status === "authorized") {
+      refetch();
+    }
+  }, [session?.status]);
 
   return (
     <header className="border-b fixed w-full top-0 z-[1000] bg-white">
@@ -43,14 +69,28 @@ const Navbar = () => {
             {icons.user}
           </Link>
           <button
-            className={`iconSize paddingIcon rounded-full hover:bg-gray-100 transition1 border ${
+            disabled={isFetching}
+            onClick={() => setOpenCart(true)}
+            className={`iconSize relative paddingIcon rounded-full hover:bg-gray-100 transition1 border ${
               pathname === "/cart"
                 ? "border-violet-500 text-violet-600"
                 : "text-gray-500 border-transparent"
             }`}
           >
-            {icons.cart}
+            {isFetching ? <Loader h={15} w={15} /> : icons.cart}
+            {cartData?.cart?.totalProductsCount > 0 && (
+              <div className="w-[17px] h-[17px] flex items-center justify-center text-[10px] absolute bottom-0 right-0 bg-red-600 text-white rounded-full">
+                {cartData?.cart?.totalProductsCount}
+              </div>
+            )}
           </button>
+          {openCart && (
+            <CartDrawer
+              openCart={openCart}
+              setOpenCart={setOpenCart}
+              cart={cartData?.cart}
+            />
+          )}
         </div>
       </div>
     </header>

@@ -7,17 +7,17 @@ import toast from "react-hot-toast";
 import Loader from "@/components/shared/Loader";
 import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEY } from "@/services/queryKeys";
-import { getUser } from "@/services/queries";
 import { isInCart } from "@/utils/functions";
 import { icons } from "@/constants";
+import { getUserCart } from "@/services/queries";
 
 const AddToCart = ({ productId, session }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   const { data, isLoading, isError, refetch } = useQuery({
-    queryKey: [QUERY_KEY.user_data],
-    queryFn: getUser,
+    queryKey: [QUERY_KEY.user_cart],
+    queryFn: getUserCart,
     cacheTime: 0,
     staleTime: 0,
     enabled: false,
@@ -55,6 +55,14 @@ const AddToCart = ({ productId, session }) => {
     );
   }
 
+  if (isLoading) {
+    return (
+      <div className="mt-[20px] text-white bg-gray-100 font-semibold w-full py-3 rounded-lg flex justify-center">
+        <Loader h={20} w={20} />
+      </div>
+    );
+  }
+
   const buttonOptions = {
     className: `text-white font-semibold w-full py-3 rounded-lg flex justify-center ${
       loading || isLoading ? "bg-gray-100" : "bg-black"
@@ -62,11 +70,11 @@ const AddToCart = ({ productId, session }) => {
     disabled:
       loading ||
       isLoading ||
-      isInCart(productId, data?.user?.cart?.selectedItems) >= 0,
+      isInCart(productId, data?.cart?.selectedItems) >= 0,
     text:
       !loading &&
       !isLoading &&
-      (isInCart(productId, data?.user?.cart?.selectedItems) >= 0 ? (
+      (isInCart(productId, data?.cart?.selectedItems) >= 0 ? (
         <div className="flex items-center gap-2 ">
           <div className="iconSize">{icons.checkSquare}</div>
           <span>View In Cart</span>
