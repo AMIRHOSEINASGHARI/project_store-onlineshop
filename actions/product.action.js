@@ -141,6 +141,7 @@ export const addProductComment = async (formData, productId, userId) => {
     const { title, description } = formData;
 
     const product = await Products.findById(productId);
+    const user = await User.findById(userId);
     const newComment = await Comments.create({
       title,
       description,
@@ -150,6 +151,8 @@ export const addProductComment = async (formData, productId, userId) => {
 
     await product.comments.push(newComment?._id);
     await product.save();
+    await user.comments.push(newComment?._id);
+    await user.save();
 
     return {
       message: "Your comment has send!",
