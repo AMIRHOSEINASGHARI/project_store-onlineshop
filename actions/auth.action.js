@@ -6,6 +6,7 @@ import { hashPassword, verifyPassword } from "@/utils/functions";
 import { sign } from "jsonwebtoken";
 import { SECRET_KEY, SESSION_EXPIRATION } from "@/utils/vars";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export const createUser = async (data) => {
   try {
@@ -91,4 +92,9 @@ export const loginUser = async (data) => {
       code: 500,
     };
   }
+};
+
+export const signOut = () => {
+  cookies().delete("accessToken");
+  redirect("/");
 };
