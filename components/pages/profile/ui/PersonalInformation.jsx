@@ -4,15 +4,7 @@ import moment from "moment";
 import { useState } from "react";
 
 const PersonalInformation = (props) => {
-  const {
-    _id,
-    username,
-    displayName,
-    avatar,
-    phoneNumber,
-    address,
-    createdAt,
-  } = props;
+  const { _id, username, displayName, phoneNumber, address, createdAt } = props;
 
   const [form, setForm] = useState({
     username: username || "",

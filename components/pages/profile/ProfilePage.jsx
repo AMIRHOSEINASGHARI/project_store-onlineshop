@@ -8,7 +8,6 @@ import { getUser } from "@/actions/user.action";
 const ProfilePage = async ({ page }) => {
   const activePageIndex = profilePages.findIndex((p) => p.route === page);
   const data = await getUser();
-  console.log(data);
 
   if (activePageIndex < 0) {
     return <p>page not found</p>;
@@ -21,9 +20,9 @@ const ProfilePage = async ({ page }) => {
     "personal-information": (
       <PersonalInformation {...JSON.parse(JSON.stringify(data?.user))} />
     ),
-    orders: <Orders orders={data?.orders} />,
-    comments: <Comments comments={data?.comments} />,
-    likes: <Likes likes={data?.likes} />,
+    orders: <Orders orders={data?.user?.orders} />,
+    comments: <Comments comments={data?.user?.comments} />,
+    likes: <Likes likes={data?.user?.likes} />,
   };
 
   return (

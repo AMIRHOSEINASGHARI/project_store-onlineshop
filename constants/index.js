@@ -31,6 +31,7 @@ import {
   PiInstagramLogoLight,
   PiTelegramLogoLight,
   PiYoutubeLogoLight,
+  PiEyeLight,
 } from "react-icons/pi";
 import { GoHome, GoTasklist } from "react-icons/go";
 import { IoIosNotificationsOutline } from "react-icons/io";
@@ -112,6 +113,7 @@ export const icons = {
   telegram: <PiTelegramLogoLight />,
   youtube: <PiYoutubeLogoLight />,
   filter: <CiFilter />,
+  eye: <PiEyeLight />,
 };
 
 export const navLinks = [
