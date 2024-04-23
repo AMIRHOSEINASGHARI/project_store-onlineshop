@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { images, profilePages } from "@/constants";
+import { icons, images, profilePages } from "@/constants";
+import SignOut from "@/components/shared/SignOut";
 
 const ProfileSidebar = ({ session }) => {
   return (
@@ -23,12 +24,18 @@ const ProfileSidebar = ({ session }) => {
         <Link
           key={el.route}
           href={`/profile/${el.route}`}
-          className="flex items-center gap-[20px]"
+          className="flex items-center gap-[20px] p-1"
         >
           <div className="iconSize">{el.icon}</div>
           <p>{el.name}</p>
         </Link>
       ))}
+      <SignOut
+        icon={icons.power}
+        title="Logout"
+        wrapperClassName="flex items-center gap-[20px] p-1 text-red-500"
+        iconClassName="iconSize"
+      />
     </aside>
   );
 };

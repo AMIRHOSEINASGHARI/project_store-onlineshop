@@ -1,5 +1,7 @@
 "use client";
 
+import { signOut } from "@/actions/auth.action";
+
 const SignOut = ({
   wrapperClassName,
   icon,
@@ -8,7 +10,11 @@ const SignOut = ({
   titleClassName,
 }) => {
   return (
-    <button type="button" className={wrapperClassName || ""}>
+    <button
+      type="button"
+      className={wrapperClassName || ""}
+      onClick={() => signOut()}
+    >
       {icon && <div className={iconClassName}>{icon}</div>}
       {title && <p className={titleClassName}>{title}</p>}
     </button>
