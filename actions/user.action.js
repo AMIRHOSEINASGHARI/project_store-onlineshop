@@ -30,7 +30,7 @@ export const getUser = async () => {
           model: Products,
         },
       })
-      .select("-password -cart")
+      .select("-password")
       .lean();
 
     return {

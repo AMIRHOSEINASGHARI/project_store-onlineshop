@@ -43,7 +43,7 @@ export const getProducts = async (searchParams) => {
     });
     const totalPages = Math.ceil(totalProducts / perPage);
 
-    const products = await Products.find({ ...query, ...filters })
+    const products = await Products.find({ ...filters, ...query })
       .sort({
         ...(sort == 1
           ? { createdAt: -1 }
