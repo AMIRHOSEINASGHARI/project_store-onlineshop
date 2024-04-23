@@ -330,3 +330,18 @@ export const profilePages = [
     icon: icons.heart,
   },
 ];
+
+export const checkoutPages = [
+  {
+    name: "Cart",
+    route: "cart",
+  },
+  {
+    name: "Shipping",
+    route: "shipping",
+  },
+  {
+    name: "Payment",
+    route: "payment",
+  },
+];

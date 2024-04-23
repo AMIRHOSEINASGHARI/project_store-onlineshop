@@ -37,7 +37,7 @@ const Comments = ({ comments }) => {
               />
 
               <p className="font-light text-[10px] w-fit">
-                {moment(createdAt).startOf("hour").fromNow()}
+                {moment(createdAt).fromNow()}
               </p>
               <Link
                 href={`/products/${productId?._id}`}

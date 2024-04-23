@@ -1,10 +1,9 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import Navbar from "@/components/shared/Navbar";
-import { icons, images } from "@/constants";
+import { icons } from "@/constants";
 import { getServerSession } from "@/utils/session";
 import ProfileSidebar from "@/components/pages/profile/ui/ProfileSidebar";
-import Image from "next/image";
 
 const ProfileLayout = ({ children }) => {
   const session = getServerSession();

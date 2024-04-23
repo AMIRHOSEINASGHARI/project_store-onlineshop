@@ -6,13 +6,14 @@ import Likes from "./ui/Likes";
 import { getUser } from "@/actions/user.action";
 
 const ProfilePage = async ({ page }) => {
+  const activePageIndex = profilePages.findIndex((p) => p.route === page);
+
+  if (activePageIndex < 0) {
+    return <p>page not found</p>;
+  }
   try {
-    const activePageIndex = profilePages.findIndex((p) => p.route === page);
     const data = await getUser();
 
-    if (activePageIndex < 0) {
-      return <p>page not found</p>;
-    }
     if (data.code !== 200) {
       return <p>Error!</p>;
     }
