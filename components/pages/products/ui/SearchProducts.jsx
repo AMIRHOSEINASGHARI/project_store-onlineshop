@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { icons } from "@/constants";
 import { useRouter } from "next/navigation";
 
+// TODO: there is a bug in this cmp
 const SearchProducts = () => {
   const router = useRouter();
   const search = new URLSearchParams(window.location.search);
