@@ -71,7 +71,7 @@ const Navbar = () => {
             disabled={isFetching}
             onClick={() => setOpenCart(true)}
             className={`iconSize relative paddingIcon rounded-full hover:bg-gray-100 transition1 border ${
-              pathname === "/cart"
+              pathname.includes("/checkout")
                 ? "border-violet-500 text-violet-600"
                 : "text-gray-500 border-transparent"
             }`}

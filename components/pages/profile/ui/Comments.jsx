@@ -36,8 +36,8 @@ const Comments = ({ comments }) => {
                 alt="product"
               />
 
-              <p className="font-light text-[10px] md:text-[13px] w-fit">
-                {moment(createdAt).subtract(10, "days").calendar()}
+              <p className="font-light text-[10px] w-fit">
+                {moment(createdAt).startOf("hour").fromNow()}
               </p>
               <Link
                 href={`/products/${productId?._id}`}

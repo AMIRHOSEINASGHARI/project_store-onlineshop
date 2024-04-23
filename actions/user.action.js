@@ -46,3 +46,54 @@ export const getUser = async () => {
     };
   }
 };
+
+export const updateUserInfo = async (form) => {
+  try {
+    await connectDB();
+
+    const session = getServerSession();
+
+    if (!session) {
+      return {
+        message: "Un-Authorized!",
+        status: "failed",
+        code: 422,
+      };
+    }
+
+    const { username, displayName, phoneNumber, address } = form;
+    const user = await User.findById(session?.userId);
+
+    // check username existancy
+    if (username !== session?.username) {
+      const checkUsername = await User.findOne({ username });
+      if (checkUsername) {
+        return {
+          message: "Username already Exists!",
+          status: "failed",
+          code: 422,
+        };
+      }
+    }
+
+    // updating user information
+    user.username = username;
+    user.displayName = displayName;
+    user.phoneNumber = phoneNumber;
+    user.address = address;
+
+    await user.save();
+
+    return {
+      message: "Your information has been updated",
+      status: "success",
+      code: 202,
+    };
+  } catch (error) {
+    return {
+      user: null,
+      status: "failed",
+      code: 500,
+    };
+  }
+};
