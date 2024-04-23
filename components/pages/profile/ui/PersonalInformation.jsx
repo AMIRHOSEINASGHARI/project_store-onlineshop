@@ -1,11 +1,19 @@
 "use client";
 
-import moment from "moment";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { updateUserInfo } from "@/actions/user.action";
+import Loader from "@/components/shared/Loader";
+import { icons } from "@/constants";
+import moment from "moment";
+import toast from "react-hot-toast";
 
 const PersonalInformation = (props) => {
-  const { _id, username, displayName, phoneNumber, address, createdAt } = props;
+  const { username, displayName, phoneNumber, address, createdAt } = props;
 
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [form, setForm] = useState({
     username: username || "",
     displayName: displayName || "",
@@ -20,10 +28,25 @@ const PersonalInformation = (props) => {
     });
   };
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
 
-    // TODO: submit form
+    if (!username) {
+      toast.error("Username cannot be empty");
+      return;
+    }
+
+    setLoading(() => true);
+    const result = await updateUserInfo(form);
+    setLoading(() => false);
+
+    if (result.code !== 202) {
+      toast.error(result.message);
+      setError(result.message);
+    } else {
+      toast.success(result.message);
+      router.push("/login");
+    }
   };
 
   return (
@@ -33,6 +56,18 @@ const PersonalInformation = (props) => {
           Joined At {moment(createdAt).subtract(10, "days").calendar()}
         </p>
       </div>
+      {error && (
+        <div className="bg-orange-100 rounded-md py-2 px-4 border-l-4 border-orange-500 mb-4 flex justify-between">
+          <p className="text-orange-500 font-medium text-[14px] ">{error}</p>
+          <button
+            type="button"
+            className="text-red-500 text-[14px]"
+            onClick={() => setError("")}
+          >
+            {icons.close}
+          </button>
+        </div>
+      )}
       <form onSubmit={submitForm}>
         <div className="space-y-5 mb-5">
           <div className="flex flex-col gap-1">
@@ -78,9 +113,11 @@ const PersonalInformation = (props) => {
         </div>
         <button
           type="submit"
-          className="bg-black text-white text-[12px] rounded-lg w-fit py-2 px-5"
+          className={`${
+            loading ? "bg-gray-100" : "bg-black text-white"
+          } text-[12px] rounded-lg h-[35px] w-[100px] flex justify-center items-center`}
         >
-          Submit
+          {loading ? <Loader h={20} w={20} /> : "Submit"}
         </button>
       </form>
     </div>

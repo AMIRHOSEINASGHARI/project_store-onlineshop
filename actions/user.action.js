@@ -5,8 +5,8 @@ import { Comments } from "@/utils/models/comment";
 import { Products } from "@/utils/models/product";
 import { User } from "@/utils/models/user";
 import { getServerSession } from "@/utils/session";
+import { cookies } from "next/headers";
 
-// Gets last 4 Products Published
 export const getUser = async () => {
   try {
     await connectDB();
@@ -55,7 +55,7 @@ export const updateUserInfo = async (form) => {
 
     if (!session) {
       return {
-        message: "Un-Authorized!",
+        message: "Un-Authorized or session has expired!",
         status: "failed",
         code: 422,
       };
@@ -83,6 +83,8 @@ export const updateUserInfo = async (form) => {
     user.address = address;
 
     await user.save();
+
+    cookies().delete("accessToken");
 
     return {
       message: "Your information has been updated",
