@@ -36,6 +36,9 @@ const PersonalInformation = (props) => {
       return;
     }
 
+    if (error.length !== 0) {
+      setError("");
+    }
     setLoading(() => true);
     const result = await updateUserInfo(form);
     setLoading(() => false);
@@ -56,18 +59,7 @@ const PersonalInformation = (props) => {
           Joined At {moment(createdAt).subtract(10, "days").calendar()}
         </p>
       </div>
-      {error && (
-        <div className="bg-orange-100 rounded-md py-2 px-4 border-l-4 border-orange-500 mb-4 flex justify-between">
-          <p className="text-orange-500 font-medium text-[14px] ">{error}</p>
-          <button
-            type="button"
-            className="text-red-500 text-[14px]"
-            onClick={() => setError("")}
-          >
-            {icons.close}
-          </button>
-        </div>
-      )}
+
       <form onSubmit={submitForm}>
         <div className="space-y-5 mb-5">
           <div className="flex flex-col gap-1">
@@ -111,6 +103,18 @@ const PersonalInformation = (props) => {
             />
           </div>
         </div>
+        {error && (
+          <div className="bg-orange-100 rounded-md py-2 px-4 border-l-4 border-orange-500 mb-4 flex justify-between">
+            <p className="text-orange-500 font-medium text-[14px] ">{error}</p>
+            <button
+              type="button"
+              className="text-red-500 text-[14px]"
+              onClick={() => setError("")}
+            >
+              {icons.close}
+            </button>
+          </div>
+        )}
         <button
           type="submit"
           className={`${

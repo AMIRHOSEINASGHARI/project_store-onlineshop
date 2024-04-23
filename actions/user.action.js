@@ -93,7 +93,7 @@ export const updateUserInfo = async (form) => {
     };
   } catch (error) {
     return {
-      user: null,
+      message: "Server Error! Try again later",
       status: "failed",
       code: 500,
     };
