@@ -25,7 +25,7 @@ export const getCart = async () => {
     });
 
     return {
-      cart,
+      cart: cart.cart,
       status: "success",
       code: 200,
     };
