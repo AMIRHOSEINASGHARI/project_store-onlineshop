@@ -37,3 +37,21 @@ export const isInCart = (productId, selectedItems) => {
     return -1;
   }
 };
+
+export const calculateTotalPrice = (items) => {
+  return items.reduce(
+    (prev, current) => prev + current.productId.price * current.quantity,
+    0
+  );
+};
+
+export const calculateTotalDiscount = (items) => {
+  return items.reduce(
+    (prev, current) =>
+      prev +
+      (current.quantity *
+        (current.productId.price * current.productId.discount)) /
+        100,
+    0
+  );
+};
