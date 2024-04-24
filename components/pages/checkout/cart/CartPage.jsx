@@ -7,6 +7,7 @@ import {
   calculateTotalPrice,
   reducePrice,
 } from "@/utils/functions";
+import CountButtons from "./ui/CountButtons";
 
 const CartPage = async () => {
   try {
@@ -54,16 +55,10 @@ const CartPage = async () => {
                         $ {reducePrice(discount, price) * quantity}
                       </p>
                     </div>
-                    {/* // TODO: BUTTONS */}
-                    <div className="flex items-center gap-4">
-                      <div className="rounded-lg w-[30px] h-[30px] flex justify-center items-center border">
-                        -
-                      </div>
-                      <p>{quantity}</p>
-                      <div className="rounded-lg w-[30px] h-[30px] flex justify-center items-center border">
-                        +
-                      </div>
-                    </div>
+                    <CountButtons
+                      quantity={JSON.parse(JSON.stringify(quantity))}
+                      productId={JSON.parse(JSON.stringify(_id))}
+                    />
                   </div>
                 </div>
               </div>
