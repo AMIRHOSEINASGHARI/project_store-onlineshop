@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import Navbar from "@/components/shared/Navbar";
-import { icons } from "@/constants";
+import { icons, images } from "@/constants";
 import { getServerSession } from "@/utils/session";
 import ProfileSidebar from "@/components/pages/profile/ui/ProfileSidebar";
+import BottomBar from "@/components/pages/profile/ui/BottomBar";
+import Image from "next/image";
 
 const ProfileLayout = ({ children }) => {
   const session = getServerSession();
@@ -19,19 +21,18 @@ const ProfileLayout = ({ children }) => {
           <main className="lg:pl-[300px] lg:pt-[115px]">{children}</main>
         </div>
       </div>
-      <div className="border-t border-gray-100 bg-gray-50 w-full flex justify-center py-[15px]">
-        <div className="maxWidth pagesPaddingX flex items-center gap-2">
-          <span className="subtitle">Made with</span>{" "}
-          <div className="animate-bounce">{icons.redHeart}</div>{" "}
-          <Link
-            href="https://t.me/Amirhosein_Asghari79"
-            target="_blank"
-            className="subtitle hover:text-violet-500"
-          >
-            By AMIRHOSEIN
-          </Link>
-        </div>
+      <div className="lg:hidden fixed bottom-[68.5px] backdrop-blur bg-white/85 w-full flex items-center gap-[10px] px-5 py-2 border-t border-gray-100">
+        <Image
+          src={session?.avatar || images.person_1}
+          width={30}
+          height={30}
+          priority
+          alt="user"
+          className="rounded-full"
+        />
+        <p className="subtitle">{session?.username}</p>
       </div>
+      <BottomBar />
     </div>
   );
 };
