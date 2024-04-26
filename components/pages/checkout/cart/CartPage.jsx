@@ -8,9 +8,11 @@ import {
   reducePrice,
 } from "@/utils/functions";
 import CountButtons from "./ui/CountButtons";
+import { getServerSession } from "@/utils/session";
 
 const CartPage = async () => {
   try {
+    const session = getServerSession();
     const data = await getCart();
 
     if (data.code !== 200) {
@@ -58,6 +60,7 @@ const CartPage = async () => {
                     <CountButtons
                       quantity={JSON.parse(JSON.stringify(quantity))}
                       productId={JSON.parse(JSON.stringify(_id))}
+                      session={JSON.parse(JSON.stringify(session))}
                     />
                   </div>
                 </div>

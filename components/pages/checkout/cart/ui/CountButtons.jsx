@@ -1,9 +1,33 @@
 "use client";
 
-const CountButtons = ({ quantity, productId }) => {
+import { addToCart } from "@/actions/cart.action";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import toast from "react-hot-toast";
+
+const CountButtons = ({ quantity, productId, session }) => {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
   const down = async () => {};
 
-  const up = async () => {};
+  const up = async () => {
+    if (!session) {
+      router.push("/login");
+      return;
+    }
+
+    setLoading(() => true);
+    const result = await addToCart(productId);
+    setLoading(() => false);
+    router.refresh();
+
+    if (result.code !== 200) {
+      toast.error(result.message);
+    } else {
+      toast.success(result.message);
+    }
+  };
 
   return (
     <div className="flex items-center gap-4">
