@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { addToCart } from "@/actions/product.action";
 import toast from "react-hot-toast";
 import Loader from "@/components/shared/Loader";
 import { useQuery } from "@tanstack/react-query";
@@ -10,6 +9,7 @@ import { QUERY_KEY } from "@/services/queryKeys";
 import { isInCart } from "@/utils/functions";
 import { icons } from "@/constants";
 import { getUserCart } from "@/services/queries";
+import { addToCart } from "@/actions/cart.action";
 
 const AddToCart = ({ productId, session }) => {
   const router = useRouter();
