@@ -1,15 +1,31 @@
 "use client";
 
-import { addToCart } from "@/actions/cart.action";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { addToCart, decreaseFromCart } from "@/actions/cart.action";
 import toast from "react-hot-toast";
 
 const CountButtons = ({ quantity, productId, session }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
-  const down = async () => {};
+  const down = async () => {
+    if (!session) {
+      router.push("/login");
+      return;
+    }
+
+    setLoading(() => true);
+    const result = await decreaseFromCart(productId);
+    setLoading(() => false);
+    router.refresh();
+
+    if (result.code !== 200) {
+      toast.error(result.message);
+    } else {
+      toast.success(result.message);
+    }
+  };
 
   const up = async () => {
     if (!session) {
