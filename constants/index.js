@@ -67,6 +67,7 @@ export const images = {
   category_tablet: "/images/categories/tablet.jpg",
   category_tv: "/images/categories/tv.jpg",
   category_watch: "/images/categories/watch.jpg",
+  empty_cart: "/images/empty-cart.png",
 };
 
 export const icons = {

@@ -9,6 +9,7 @@ import {
 } from "@/utils/functions";
 import CountButtons from "./ui/CountButtons";
 import { getServerSession } from "@/utils/session";
+import EmptyCart from "@/components/shared/cart/EmptyCart";
 
 const CartPage = async () => {
   try {
@@ -17,6 +18,10 @@ const CartPage = async () => {
 
     if (data.code !== 200) {
       return <p>Error!</p>;
+    }
+
+    if (data.cart.totalProductsCount === 0) {
+      return <EmptyCart />;
     }
 
     return (
