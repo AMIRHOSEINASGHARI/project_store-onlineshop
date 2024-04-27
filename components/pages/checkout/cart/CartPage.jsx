@@ -2,14 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { getCart } from "@/actions/cart.action";
 import { icons } from "@/constants";
-import {
-  calculateTotalDiscount,
-  calculateTotalPrice,
-  reducePrice,
-} from "@/utils/functions";
+import { reducePrice } from "@/utils/functions";
 import CountButtons from "./ui/CountButtons";
 import { getServerSession } from "@/utils/session";
 import EmptyCart from "@/components/shared/cart/EmptyCart";
+import RightBar from "../shared/RightBar";
 
 const CartPage = async () => {
   try {
@@ -73,40 +70,11 @@ const CartPage = async () => {
             );
           })}
         </section>
-        <section className="cardShadow3 rounded-xl p-6 pt-3 max-lg:w-full lg:w-1/4 divide-y-2 divide-gray-100">
-          <div className="flex items-center w-full justify-between py-3">
-            <p className="subtitle">Total Products: </p>
-            <p className="subtitle">{data.cart.totalProductsCount}</p>
-          </div>
-          <div className="flex items-center w-full justify-between py-3">
-            <p className="subtitle">Total Price: </p>
-            <p className="subtitle">
-              $ {calculateTotalPrice(data.cart.items).toLocaleString()}
-            </p>
-          </div>
-          <div className="flex items-center w-full justify-between py-3">
-            <p className="subtitle">Total Discount: </p>
-            <p className="subtitle">
-              $ {calculateTotalDiscount(data.cart.items).toLocaleString()}
-            </p>
-          </div>
-          <div className="flex items-center w-full justify-between py-3">
-            <p className="subtitle">Total Payable: </p>
-            <p className="text-blue-500 font-bold">
-              $
-              {(
-                calculateTotalPrice(data.cart.items) -
-                calculateTotalDiscount(data.cart.items)
-              ).toLocaleString()}
-            </p>
-          </div>
-          <Link
-            href="/checkout/shipping"
-            className="bg-blue-500 rounded-xl w-full flex justify-center py-3 mt-3 font-medium text-[15px] text-white"
-          >
-            Submit Order
-          </Link>
-        </section>
+        <RightBar
+          cart={data.cart}
+          nextRoute="shipping"
+          buttonTitle="Submit Orders"
+        />
       </main>
     );
   } catch (error) {

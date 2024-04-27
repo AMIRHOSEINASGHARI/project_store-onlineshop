@@ -52,15 +52,15 @@ export const getShippingData = async () => {
       };
     }
 
-    const cart = await User.findById(session?.userId)
-      .select("username displayName phoneNumber address cart")
+    const user = await User.findById(session?.userId)
+      .select(["username", "displayName", "phoneNumber", "address", "cart"])
       .populate({
         path: "cart.items.productId",
         model: Products,
       });
 
     return {
-      cart: cart.cart,
+      user,
       status: "success",
       code: 200,
     };

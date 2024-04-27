@@ -32,6 +32,7 @@ import {
   PiTelegramLogoLight,
   PiYoutubeLogoLight,
   PiEyeLight,
+  PiArrowLeftLight,
 } from "react-icons/pi";
 import { GoHome, GoTasklist } from "react-icons/go";
 import { IoIosNotificationsOutline } from "react-icons/io";
@@ -39,6 +40,7 @@ import {
   CiDark,
   CiDeliveryTruck,
   CiFilter,
+  CiLocationOn,
   CiMenuBurger,
   CiSearch,
   CiSettings,
@@ -101,6 +103,7 @@ export const icons = {
   growArrow: <PiArrowBendRightUpLight />,
   downArrow: <PiArrowDownLight />,
   rightArrow: <PiArrowRightLight />,
+  leftArrow: <PiArrowLeftLight />,
   fallingArrow: <PiArrowBendRightDownLight />,
   category: <PiBoundingBoxLight />,
   question: <PiQuestionLight />,
@@ -115,6 +118,7 @@ export const icons = {
   youtube: <PiYoutubeLogoLight />,
   filter: <CiFilter />,
   eye: <PiEyeLight />,
+  location: <CiLocationOn />,
 };
 
 export const navLinks = [
