@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import Loader from "@/components/shared/Loader";
 import { useQueryClient } from "@tanstack/react-query";
 import { QUERY_KEY } from "@/services/queryKeys";
+import { icons } from "@/constants";
 
 const CountButtons = ({ quantity, productId, session }) => {
   const router = useRouter();
@@ -54,21 +55,27 @@ const CountButtons = ({ quantity, productId, session }) => {
   };
 
   return (
-    <div className="flex items-center gap-4">
-      <button
-        onClick={down}
-        disabled={loading}
-        className="rounded-lg text-[25px] w-[35px] h-[35px] flex justify-center items-center border hover:bg-gray-50 hover:shadow-xl hover:shadow-gray-200 transition1"
-      >
-        {loading ? <Loader h={20} w={20} /> : "-"}
-      </button>
-      <p>{quantity}</p>
-      <button
-        onClick={up}
-        disabled={loading}
-        className="text-blue-500 rounded-lg text-[25px] w-[35px] h-[35px] flex justify-center items-center border border-blue-500 hover:bg-blue-50 hover:shadow-xl hover:shadow-blue-200 transition1"
-      >
-        {loading ? <Loader h={20} w={20} /> : "+"}
+    <div className="flex items-center gap-10">
+      <div className="flex items-center gap-4">
+        <button
+          onClick={down}
+          disabled={loading}
+          className="rounded-lg text-[25px] w-[35px] h-[35px] flex justify-center items-center border hover:bg-gray-50 hover:shadow-xl hover:shadow-gray-200 transition1"
+        >
+          {loading ? <Loader h={20} w={20} /> : "-"}
+        </button>
+        <p>{quantity}</p>
+        <button
+          onClick={up}
+          disabled={loading}
+          className="text-blue-500 rounded-lg text-[25px] w-[35px] h-[35px] flex justify-center items-center border border-blue-500 hover:bg-blue-50 hover:shadow-xl hover:shadow-blue-200 transition1"
+        >
+          {loading ? <Loader h={20} w={20} /> : "+"}
+        </button>
+      </div>
+
+      <button className="text-gray-500 rounded-lg iconSize">
+        {loading ? <Loader h={20} w={20} /> : icons.trash}
       </button>
     </div>
   );

@@ -153,3 +153,55 @@ export const decreaseFromCart = async (productId) => {
     };
   }
 };
+
+export const deleteFromCart = async (productId) => {
+  try {
+    const session = getServerSession();
+    if (!session) {
+      return {
+        message: "You are un-authorized!",
+        status: "failed",
+        code: 422,
+      };
+    }
+
+    await connectDB();
+
+    const user = await User.findById(session.userId);
+
+    if (!user) {
+      return {
+        message: "User not found!",
+        status: "failed",
+        code: 404,
+      };
+    }
+
+    const existingCartItemIndex = user.cart.items.findIndex((item) =>
+      item.productId.equals(productId)
+    );
+
+    user.cart.items.splice(existingCartItemIndex, 1);
+
+    user.cart.selectedItems = user.cart.items.map((item) => item.productId);
+    user.cart.totalProductsCount = user.cart.items.reduce(
+      (total, item) => total + item.quantity,
+      0
+    );
+
+    await user.save();
+
+    return {
+      message: "Proccess finished",
+      status: "success",
+      code: 200,
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      message: "Server Error!",
+      status: "failed",
+      code: 500,
+    };
+  }
+};
