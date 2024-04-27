@@ -2,7 +2,11 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { addToCart, decreaseFromCart } from "@/actions/cart.action";
+import {
+  addToCart,
+  decreaseFromCart,
+  deleteFromCart,
+} from "@/actions/cart.action";
 import toast from "react-hot-toast";
 import Loader from "@/components/shared/Loader";
 import { useQueryClient } from "@tanstack/react-query";
@@ -54,6 +58,25 @@ const CountButtons = ({ quantity, productId, session }) => {
     }
   };
 
+  const deleteHandler = async () => {
+    if (!session) {
+      router.push("/login");
+      return;
+    }
+
+    setLoading(() => true);
+    const result = await deleteFromCart(productId);
+    setLoading(() => false);
+
+    if (result.code !== 200) {
+      toast.error(result.message);
+    } else {
+      queryClient.invalidateQueries([QUERY_KEY.user_cart]);
+      toast.success(result.message);
+      router.refresh();
+    }
+  };
+
   return (
     <div className="flex items-center gap-10">
       <div className="flex items-center gap-4">
@@ -74,7 +97,10 @@ const CountButtons = ({ quantity, productId, session }) => {
         </button>
       </div>
 
-      <button className="text-gray-500 rounded-lg iconSize">
+      <button
+        className="text-gray-500 rounded-lg iconSize"
+        onClick={deleteHandler}
+      >
         {loading ? <Loader h={20} w={20} /> : icons.trash}
       </button>
     </div>
