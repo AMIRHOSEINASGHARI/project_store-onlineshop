@@ -5,10 +5,15 @@ import { useRouter } from "next/navigation";
 import { addToCart, decreaseFromCart } from "@/actions/cart.action";
 import toast from "react-hot-toast";
 import Loader from "@/components/shared/Loader";
+import { useQueryClient } from "@tanstack/react-query";
+import { QUERY_KEY } from "@/services/queryKeys";
 
 const CountButtons = ({ quantity, productId, session }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+
+  //   TODO: invalidateQueries is not working correctly. check it out later
+  const queryClient = useQueryClient();
 
   const down = async () => {
     if (!session) {
@@ -19,12 +24,13 @@ const CountButtons = ({ quantity, productId, session }) => {
     setLoading(() => true);
     const result = await decreaseFromCart(productId);
     setLoading(() => false);
-    router.refresh();
 
     if (result.code !== 200) {
       toast.error(result.message);
     } else {
+      queryClient.invalidateQueries([QUERY_KEY.user_cart]);
       toast.success(result.message);
+      router.refresh();
     }
   };
 
@@ -37,12 +43,13 @@ const CountButtons = ({ quantity, productId, session }) => {
     setLoading(() => true);
     const result = await addToCart(productId);
     setLoading(() => false);
-    router.refresh();
 
     if (result.code !== 200) {
       toast.error(result.message);
     } else {
+      queryClient.invalidateQueries([QUERY_KEY.user_cart]);
       toast.success(result.message);
+      router.refresh();
     }
   };
 
