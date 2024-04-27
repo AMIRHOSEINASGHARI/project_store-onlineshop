@@ -85,7 +85,7 @@ const CartPage = async () => {
             </p>
           </div>
           <div className="flex items-center w-full justify-between py-3">
-            <p className="subtitle">Discount: </p>
+            <p className="subtitle">Total Discount: </p>
             <p className="subtitle">
               $ {calculateTotalDiscount(data.cart.items).toLocaleString()}
             </p>

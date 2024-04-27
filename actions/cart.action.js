@@ -38,6 +38,41 @@ export const getCart = async () => {
   }
 };
 
+export const getShippingData = async () => {
+  try {
+    await connectDB();
+
+    const session = getServerSession();
+
+    if (!session) {
+      return {
+        message: "Un-Authorized!",
+        status: "failed",
+        code: 422,
+      };
+    }
+
+    const cart = await User.findById(session?.userId)
+      .select("username displayName phoneNumber address cart")
+      .populate({
+        path: "cart.items.productId",
+        model: Products,
+      });
+
+    return {
+      cart: cart.cart,
+      status: "success",
+      code: 200,
+    };
+  } catch (error) {
+    return {
+      user: null,
+      status: "failed",
+      code: 500,
+    };
+  }
+};
+
 export const addToCart = async (productId) => {
   try {
     const session = getServerSession();
