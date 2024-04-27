@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { calculateTotalDiscount, calculateTotalPrice } from "@/utils/functions";
 
 const RightBar = ({ cart, nextRoute, buttonTitle }) => {
@@ -29,12 +30,12 @@ const RightBar = ({ cart, nextRoute, buttonTitle }) => {
         </p>
       </div>
       {buttonTitle && (
-        <a
+        <Link
           href={`/checkout/${nextRoute}`}
           className="bg-blue-500 rounded-xl w-full flex justify-center py-3 mt-3 font-medium text-[15px] text-white"
         >
           {buttonTitle}
-        </a>
+        </Link>
       )}
     </section>
   );

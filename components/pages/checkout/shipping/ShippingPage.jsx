@@ -11,7 +11,6 @@ import EmptyCart from "@/components/shared/cart/EmptyCart";
 const ShippingPage = async () => {
   const session = getServerSession();
   const data = await getShippingData();
-  console.log(data);
 
   if (data.code !== 200) {
     return <p>Error!</p>;
