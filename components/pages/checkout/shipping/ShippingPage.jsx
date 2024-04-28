@@ -5,7 +5,7 @@ import Link from "next/link";
 import { icons } from "@/constants";
 import Image from "next/image";
 import { reducePrice } from "@/utils/functions";
-import CountButtons from "../cart/ui/CountButtons";
+import CountButtons from "../shared/CountButtons";
 import EmptyCart from "@/components/shared/cart/EmptyCart";
 import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEY } from "@/services/queryKeys";
@@ -81,7 +81,7 @@ const ShippingPage = () => {
         <div className="p-4 rounded-xl border space-y-3">
           {data.user.cart.items.map((el) => {
             const {
-              productId: { image, title, price, discount, _id },
+              productId: { image, title, price, discount, _id, stock },
               quantity,
             } = el;
             return (
@@ -115,8 +115,9 @@ const ShippingPage = () => {
                       </p>
                     </div>
                     <CountButtons
-                      quantity={JSON.parse(JSON.stringify(quantity))}
-                      productId={JSON.parse(JSON.stringify(_id))}
+                      quantity={quantity}
+                      productId={_id}
+                      stock={stock}
                     />
                   </div>
                 </div>

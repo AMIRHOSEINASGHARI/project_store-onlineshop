@@ -12,7 +12,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { QUERY_KEY } from "@/services/queryKeys";
 import { icons } from "@/constants";
 
-const CountButtons = ({ quantity, productId }) => {
+const CountButtons = ({ quantity, productId, stock }) => {
   const [loading, setLoading] = useState(false);
 
   const queryClient = useQueryClient();
@@ -69,8 +69,12 @@ const CountButtons = ({ quantity, productId }) => {
         <p>{quantity}</p>
         <button
           onClick={up}
-          disabled={loading}
-          className="text-blue-500 rounded-lg text-[25px] w-[35px] h-[35px] flex justify-center items-center border border-blue-500 hover:bg-blue-50 hover:shadow-xl hover:shadow-blue-200 transition1"
+          disabled={loading || stock === quantity}
+          className={`${
+            loading || stock === quantity
+              ? "text-gray-200"
+              : "text-blue-500 border-blue-500 hover:bg-blue-50 hover:shadow-xl hover:shadow-blue-200 transition1"
+          } border rounded-lg text-[25px] w-[35px] h-[35px] flex justify-center items-center`}
         >
           {loading ? <Loader h={20} w={20} /> : "+"}
         </button>

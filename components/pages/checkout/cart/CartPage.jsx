@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { icons } from "@/constants";
 import { reducePrice } from "@/utils/functions";
-import CountButtons from "./ui/CountButtons";
+import CountButtons from "../shared/CountButtons";
 import EmptyCart from "@/components/shared/cart/EmptyCart";
 import RightBar from "../shared/RightBar";
 import { useQuery } from "@tanstack/react-query";
@@ -41,7 +41,7 @@ const CartPage = () => {
       <section className="max-lg:w-full lg:w-3/4 space-y-[20px]">
         {data.cart.items.map((el) => {
           const {
-            productId: { image, title, price, discount, _id },
+            productId: { image, title, price, discount, _id, stock },
             quantity,
           } = el;
           return (
@@ -70,9 +70,18 @@ const CartPage = () => {
                     </p>
                   </div>
                   <CountButtons
-                    quantity={JSON.parse(JSON.stringify(quantity))}
-                    productId={JSON.parse(JSON.stringify(_id))}
+                    quantity={quantity}
+                    productId={_id}
+                    stock={stock}
                   />
+                  <div className="flex items-center gap-2">
+                    <p className="subtitle">Stock:</p>
+                    <p
+                      className={`font-medium ${stock < 10 && "text-red-500"}`}
+                    >
+                      {stock.toLocaleString()}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

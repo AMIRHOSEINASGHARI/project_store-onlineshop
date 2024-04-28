@@ -96,6 +96,16 @@ export const addToCart = async (productId) => {
       };
     }
 
+    const product = await Products.findById(productId);
+
+    if (product.stock === 0) {
+      return {
+        message: "Product out of stock!",
+        status: "failed",
+        code: 404,
+      };
+    }
+
     // Update the cart field of the user document with the new item
     const existingCartItemIndex = user.cart.items.findIndex((item) =>
       item.productId.equals(productId)
@@ -103,7 +113,15 @@ export const addToCart = async (productId) => {
 
     if (existingCartItemIndex !== -1) {
       // If the product already exists in the cart, update its quantity
-      user.cart.items[existingCartItemIndex].quantity += 1;
+      if (product.stock === user.cart.items[existingCartItemIndex].quantity) {
+        return {
+          message: "Product out of stock!",
+          status: "failed",
+          code: 404,
+        };
+      } else {
+        user.cart.items[existingCartItemIndex].quantity += 1;
+      }
     } else {
       // If the product is not in the cart, add it as a new item
       user.cart.items.push({ productId, quantity: 1 });
