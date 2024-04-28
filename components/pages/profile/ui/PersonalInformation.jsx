@@ -28,6 +28,7 @@ const PersonalInformation = (props) => {
     });
   };
 
+  // TODO: there is a bug in submiting form. check it out later
   const submitForm = async (e) => {
     e.preventDefault();
 

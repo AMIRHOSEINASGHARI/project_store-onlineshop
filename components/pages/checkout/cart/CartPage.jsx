@@ -43,6 +43,7 @@ const CartPage = () => {
         cart={data.cart}
         nextRoute="shipping"
         buttonTitle="Submit Orders"
+        buttonClassName="bg-blue-500 text-white"
       />
     </main>
   );

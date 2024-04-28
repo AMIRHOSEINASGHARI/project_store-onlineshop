@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { calculateTotalDiscount, calculateTotalPrice } from "@/utils/functions";
 
-const RightBar = ({ cart, nextRoute, buttonTitle }) => {
+const RightBar = ({ cart, nextRoute, buttonTitle, buttonClassName }) => {
   return (
     <section className="cardShadow3 rounded-xl p-6 pt-3 max-lg:w-full lg:w-1/4 divide-y-2 divide-gray-100">
       <div className="flex items-center w-full justify-between py-3">
@@ -32,7 +32,9 @@ const RightBar = ({ cart, nextRoute, buttonTitle }) => {
       {buttonTitle && (
         <Link
           href={`/checkout/${nextRoute}`}
-          className="bg-blue-500 rounded-xl w-full flex justify-center py-3 mt-3 font-medium text-[15px] text-white"
+          className={`${
+            buttonClassName || "border"
+          } rounded-xl w-full flex justify-center py-3 mt-3 font-medium text-[15px]`}
         >
           {buttonTitle}
         </Link>
