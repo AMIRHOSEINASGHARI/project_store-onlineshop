@@ -22,18 +22,22 @@ const Navbar = () => {
   const {
     data: cartData,
     isFetching,
+    isLoading,
     refetch,
   } = useQuery({
     queryKey: [QUERY_KEY.user_cart],
     queryFn: getUserCart,
-    enabled: false,
+    // enabled: false,
+    cacheTime: 0,
+    staleTime: 0,
   });
+  console.log({ isFetching, isLoading });
 
-  useEffect(() => {
-    if (session?.status === "authorized") {
-      refetch();
-    }
-  }, [session?.status]);
+  //   useEffect(() => {
+  //     if (session?.status === "authorized") {
+  //       refetch();
+  //     }
+  //   }, [session?.status]);
 
   return (
     <header className="border-b fixed w-full top-0 z-[1000] bg-white">
@@ -76,7 +80,7 @@ const Navbar = () => {
                 : "text-gray-500 border-transparent"
             }`}
           >
-            {isFetching ? <Loader h={15} w={15} /> : icons.cart}
+            {isLoading ? <Loader h={15} w={15} /> : icons.cart}
             {cartData?.cart?.totalProductsCount > 0 && (
               <div className="w-[17px] h-[17px] flex items-center justify-center text-[10px] absolute bottom-0 right-0 bg-red-600 text-white rounded-full">
                 {cartData?.cart?.totalProductsCount}

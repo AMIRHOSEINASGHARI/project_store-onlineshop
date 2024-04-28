@@ -15,7 +15,7 @@ const EmptyCart = () => {
       />
       <h1 className="subheader">Your cart is empty</h1>
       <p className="subtitle text-center">
-        Looks like you haven't made your menu yet.
+        Looks like you haven&apos;t made your menu yet.
       </p>
       <Link
         href="/products"
