@@ -1,0 +1,26 @@
+const { Schema, models, model } = require("mongoose");
+
+const orderSchema = new Schema({
+  status: { type: String, default: "Pending" },
+  deliveryAddress: { type: String, required: true },
+  userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+  items: [
+    {
+      productId: { type: Schema.Types.ObjectId, ref: "Product" },
+      quantity: { type: Number, required: true },
+    },
+  ],
+  summary: {
+    totalProducts: { type: Number },
+    totalPrice: { type: Number },
+    totalDiscount: { type: Number },
+    totalPayable: { type: Number },
+  },
+  createdAt: {
+    type: Date,
+    default: () => Date.now(),
+    immutabale: true,
+  },
+});
+
+export const Order = models?.Order || model("Order", orderSchema);
