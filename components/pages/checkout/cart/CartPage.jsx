@@ -7,6 +7,7 @@ import { QUERY_KEY } from "@/services/queryKeys";
 import { getUserCart } from "@/services/queries";
 import Loader from "@/components/shared/Loader";
 import CartProductCard from "../shared/CartProductCard";
+import CheckoutSteps from "../shared/CheckoutSteps";
 
 const CartPage = () => {
   const { data, isLoading } = useQuery({
@@ -33,19 +34,22 @@ const CartPage = () => {
   }
 
   return (
-    <main className="flex gap-[20px] max-lg:flex-col lg:items-start">
-      <section className="max-lg:w-full lg:w-3/4 space-y-[20px]">
-        {data.cart.items.map((el) => (
-          <CartProductCard key={el._id} {...el} />
-        ))}
-      </section>
-      <RightBar
-        cart={data.cart}
-        nextRoute="shipping"
-        buttonTitle="Submit Orders"
-        buttonClassName="bg-blue-500 text-white"
-      />
-    </main>
+    <>
+      <CheckoutSteps />
+      <main className="flex gap-[20px] max-lg:flex-col lg:items-start">
+        <section className="max-lg:w-full lg:w-3/4 space-y-[20px]">
+          {data.cart.items.map((el) => (
+            <CartProductCard key={el._id} {...el} />
+          ))}
+        </section>
+        <RightBar
+          cart={data.cart}
+          nextRoute="shipping"
+          buttonTitle="Submit Orders"
+          buttonClassName="bg-blue-500 text-white"
+        />
+      </main>
+    </>
   );
 };
 
