@@ -1,22 +1,38 @@
-import { getShippingData } from "@/actions/cart.action";
+"use client";
+
 import RightBar from "../shared/RightBar";
 import Link from "next/link";
 import { icons } from "@/constants";
 import Image from "next/image";
 import { reducePrice } from "@/utils/functions";
 import CountButtons from "../cart/ui/CountButtons";
-import { getServerSession } from "@/utils/session";
 import EmptyCart from "@/components/shared/cart/EmptyCart";
+import { useQuery } from "@tanstack/react-query";
+import { QUERY_KEY } from "@/services/queryKeys";
+import { getShippingData } from "@/services/queries";
+import Loader from "@/components/shared/Loader";
 
-const ShippingPage = async () => {
-  const session = getServerSession();
-  const data = await getShippingData();
+const ShippingPage = () => {
+  const { data, isLoading } = useQuery({
+    queryKey: [QUERY_KEY.user_shipping_data],
+    queryFn: getShippingData,
+    cacheTime: 0,
+    staleTime: 0,
+  });
 
-  if (data.code !== 200) {
+  if (isLoading) {
+    return (
+      <main className="w-full flex justify-center">
+        <Loader />
+      </main>
+    );
+  }
+
+  if (data?.code !== 200) {
     return <p>Error!</p>;
   }
 
-  if (data.user.cart.totalProductsCount === 0) {
+  if (data?.user?.cart?.totalProductsCount === 0) {
     return <EmptyCart />;
   }
 
@@ -101,7 +117,6 @@ const ShippingPage = async () => {
                     <CountButtons
                       quantity={JSON.parse(JSON.stringify(quantity))}
                       productId={JSON.parse(JSON.stringify(_id))}
-                      session={JSON.parse(JSON.stringify(session))}
                     />
                   </div>
                 </div>
@@ -110,9 +125,9 @@ const ShippingPage = async () => {
           })}
         </div>
       </section>
-      {!data.user.address ||
-      !data.user.displayName ||
-      !data.user.phoneNumber ? (
+      {!data?.user?.address ||
+      !data?.user?.displayName ||
+      !data?.user?.phoneNumber ? (
         <div className="bg-red-50 rounded-lg p-4 border-x-4 border-red-500 max-lg:w-full lg:w-1/4">
           <p className="text-center text-red-500">
             Complete your info to proceed!
@@ -120,7 +135,7 @@ const ShippingPage = async () => {
         </div>
       ) : (
         <RightBar
-          cart={data.user.cart}
+          cart={data?.user?.cart}
           nextRoute="payment"
           buttonTitle="Proceed To Payment"
         />

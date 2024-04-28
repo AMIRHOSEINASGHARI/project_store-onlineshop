@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import {
   addToCart,
   decreaseFromCart,
@@ -14,10 +13,8 @@ import { QUERY_KEY } from "@/services/queryKeys";
 import { icons } from "@/constants";
 
 const CountButtons = ({ quantity, productId }) => {
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
 
-  //   TODO: invalidateQueries is not working correctly. check it out later
   const queryClient = useQueryClient();
 
   const down = async () => {

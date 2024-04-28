@@ -11,3 +11,7 @@ export const getUserData = () => {
 export const getUserCart = () => {
   return api.get("/api/user/cart").then((res) => res.data);
 };
+
+export const getShippingData = () => {
+  return api.get("/api/user/shipping-data").then((res) => res.data);
+};
