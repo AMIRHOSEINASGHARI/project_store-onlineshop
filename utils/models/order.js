@@ -4,6 +4,7 @@ const orderSchema = new Schema({
   status: { type: String, default: "Pending" },
   deliveryAddress: { type: String, required: true },
   userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+  paymentMethod: { type: String, required: true, default: "Credit Card" },
   items: [
     {
       productId: { type: Schema.Types.ObjectId, ref: "Product" },
