@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { icons } from "@/constants";
-import { Image } from "antd";
 import moment from "moment";
+import Image from "next/image";
 
 const Comments = ({ comments }) => {
   if (comments.length === 0) {
@@ -29,23 +29,23 @@ const Comments = ({ comments }) => {
             className="flex lg:flex-row max-lg:flex-col gap-[30px] lg:gap-[60px] cardShadow3 rounded-lg p-4 md:p-6"
           >
             <div className="flex flex-col items-center">
-              <Image
-                src={productId?.image}
-                width={80}
-                height={80}
-                alt="product"
-              />
+              <Link
+                href={`/products/${productId?._id}`}
+                // className="w-fit"
+                target="_blank"
+              >
+                <Image
+                  src={productId?.image}
+                  width={80}
+                  height={80}
+                  alt="product"
+                  priority
+                />
+              </Link>
 
               <p className="font-light text-[10px] w-fit">
                 {moment(createdAt).fromNow()}
               </p>
-              <Link
-                href={`/products/${productId?._id}`}
-                className="w-fit p-2 rounded-full bg-gray-100 border mt-2"
-                target="_blank"
-              >
-                {icons.eye}
-              </Link>
             </div>
             <div className="w-full">
               <div className="flex items-center flex-wrap gap-[10px]">
