@@ -33,6 +33,9 @@ import {
   PiYoutubeLogoLight,
   PiEyeLight,
   PiArrowLeftLight,
+  PiCreditCardLight,
+  PiPaypalLogoLight,
+  PiHandshakeLight,
 } from "react-icons/pi";
 import { GoHome, GoTasklist } from "react-icons/go";
 import { IoIosNotificationsOutline } from "react-icons/io";
@@ -119,6 +122,9 @@ export const icons = {
   filter: <CiFilter />,
   eye: <PiEyeLight />,
   location: <CiLocationOn />,
+  creditCard: <PiCreditCardLight />,
+  paypal: <PiPaypalLogoLight />,
+  handShake: <PiHandshakeLight />,
 };
 
 export const navLinks = [

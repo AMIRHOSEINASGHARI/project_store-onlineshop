@@ -44,7 +44,7 @@ const CartPage = () => {
         </section>
         <RightBar
           cart={data.cart}
-          nextRoute="shipping"
+          nextRoute="/checkout/shipping"
           buttonTitle="Submit Orders"
           buttonClassName="bg-blue-500 text-white"
         />

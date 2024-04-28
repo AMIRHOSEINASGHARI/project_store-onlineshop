@@ -1,5 +1,7 @@
+import PaymentPage from "@/components/pages/checkout/payment/PaymentPage";
+
 const Payment = () => {
-  return <div>Payment</div>;
+  return <PaymentPage />;
 };
 
 export default Payment;

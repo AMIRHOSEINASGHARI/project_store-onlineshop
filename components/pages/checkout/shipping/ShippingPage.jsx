@@ -96,7 +96,7 @@ const ShippingPage = () => {
         ) : (
           <RightBar
             cart={data?.user?.cart}
-            nextRoute="payment"
+            nextRoute="/checkout/payment"
             buttonTitle="Proceed To Payment"
             buttonClassName="text-white bg-black"
           />
