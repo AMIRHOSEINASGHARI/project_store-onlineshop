@@ -56,6 +56,7 @@ const CartDrawer = ({ openCart, setOpenCart, cart, session }) => {
         </>
       )}
       <Link
+        onClick={closeDrawer}
         href="/checkout/cart"
         className="bg-red-500 text-white rounded-lg py-2 w-full text-center hover:text-white"
       >
