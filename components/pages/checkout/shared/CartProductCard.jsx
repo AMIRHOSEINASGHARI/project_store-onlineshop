@@ -30,16 +30,18 @@ const CartProductCard = (props) => {
           <div className="flex items-center gap-2">
             <p className="subtitle">Stock:</p>
             <p className={`font-medium ${stock < 10 && "text-orange-400"}`}>
-              {stock}
+              {stock.toLocaleString()}
             </p>
           </div>
           <hr />
           <div className="flex items-center gap-2">
-            <p className="subtitle">${reducePrice(discount, price)}</p>
+            <p className="subtitle">
+              $ {reducePrice(discount, price).toLocaleString()}
+            </p>
             <div className="text-[8px]">{icons.close}</div>
             <p className="subtitle">{quantity}</p>
             <p className="text-green-600 font-medium text-[14px]">
-              $ {reducePrice(discount, price) * quantity}
+              $ {(reducePrice(discount, price) * quantity).toLocaleString()}
             </p>
           </div>
           <CountButtons quantity={quantity} productId={_id} stock={stock} />
