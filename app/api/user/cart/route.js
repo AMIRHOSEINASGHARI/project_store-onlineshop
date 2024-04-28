@@ -11,16 +11,12 @@ export async function GET() {
 
     // checking session validation
     if (!session) {
-      return NextResponse.json(
-        {
-          message: "Un Authorized!",
-          status: "failed",
-          code: 422,
-        },
-        {
-          status: 422,
-        }
-      );
+      return NextResponse.json({
+        cart: null,
+        message: "No Data! Un-Authorized",
+        status: "success",
+        code: 200,
+      });
     }
 
     const cart = await User.findById(session?.userId).select("cart").populate({

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -19,25 +19,12 @@ const Navbar = () => {
   const [openCart, setOpenCart] = useState(false);
   const pathname = usePathname();
 
-  const {
-    data: cartData,
-    isFetching,
-    isLoading,
-    refetch,
-  } = useQuery({
+  const { data: cartData, isLoading } = useQuery({
     queryKey: [QUERY_KEY.user_cart],
     queryFn: getUserCart,
-    // enabled: false,
     cacheTime: 0,
     staleTime: 0,
   });
-  console.log({ isFetching, isLoading });
-
-  //   useEffect(() => {
-  //     if (session?.status === "authorized") {
-  //       refetch();
-  //     }
-  //   }, [session?.status]);
 
   return (
     <header className="border-b fixed w-full top-0 z-[1000] bg-white">
@@ -72,7 +59,7 @@ const Navbar = () => {
             {icons.user}
           </Link>
           <button
-            disabled={isFetching}
+            disabled={isLoading}
             onClick={() => setOpenCart(true)}
             className={`iconSize relative paddingIcon rounded-full hover:bg-gray-100 transition1 border ${
               pathname.includes("/checkout")

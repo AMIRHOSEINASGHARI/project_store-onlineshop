@@ -33,9 +33,8 @@ const CountButtons = ({ quantity, productId, session }) => {
     if (result.code !== 200) {
       toast.error(result.message);
     } else {
-      queryClient.invalidateQueries([QUERY_KEY.user_cart]);
+      queryClient.invalidateQueries(QUERY_KEY.user_cart);
       toast.success(result.message);
-      router.refresh();
     }
   };
 
@@ -52,9 +51,8 @@ const CountButtons = ({ quantity, productId, session }) => {
     if (result.code !== 200) {
       toast.error(result.message);
     } else {
-      queryClient.invalidateQueries([QUERY_KEY.user_cart]);
+      queryClient.invalidateQueries(QUERY_KEY.user_cart);
       toast.success(result.message);
-      router.refresh();
     }
   };
 
@@ -71,9 +69,8 @@ const CountButtons = ({ quantity, productId, session }) => {
     if (result.code !== 200) {
       toast.error(result.message);
     } else {
-      queryClient.invalidateQueries([QUERY_KEY.user_cart]);
+      queryClient.invalidateQueries(QUERY_KEY.user_cart);
       toast.success(result.message);
-      router.refresh();
     }
   };
 
