@@ -24,14 +24,21 @@ const CartProductCard = (props) => {
           />
         </div>
         <div className="flex flex-col gap-3 w-full">
-          <Link href={`/products/${_id}`} target="_blank">
+          <Link href={`/products/${_id}`} target="_blank" className="w-fit">
             {title}
           </Link>
+          <div className="flex items-center gap-2">
+            <p className="subtitle">Stock:</p>
+            <p className={`font-medium ${stock < 10 && "text-orange-400"}`}>
+              {stock}
+            </p>
+          </div>
+          <hr />
           <div className="flex items-center gap-2">
             <p className="subtitle">${reducePrice(discount, price)}</p>
             <div className="text-[8px]">{icons.close}</div>
             <p className="subtitle">{quantity}</p>
-            <p className="text-red-500 font-light text-[14px]">
+            <p className="text-green-600 font-medium text-[14px]">
               $ {reducePrice(discount, price) * quantity}
             </p>
           </div>
