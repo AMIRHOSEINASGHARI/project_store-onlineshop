@@ -31,7 +31,6 @@ const RightBar = ({ cart, nextRoute, buttonTitle }) => {
       </div>
       {buttonTitle && (
         <Link
-          target="_blank"
           href={`/checkout/${nextRoute}`}
           className="bg-blue-500 rounded-xl w-full flex justify-center py-3 mt-3 font-medium text-[15px] text-white"
         >

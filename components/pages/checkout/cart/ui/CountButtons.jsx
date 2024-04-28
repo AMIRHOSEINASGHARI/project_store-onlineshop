@@ -13,7 +13,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { QUERY_KEY } from "@/services/queryKeys";
 import { icons } from "@/constants";
 
-const CountButtons = ({ quantity, productId, session }) => {
+const CountButtons = ({ quantity, productId }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -21,11 +21,6 @@ const CountButtons = ({ quantity, productId, session }) => {
   const queryClient = useQueryClient();
 
   const down = async () => {
-    if (!session) {
-      router.push("/login");
-      return;
-    }
-
     setLoading(() => true);
     const result = await decreaseFromCart(productId);
     setLoading(() => false);
@@ -39,11 +34,6 @@ const CountButtons = ({ quantity, productId, session }) => {
   };
 
   const up = async () => {
-    if (!session) {
-      router.push("/login");
-      return;
-    }
-
     setLoading(() => true);
     const result = await addToCart(productId);
     setLoading(() => false);
@@ -57,11 +47,6 @@ const CountButtons = ({ quantity, productId, session }) => {
   };
 
   const deleteHandler = async () => {
-    if (!session) {
-      router.push("/login");
-      return;
-    }
-
     setLoading(() => true);
     const result = await deleteFromCart(productId);
     setLoading(() => false);
