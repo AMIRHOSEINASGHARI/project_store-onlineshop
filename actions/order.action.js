@@ -96,6 +96,8 @@ export const getUserOrders = async () => {
   try {
     await connectDB();
 
+    const session = getServerSession();
+
     if (!session) {
       return {
         message: "Un-Authorized!",
@@ -113,6 +115,36 @@ export const getUserOrders = async () => {
 
     return {
       orders,
+      status: "success",
+      code: 200,
+    };
+  } catch (error) {
+    return {
+      message: "Server Error",
+      status: "failed",
+      code: 500,
+    };
+  }
+};
+
+export const getOrderDetails = async (id) => {
+  try {
+    await connectDB();
+
+    const session = getServerSession();
+
+    if (!session) {
+      return {
+        message: "Un-Authorized!",
+        status: "failed",
+        code: 422,
+      };
+    }
+
+    const order = await Order.findOne({ _id: id });
+
+    return {
+      order,
       status: "success",
       code: 200,
     };
