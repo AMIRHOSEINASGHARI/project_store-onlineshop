@@ -5,6 +5,7 @@ import { Order } from "@/utils/models/order";
 import { Products } from "@/utils/models/product";
 import { User } from "@/utils/models/user";
 import { getServerSession } from "@/utils/session";
+import { revalidatePath } from "next/cache";
 
 export const createOrder = async (data) => {
   try {
@@ -55,7 +56,11 @@ export const createOrder = async (data) => {
       phoneNumber,
       displayName,
       paymentMethod,
-      items,
+      items: items.map((item) => ({
+        ...item,
+        cost: item.productId.price,
+        discount: item.productId.discount,
+      })),
       summary,
     });
 
@@ -63,6 +68,10 @@ export const createOrder = async (data) => {
     items.forEach(async (item) => {
       const product = await Products.findById(item.productId);
       product.stock -= item.quantity;
+      product.orders.push({
+        orderId: newOrder._id,
+        quantity: item.quantity,
+      });
       await product.save();
     });
 
@@ -77,6 +86,8 @@ export const createOrder = async (data) => {
     };
 
     await user.save();
+
+    revalidatePath("/profile");
 
     return {
       message: "Order completed",

@@ -48,31 +48,22 @@ const OrderDetailsPage = async ({ id }) => {
           {shorterText(p.productId.title, 15)}
         </Link>
       ),
-      price:
-        p.productId.discount > 0 ? (
+      cost:
+        p.discount > 0 ? (
           <div className="">
-            <p>
-              $
-              {reducePrice(
-                p.productId.discount,
-                p.productId.price
-              ).toLocaleString()}
-            </p>
+            <p>${reducePrice(p.discount, p.cost).toLocaleString()}</p>
             <p className="line-through opacity-50 text-[12px]">
-              {p.productId.price.toLocaleString()}
+              {p.cost.toLocaleString()}
             </p>
           </div>
         ) : (
-          <p>${p.productId.price.toLocaleString()}</p>
+          <p>${p.cost.toLocaleString()}</p>
         ),
       quantity: p.quantity,
-      discount: p.productId.discount,
+      discount: <p>%{p.discount}</p>,
       total: (
         <p>
-          $
-          {(
-            reducePrice(p.productId.discount, p.productId.price) * p.quantity
-          ).toLocaleString()}
+          ${(reducePrice(p.discount, p.cost) * p.quantity).toLocaleString()}
         </p>
       ),
     }));
@@ -132,7 +123,7 @@ const OrderDetailsPage = async ({ id }) => {
               </div>
               <div className="flex justify-between">
                 <p className="subtitle">Total Discount:</p>
-                <p className="font-medium">{summary.totalDiscount}</p>
+                <p className="font-medium">${summary.totalDiscount}</p>
               </div>
               <div className="flex justify-between">
                 <p className="subtitle">Total Paid:</p>

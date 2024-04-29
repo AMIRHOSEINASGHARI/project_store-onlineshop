@@ -10,7 +10,15 @@ const productSchema = new Schema({
   category: { type: String, required: true },
   colors: { type: [String], default: [] },
   keywords: { type: [String], default: [] },
-  orders: [{ type: Schema.Types.ObjectId, ref: "Order", default: [] }],
+  orders: [
+    {
+      orderId: {
+        type: Schema.Types.ObjectId,
+        ref: "Order",
+      },
+      quantity: { type: Number },
+    },
+  ],
   brand: { type: String, required: true },
   likes: [{ type: Schema.Types.ObjectId, ref: "Like", default: [] }],
   comments: [{ type: Schema.Types.ObjectId, ref: "Comment", default: [] }],

@@ -396,9 +396,9 @@ export const productColumn = [
     key: "title",
   },
   {
-    title: "Price",
-    dataIndex: "price",
-    key: "price",
+    title: "Cost",
+    dataIndex: "cost",
+    key: "cost",
   },
   {
     title: "Quantity",
