@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { orderColumn } from "@/constants";
+import { icons, orderColumn } from "@/constants";
 import { Table } from "antd";
 import moment from "moment";
 
@@ -31,6 +31,14 @@ const MyOrders = ({ orders }) => {
     ),
     createdAt: <p>{moment(o.createdAt).subtract(10, "days").calendar()}</p>,
     totalPayable: <p>${o.summary.totalPayable.toLocaleString()}</p>,
+    detail: (
+      <Link
+        href={`/profile/orders/${o._id}`}
+        className="iconSize text-gray-500"
+      >
+        {icons.eye}
+      </Link>
+    ),
   }));
 
   return (
@@ -40,7 +48,6 @@ const MyOrders = ({ orders }) => {
         pagination={false}
         columns={orderColumn}
         dataSource={dataSource}
-        rowClassName=""
       />
     </section>
   );

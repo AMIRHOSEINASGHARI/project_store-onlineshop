@@ -141,7 +141,13 @@ export const getOrderDetails = async (id) => {
       };
     }
 
-    const order = await Order.findOne({ _id: id });
+    const order = await Order.findOne({ _id: id })
+      .populate({
+        path: "items.productId",
+        model: Products,
+        select: ["_id", "title", "image", "price", "discount"],
+      })
+      .lean();
 
     return {
       order,
