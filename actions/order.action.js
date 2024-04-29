@@ -2,6 +2,7 @@
 
 import connectDB from "@/utils/connectDB";
 import { Order } from "@/utils/models/order";
+import { Products } from "@/utils/models/product";
 import { User } from "@/utils/models/user";
 import { getServerSession } from "@/utils/session";
 
@@ -39,6 +40,7 @@ export const createOrder = async (data) => {
       };
     }
 
+    // destructuring data:
     const {
       userData: { deliveryAddress, userId, phoneNumber, displayName },
       paymentMethod,
@@ -46,6 +48,7 @@ export const createOrder = async (data) => {
       summary,
     } = data;
 
+    // Creating new order document:
     const newOrder = await Order.create({
       deliveryAddress,
       userId,
@@ -56,7 +59,16 @@ export const createOrder = async (data) => {
       summary,
     });
 
+    // updating each product stock:
+    items.forEach(async (item) => {
+      const product = await Products.findById(item.productId);
+      product.stock -= item.quantity;
+      await product.save();
+    });
+
+    // pushing order id to user's order field:
     user.orders.push(newOrder._id);
+    // clearing user cart:
     user.cart = {
       items: [],
       selectedItems: [],
