@@ -2,9 +2,9 @@ import { redirect } from "next/navigation";
 import Navbar from "@/components/shared/Navbar";
 import { images } from "@/constants";
 import { getServerSession } from "@/utils/session";
-import ProfileSidebar from "@/components/pages/profile/ui/ProfileSidebar";
-import BottomBar from "@/components/pages/profile/ui/BottomBar";
 import Image from "next/image";
+import ProfileSidebar from "@/components/pages/profile/shared/ProfileSidebar";
+import BottomBar from "@/components/pages/profile/shared/BottomBar";
 
 const ProfileLayout = ({ children }) => {
   const session = getServerSession();

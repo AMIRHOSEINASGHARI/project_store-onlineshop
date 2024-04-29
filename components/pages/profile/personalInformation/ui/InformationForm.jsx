@@ -8,7 +8,7 @@ import { icons } from "@/constants";
 import moment from "moment";
 import toast from "react-hot-toast";
 
-const PersonalInformation = (props) => {
+const InformationForm = (props) => {
   const { username, displayName, phoneNumber, address, createdAt } = props;
 
   const router = useRouter();
@@ -129,4 +129,4 @@ const PersonalInformation = (props) => {
   );
 };
 
-export default PersonalInformation;
+export default InformationForm;

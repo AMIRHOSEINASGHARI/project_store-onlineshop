@@ -1,8 +1,8 @@
 import { profilePages } from "@/constants";
-import PersonalInformation from "./ui/PersonalInformation";
-import Orders from "./ui/Orders";
-import Comments from "./ui/Comments";
-import Likes from "./ui/Likes";
+// import PersonalInformation from "./ui/PersonalInformation";
+// import Orders from "./ui/Orders";
+// import Comments from "./ui/Comments";
+// import Likes from "./ui/Likes";
 import { getUser } from "@/actions/user.action";
 
 const ProfilePage = async ({ page }) => {
@@ -18,16 +18,16 @@ const ProfilePage = async ({ page }) => {
       return <p>Error!</p>;
     }
 
-    const pageComponent = {
-      "personal-information": (
-        <PersonalInformation {...JSON.parse(JSON.stringify(data?.user))} />
-      ),
-      orders: (
-        <Orders orders={JSON.parse(JSON.stringify(data?.user?.orders))} />
-      ),
-      comments: <Comments comments={data?.user?.comments} />,
-      likes: <Likes likes={data?.user?.likes} />,
-    };
+    // const pageComponent = {
+    //   "personal-information": (
+    //     <PersonalInformation {...JSON.parse(JSON.stringify(data?.user))} />
+    //   ),
+    //   orders: (
+    //     <Orders orders={JSON.parse(JSON.stringify(data?.user?.orders))} />
+    //   ),
+    //   comments: <Comments comments={data?.user?.comments} />,
+    //   likes: <Likes likes={data?.user?.likes} />,
+    // };
 
     return (
       <section>
