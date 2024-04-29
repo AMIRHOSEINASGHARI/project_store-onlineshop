@@ -3,9 +3,9 @@ const { Schema, models, model } = require("mongoose");
 const orderSchema = new Schema({
   status: { type: String, default: "Pending" },
   deliveryAddress: { type: String, required: true },
+  userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
   phoneNumber: { type: Number, required: true },
   displayName: { type: String, required: true },
-  userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
   paymentMethod: { type: String, required: true, default: "Credit Card" },
   items: [
     {

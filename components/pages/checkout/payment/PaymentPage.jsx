@@ -26,6 +26,7 @@ const PaymentPage = () => {
     setPaymentMethod(e.target.value);
   };
 
+  // Payment method options
   const payment = [
     {
       value: "Credit Card",
@@ -44,6 +45,7 @@ const PaymentPage = () => {
     },
   ];
 
+  // fetching data
   const { data, isLoading } = useQuery({
     queryKey: [QUERY_KEY.user_data],
     queryFn: getUserData,
@@ -51,6 +53,7 @@ const PaymentPage = () => {
     staleTime: 0,
   });
 
+  // Showing loader
   if (isLoading) {
     return (
       <main className="w-full flex justify-center">
@@ -59,16 +62,19 @@ const PaymentPage = () => {
     );
   }
 
+  // Showing error
   if (data?.code !== 200) {
     return <p>Error!</p>;
   }
 
+  // Showing EmptyCart cmp
   if (data?.user?.cart?.totalProductsCount === 0) {
     return <EmptyCart />;
   }
 
+  // PayButton props
   const payButtonProps = {
-    paymentMethod: paymentMethod,
+    paymentMethod,
     userData: {
       deliveryAddress: data?.user?.address,
       userId: data?.user?._id,
