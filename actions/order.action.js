@@ -91,3 +91,36 @@ export const createOrder = async (data) => {
     };
   }
 };
+
+export const getUserOrders = async () => {
+  try {
+    await connectDB();
+
+    if (!session) {
+      return {
+        message: "Un-Authorized!",
+        status: "failed",
+        code: 422,
+      };
+    }
+
+    const orders = await User.findById(session?.userId)
+      .populate({
+        path: "orders",
+        model: Order,
+      })
+      .select("orders");
+
+    return {
+      orders,
+      status: "success",
+      code: 200,
+    };
+  } catch (error) {
+    return {
+      message: "Server Error",
+      status: "failed",
+      code: 500,
+    };
+  }
+};

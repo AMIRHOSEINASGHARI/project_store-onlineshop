@@ -2,6 +2,7 @@
 
 import connectDB from "@/utils/connectDB";
 import { Comments } from "@/utils/models/comment";
+import { Order } from "@/utils/models/order";
 import { Products } from "@/utils/models/product";
 import { User } from "@/utils/models/user";
 import { getServerSession } from "@/utils/session";
@@ -29,6 +30,10 @@ export const getUser = async () => {
           path: "productId",
           model: Products,
         },
+      })
+      .populate({
+        path: "orders",
+        model: Order,
       })
       .select("-password")
       .lean();

@@ -356,3 +356,26 @@ export const checkoutPages = [
     route: "payment",
   },
 ];
+
+export const orderColumn = [
+  {
+    title: "ID",
+    dataIndex: "_id",
+    key: "_id",
+  },
+  {
+    title: "Status",
+    dataIndex: "status",
+    key: "status",
+  },
+  {
+    title: "Ordered At",
+    dataIndex: "createdAt",
+    key: "createdAt",
+  },
+  {
+    title: "Total",
+    dataIndex: "totalPayable",
+    key: "totalPayable",
+  },
+];

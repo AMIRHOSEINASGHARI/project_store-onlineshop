@@ -22,7 +22,9 @@ const ProfilePage = async ({ page }) => {
       "personal-information": (
         <PersonalInformation {...JSON.parse(JSON.stringify(data?.user))} />
       ),
-      orders: <Orders orders={data?.user?.orders} />,
+      orders: (
+        <Orders orders={JSON.parse(JSON.stringify(data?.user?.orders))} />
+      ),
       comments: <Comments comments={data?.user?.comments} />,
       likes: <Likes likes={data?.user?.likes} />,
     };
