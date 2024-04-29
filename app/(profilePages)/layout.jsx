@@ -1,7 +1,6 @@
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import Navbar from "@/components/shared/Navbar";
-import { icons, images } from "@/constants";
+import { images } from "@/constants";
 import { getServerSession } from "@/utils/session";
 import ProfileSidebar from "@/components/pages/profile/ui/ProfileSidebar";
 import BottomBar from "@/components/pages/profile/ui/BottomBar";
