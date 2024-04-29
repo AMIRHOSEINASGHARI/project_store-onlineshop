@@ -29,7 +29,7 @@ const RightBar = ({ cart, nextRoute, buttonTitle, buttonClassName }) => {
           ).toLocaleString()}
         </p>
       </div>
-      {buttonTitle && (
+      {typeof buttonTitle === "string" ? (
         <Link
           href={`${nextRoute}`}
           className={`${
@@ -38,6 +38,8 @@ const RightBar = ({ cart, nextRoute, buttonTitle, buttonClassName }) => {
         >
           {buttonTitle}
         </Link>
+      ) : (
+        buttonTitle
       )}
     </section>
   );

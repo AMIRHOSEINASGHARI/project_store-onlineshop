@@ -5,14 +5,19 @@ import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import CheckoutSteps from "../shared/CheckoutSteps";
 import { QUERY_KEY } from "@/services/queryKeys";
-import { getUserCart } from "@/services/queries";
+import { getUserData } from "@/services/queries";
 import Loader from "@/components/shared/Loader";
 import EmptyCart from "@/components/shared/cart/EmptyCart";
 import RightBar from "../shared/RightBar";
 import { icons } from "@/constants";
 import { Radio } from "antd";
 import Image from "next/image";
-import { reducePrice } from "@/utils/functions";
+import {
+  calculateTotalDiscount,
+  calculateTotalPrice,
+  reducePrice,
+} from "@/utils/functions";
+import PayButton from "./ui/PayButton";
 
 const PaymentPage = () => {
   const [paymentMethod, setPaymentMethod] = useState("Credit Card");
@@ -40,8 +45,8 @@ const PaymentPage = () => {
   ];
 
   const { data, isLoading } = useQuery({
-    queryKey: [QUERY_KEY.user_cart],
-    queryFn: getUserCart,
+    queryKey: [QUERY_KEY.user_data],
+    queryFn: getUserData,
     cacheTime: 0,
     staleTime: 0,
   });
@@ -58,9 +63,28 @@ const PaymentPage = () => {
     return <p>Error!</p>;
   }
 
-  if (data?.cart?.totalProductsCount === 0) {
+  if (data?.user?.cart?.totalProductsCount === 0) {
     return <EmptyCart />;
   }
+
+  const payButtonProps = {
+    paymentMethod: paymentMethod,
+    userData: {
+      deliveryAddress: data?.user?.address,
+      userId: data?.user?._id,
+      phoneNumber: data?.user?.phoneNumber,
+      displayName: data?.user?.displayName,
+    },
+    items: data?.user?.cart?.items,
+    summary: {
+      totalProducts: data?.user?.cart?.totalProductsCount,
+      totalPrice: calculateTotalPrice(data?.user?.cart?.items),
+      totalDiscount: calculateTotalDiscount(data?.user?.cart?.items),
+      totalPayable:
+        calculateTotalPrice(data?.user?.cart?.items) -
+        calculateTotalDiscount(data?.user?.cart?.items),
+    },
+  };
 
   return (
     <>
@@ -104,10 +128,10 @@ const PaymentPage = () => {
             <h1 className="subheader">Order Summary</h1>
             <div className="flex justify-end">
               <p className="subtitle bg-gray-200 rounded-full py-1 px-3 w-fit">
-                {data?.cart?.totalProductsCount} Products
+                {data?.user?.cart?.totalProductsCount} Products
               </p>
             </div>
-            {data?.cart?.items?.map((el, i) => (
+            {data?.user?.cart?.items?.map((el, i) => (
               <Fragment key={el.productId._id}>
                 <div>
                   <Image
@@ -133,16 +157,15 @@ const PaymentPage = () => {
                     </p>
                   </div>
                 </div>
-                {i < data?.cart?.items?.length - 1 && <hr />}
+                {i < data?.user?.cart?.items?.length - 1 && <hr />}
               </Fragment>
             ))}
           </div>
         </section>
         <RightBar
-          cart={data.cart}
-          nextRoute="/checkout/shipping"
-          buttonTitle="Pay off"
+          cart={data?.user?.cart}
           buttonClassName="bg-green-500 text-white"
+          buttonTitle={<PayButton data={payButtonProps} />}
         />
       </main>
     </>
