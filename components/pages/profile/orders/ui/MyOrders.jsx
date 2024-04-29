@@ -5,7 +5,7 @@ import { orderColumn } from "@/constants";
 import { Table } from "antd";
 import moment from "moment";
 
-const Orders = ({ orders }) => {
+const MyOrders = ({ orders }) => {
   if (orders.length === 0) {
     return <p>You have 0 Orders</p>;
   }
@@ -46,4 +46,4 @@ const Orders = ({ orders }) => {
   );
 };
 
-export default Orders;
+export default MyOrders;
