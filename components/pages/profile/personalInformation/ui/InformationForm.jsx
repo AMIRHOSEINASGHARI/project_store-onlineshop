@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { updateUserInfo } from "@/actions/user.action";
 import Loader from "@/components/shared/Loader";
 import { icons } from "@/constants";
@@ -11,7 +10,6 @@ import toast from "react-hot-toast";
 const InformationForm = (props) => {
   const { username, displayName, phoneNumber, address, createdAt } = props;
 
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [form, setForm] = useState({
