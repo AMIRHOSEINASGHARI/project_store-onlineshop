@@ -6,6 +6,9 @@ import { Order } from "@/utils/models/order";
 import { Products } from "@/utils/models/product";
 import { User } from "@/utils/models/user";
 import { getServerSession } from "@/utils/session";
+import { SECRET_KEY, SESSION_EXPIRATION } from "@/utils/vars";
+import { sign } from "jsonwebtoken";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
 export const getUser = async () => {
@@ -89,7 +92,21 @@ export const updateUserInfo = async (form) => {
 
     await user.save();
 
-    cookies().delete("accessToken");
+    // creating token
+    const accessToken = sign({ username, userId: user._id }, SECRET_KEY, {
+      expiresIn: SESSION_EXPIRATION,
+    });
+
+    // setting token in cookie
+    cookies().set("accessToken", accessToken, {
+      httpOnly: true,
+      secure: true,
+      expires: new Date(Date.now() + SESSION_EXPIRATION),
+      sameSite: "lax",
+      path: "/",
+    });
+
+    revalidatePath("/profile");
 
     return {
       message: "Your information has been updated",

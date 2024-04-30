@@ -57,7 +57,7 @@ const ShippingPage = () => {
                 {data.user.address ? data.user.address : "No Address!"}
               </p>
             </div>
-            <p className="subtitle ml-[37px] capitalize">
+            <p className="subtitle ml-[37px]">
               {data.user.displayName ? data.user.displayName : "..."}
             </p>
             <p className="subtitle ml-[37px] capitalize">
