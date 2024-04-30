@@ -1,6 +1,6 @@
 "use client";
 
-import { addFave } from "@/actions/fave.action";
+import { likeAction } from "@/actions/fave.action";
 import { icons } from "@/constants";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -18,7 +18,13 @@ const AddToFave = ({ type, userId, productId, blogId, isLikedByUser }) => {
     }
 
     setLoading(() => true);
-    const result = await addFave({ type, userId, productId, blogId });
+    const result = await likeAction({
+      type,
+      userId,
+      productId,
+      blogId,
+      isLikedByUser,
+    });
     setLoading(() => false);
 
     if (result.code !== 200) {

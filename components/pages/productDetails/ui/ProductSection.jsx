@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { reducePrice, shorterText } from "@/utils/functions";
+import { isLikedByUser, reducePrice, shorterText } from "@/utils/functions";
 import AddToCart from "./AddToCart";
 import AddToFave from "@/components/reusable/AddToFave";
 import { getProductLikes } from "@/actions/fave.action";
@@ -20,10 +20,6 @@ const ProductSection = async (props) => {
 
   const data = await getProductLikes(_id);
 
-  const isLikedByUser = data.likes.find((item) =>
-    item.user.equals(session?.userId)
-  );
-
   return (
     <section className="flex max-lg:flex-col gap-5">
       <div className="w-full lg:w-[50%] flex justify-center items-center bg-gray-100 rounded-lg p-4 relative">
@@ -40,7 +36,7 @@ const ProductSection = async (props) => {
             type="product"
             userId={JSON.parse(JSON.stringify(session?.userId))}
             productId={JSON.parse(JSON.stringify(_id))}
-            isLikedByUser={!!isLikedByUser}
+            isLikedByUser={isLikedByUser(data.likes, session?.userId)}
           />
         )}
       </div>

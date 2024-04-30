@@ -55,3 +55,11 @@ export const calculateTotalDiscount = (items) => {
     0
   );
 };
+
+export const isLikedByUser = (likes, userId) => {
+  // the type of likes is array
+  const result = likes.find((item) => item.user.equals(userId));
+
+  //   return value is boolean
+  return !!result;
+};

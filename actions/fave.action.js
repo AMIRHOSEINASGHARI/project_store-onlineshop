@@ -8,7 +8,7 @@ import { User } from "@/utils/models/user";
 import { getServerSession } from "@/utils/session";
 import { revalidatePath } from "next/cache";
 
-export const addFave = async (data) => {
+export const likeAction = async (data) => {
   try {
     await connectDB();
 
@@ -22,31 +22,63 @@ export const addFave = async (data) => {
       };
     }
 
-    const { type, userId, productId, blogId } = data;
+    const { type, userId, productId, blogId, isLikedByUser } = data;
 
+    //  this is the proccess for liking a PRODUCT
     if (type === "product") {
-      const newLike = await Like.create({
-        type,
-        user: userId,
-        product: productId,
-        blog: undefined,
-      });
-
       const product = await Products.findById(productId);
-      product.likes.push(newLike._id);
-      await product.save();
-
       const user = await User.findById(userId);
-      user.likes.push(newLike._id);
-      await user.save();
 
-      revalidatePath("/products");
+      //  if USER does not liked this PRODUCT, this proccess will like it
+      if (!isLikedByUser) {
+        const newLike = await Like.create({
+          type,
+          user: userId,
+          product: productId,
+          blog: undefined,
+        });
 
-      return {
-        message: "Product liked",
-        status: "success",
-        code: 200,
-      };
+        product.likes.push(newLike._id);
+        await product.save();
+
+        user.likes.push(newLike._id);
+        await user.save();
+
+        revalidatePath("/products");
+
+        return {
+          message: "Product liked",
+          status: "success",
+          code: 200,
+        };
+      }
+      //  if USER liked this PRODUCT, this proccess will unlike it
+      else {
+        const deletedLike = await Like.findOneAndDelete({
+          product: productId,
+          user: userId,
+        });
+
+        const product_like_index = product.likes.findIndex((item) =>
+          item.equals(deletedLike._id)
+        );
+        const user_like_index = user.likes.findIndex((item) =>
+          item.equals(deletedLike._id)
+        );
+
+        product.likes.splice(product_like_index, 1);
+        await product.save();
+        user.likes.splice(user_like_index, 1);
+        await user.save();
+
+        revalidatePath("/products");
+
+        return {
+          message: "Product unliked",
+          status: "success",
+          code: 200,
+        };
+      }
     }
     if (type === "blog") {
       const newLike = await Like.create({
