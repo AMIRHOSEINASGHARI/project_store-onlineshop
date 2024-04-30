@@ -3,8 +3,9 @@ import Link from "next/link";
 import { reducePrice, shorterText } from "@/utils/functions";
 import AddToCart from "./AddToCart";
 import AddToFave from "@/components/reusable/AddToFave";
+import { getProductLikes } from "@/actions/fave.action";
 
-const ProductSection = (props) => {
+const ProductSection = async (props) => {
   const {
     _id,
     title,
@@ -17,6 +18,12 @@ const ProductSection = (props) => {
     session,
   } = props;
 
+  const data = await getProductLikes(_id);
+
+  const isLikedByUser = data.likes.find((item) =>
+    item.user.equals(session?.userId)
+  );
+
   return (
     <section className="flex max-lg:flex-col gap-5">
       <div className="w-full lg:w-[50%] flex justify-center items-center bg-gray-100 rounded-lg p-4 relative">
@@ -28,7 +35,14 @@ const ProductSection = (props) => {
           priority
           className="max-md:w-[250px] max-w-[400px] max-h-[400px] object-cover"
         />
-        <AddToFave type="product" userId={session?.userId} productId={_id} />
+        {session && (
+          <AddToFave
+            type="product"
+            userId={JSON.parse(JSON.stringify(session?.userId))}
+            productId={JSON.parse(JSON.stringify(_id))}
+            isLikedByUser={!!isLikedByUser}
+          />
+        )}
       </div>
       <div className="space-y-2 lg:w-[50%]">
         <h1 className="font-black text-[30px]">{title}</h1>
