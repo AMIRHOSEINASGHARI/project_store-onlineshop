@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { reducePrice, shorterText } from "@/utils/functions";
 import AddToCart from "./AddToCart";
-import AddToFave from "./AddToFave";
+import AddToFave from "@/components/reusable/AddToFave";
 
 const ProductSection = (props) => {
   const {
@@ -28,7 +28,7 @@ const ProductSection = (props) => {
           priority
           className="max-md:w-[250px] max-w-[400px] max-h-[400px] object-cover"
         />
-        <AddToFave />
+        <AddToFave type="product" userId={session?.userId} productId={_id} />
       </div>
       <div className="space-y-2 lg:w-[50%]">
         <h1 className="font-black text-[30px]">{title}</h1>

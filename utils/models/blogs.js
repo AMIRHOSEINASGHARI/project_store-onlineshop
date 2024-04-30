@@ -6,7 +6,7 @@ const blogSchema = new Schema({
   image: { type: String, required: true },
   slug: { type: String, required: true, unique: true },
   keywords: { type: [String], default: [] },
-  likes: [{ type: Schema.Types.ObjectId, ref: "User", default: [] }],
+  likes: [{ type: Schema.Types.ObjectId, ref: "Like", default: [] }],
   createdAt: {
     type: Date,
     default: () => Date.now(),

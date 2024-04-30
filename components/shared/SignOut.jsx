@@ -15,8 +15,8 @@ const SignOut = ({
       className={wrapperClassName || ""}
       onClick={() => signOut()}
     >
-      {icon && <div className={iconClassName}>{icon}</div>}
-      {title && <p className={titleClassName}>{title}</p>}
+      {icon && <div className={iconClassName || ""}>{icon}</div>}
+      {title && <p className={titleClassName || ""}>{title}</p>}
     </button>
   );
 };
