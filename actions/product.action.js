@@ -5,6 +5,7 @@ import { Comments } from "@/utils/models/comment";
 import { Products } from "@/utils/models/product";
 import { User } from "@/utils/models/user";
 import { getServerSession } from "@/utils/session";
+import { revalidatePath } from "next/cache";
 
 // Gets All Products By Filter
 export const getProducts = async (searchParams) => {
@@ -197,6 +198,8 @@ export const deleteProductComment = async (commentId, productId) => {
     await user.save();
     product.comments.splice(product_comment_index, 1);
     await product.save();
+
+    revalidatePath("/profile");
 
     return {
       message: "Your comment deleted successfully",
