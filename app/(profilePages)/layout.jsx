@@ -17,7 +17,7 @@ const ProfileLayout = ({ children }) => {
       <div className="mt-[90px] pb-[150px] maxWidth2 pagesPaddingX min-h-screen">
         <div>
           <ProfileSidebar session={session} />
-          <main className="lg:pl-[300px] lg:pt-[115px]">{children}</main>
+          <main className="lg:pl-[300px] lg:pt-[15px]">{children}</main>
         </div>
       </div>
       <div className="lg:hidden fixed bottom-[68.5px] backdrop-blur bg-white/85 w-full flex items-center gap-[10px] px-5 py-2 border-t border-gray-100">

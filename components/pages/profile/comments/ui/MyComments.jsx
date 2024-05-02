@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { icons } from "@/constants";
 import moment from "moment";
 import Image from "next/image";
+import DeleteComment from "./DeleteComment";
 
 const MyComments = ({ comments }) => {
   if (comments.length === 0) {
@@ -67,9 +67,7 @@ const MyComments = ({ comments }) => {
                     Not answered
                   </p>
                 )}
-                <button className="flex items-center gap-2 hover:bg-gray-200 transition1 bg-gray-100 rounded-lg py-1 px-5">
-                  <div>{icons.trash}</div>
-                </button>
+                <DeleteComment />
               </div>
               <h1 className="subheader mt-[15px] mb-[5px]">{title}</h1>
               <p className="text-[12px] font-medium mb-[10px]">{description}</p>
