@@ -29,11 +29,7 @@ const MyComments = ({ comments }) => {
             className="flex lg:flex-row max-lg:flex-col gap-[30px] lg:gap-[60px] cardShadow3 rounded-lg p-4 md:p-6"
           >
             <div className="flex flex-col items-center">
-              <Link
-                href={`/products/${productId?._id}`}
-                // className="w-fit"
-                target="_blank"
-              >
+              <Link href={`/products/${productId?._id}`} target="_blank">
                 <Image
                   src={productId?.image}
                   width={80}
@@ -67,7 +63,7 @@ const MyComments = ({ comments }) => {
                     Not answered
                   </p>
                 )}
-                <DeleteComment />
+                <DeleteComment commentId={_id} productId={productId?._id} />
               </div>
               <h1 className="subheader mt-[15px] mb-[5px]">{title}</h1>
               <p className="text-[12px] font-medium mb-[10px]">{description}</p>

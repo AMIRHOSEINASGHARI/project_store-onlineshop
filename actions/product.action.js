@@ -128,6 +128,8 @@ export const getProduct = async (id) => {
 
 export const addProductComment = async (formData, productId, userId) => {
   try {
+    await connectDB();
+
     const session = getServerSession();
     if (!session) {
       return {
@@ -137,7 +139,6 @@ export const addProductComment = async (formData, productId, userId) => {
       };
     }
 
-    await connectDB();
     const { title, description } = formData;
 
     const product = await Products.findById(productId);
@@ -156,6 +157,49 @@ export const addProductComment = async (formData, productId, userId) => {
 
     return {
       message: "Your comment has send!",
+      status: "success",
+      code: 200,
+    };
+  } catch (error) {
+    return {
+      message: "Server Error!",
+      status: "failed",
+      code: 500,
+    };
+  }
+};
+
+export const deleteProductComment = async (commentId, productId) => {
+  try {
+    await connectDB();
+    const session = getServerSession();
+
+    if (!session) {
+      return {
+        message: "You are un-authorized!",
+        status: "failed",
+        code: 422,
+      };
+    }
+
+    const comment = await Comments.findOneAndDelete(commentId);
+
+    const user = await User.findById(session?.userId);
+    const product = await Products.findById(productId);
+    const user_comment_index = user.comments.findIndex((item) =>
+      item.equals(commentId)
+    );
+    const product_comment_index = product.comments.findIndex((item) =>
+      item.equals(commentId)
+    );
+
+    user.comments.splice(user_comment_index, 1);
+    await user.save();
+    product.comments.splice(product_comment_index, 1);
+    await product.save();
+
+    return {
+      message: "Your comment deleted successfully",
       status: "success",
       code: 200,
     };
