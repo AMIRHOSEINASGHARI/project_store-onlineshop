@@ -8,15 +8,23 @@ import { createUser } from "@/actions/auth.action";
 import { icons, images } from "@/constants";
 import Loader from "../shared/Loader";
 import toast from "react-hot-toast";
+import useServerAction from "@/hooks/callServerAction";
 
 const RegisterPage = () => {
-  const [loader, setLoader] = useState(false);
   const router = useRouter();
   const [form, setForm] = useState({
     username: "",
     password: "",
     confirmPassword: "",
   });
+  const { loading, fn } = useServerAction(
+    createUser,
+    {
+      username: form.username,
+      password: form.password,
+    },
+    () => router.push("/login")
+  );
 
   const changeHandler = (e) => {
     setForm({
@@ -37,23 +45,7 @@ const RegisterPage = () => {
       return;
     }
 
-    setLoader(() => true);
-
-    const result = await createUser({
-      username: form.username,
-      password: form.password,
-    });
-
-    setLoader(() => false);
-
-    if (result.status !== "success") {
-      toast.error(result.message);
-      return;
-    } else {
-      toast.success(result.message);
-      router.push("/login");
-      return;
-    }
+    fn();
   };
 
   return (
@@ -125,12 +117,12 @@ const RegisterPage = () => {
             </div>
             <button
               type="submit"
-              disabled={loader && true}
+              disabled={loading && true}
               className={`${
-                loader ? "bg-gray-100" : "bg-black"
+                loading ? "bg-gray-100" : "bg-black"
               } text-white rounded-lg w-full py-3 font-bold flex justify-center`}
             >
-              {loader ? <Loader h={25} w={25} /> : "Submit"}
+              {loading ? <Loader h={25} w={25} /> : "Submit"}
             </button>
             <div className="flex items-center justify-center gap-4 text-sm font-bold">
               <p>Already have account?</p>

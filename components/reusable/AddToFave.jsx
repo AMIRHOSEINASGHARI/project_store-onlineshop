@@ -2,14 +2,19 @@
 
 import { likeAction } from "@/actions/fave.action";
 import { icons } from "@/constants";
-import { useState } from "react";
-import toast from "react-hot-toast";
 import Loader from "../shared/Loader";
 import { useRouter } from "next/navigation";
+import useServerAction from "@/hooks/callServerAction";
 
 const AddToFave = ({ type, userId, productId, blogId, isLikedByUser }) => {
-  const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const { loading, fn } = useServerAction(likeAction, {
+    type,
+    userId,
+    productId,
+    blogId,
+    isLikedByUser,
+  });
 
   const faveAction = async () => {
     if (!userId) {
@@ -17,21 +22,7 @@ const AddToFave = ({ type, userId, productId, blogId, isLikedByUser }) => {
       return;
     }
 
-    setLoading(() => true);
-    const result = await likeAction({
-      type,
-      userId,
-      productId,
-      blogId,
-      isLikedByUser,
-    });
-    setLoading(() => false);
-
-    if (result.code !== 200) {
-      toast.error(result.message);
-    } else {
-      toast.success(result.message);
-    }
+    fn();
   };
 
   return (

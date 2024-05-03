@@ -1,90 +1,72 @@
 "use client";
 
-import { useState } from "react";
 import {
   addToCart,
   decreaseFromCart,
   deleteFromCart,
 } from "@/actions/cart.action";
-import toast from "react-hot-toast";
 import Loader from "@/components/shared/Loader";
 import { useQueryClient } from "@tanstack/react-query";
 import { QUERY_KEY } from "@/services/queryKeys";
 import { icons } from "@/constants";
+import useServerAction from "@/hooks/callServerAction";
 
 const CountButtons = ({ quantity, productId, stock }) => {
-  const [loading, setLoading] = useState(false);
-
   const queryClient = useQueryClient();
-
-  const down = async () => {
-    setLoading(() => true);
-    const result = await decreaseFromCart(productId);
-    setLoading(() => false);
-
-    if (result.code !== 200) {
-      toast.error(result.message);
-    } else {
+  const { loading: downLoading, fn: downFN } = useServerAction(
+    decreaseFromCart,
+    { productId },
+    () => {
       queryClient.invalidateQueries(QUERY_KEY.user_cart);
-      toast.success(result.message);
     }
-  };
+  );
 
-  const up = async () => {
-    setLoading(() => true);
-    const result = await addToCart(productId);
-    setLoading(() => false);
-
-    if (result.code !== 200) {
-      toast.error(result.message);
-    } else {
+  const { loading: upLoading, fn: upFN } = useServerAction(
+    addToCart,
+    { productId },
+    () => {
       queryClient.invalidateQueries(QUERY_KEY.user_cart);
-      toast.success(result.message);
     }
-  };
+  );
 
-  const deleteHandler = async () => {
-    setLoading(() => true);
-    const result = await deleteFromCart(productId);
-    setLoading(() => false);
-
-    if (result.code !== 200) {
-      toast.error(result.message);
-    } else {
+  const { loading: deleteLoading, fn: deleteFN } = useServerAction(
+    deleteFromCart,
+    { productId },
+    () => {
       queryClient.invalidateQueries(QUERY_KEY.user_cart);
-      toast.success(result.message);
     }
-  };
+  );
 
   return (
     <div className="flex items-center gap-10">
       <div className="flex items-center gap-4">
         <button
-          onClick={down}
-          disabled={loading}
+          onClick={downFN}
+          disabled={downLoading}
           className="rounded-lg text-[25px] w-[35px] h-[35px] flex justify-center items-center border hover:bg-gray-50 hover:shadow-xl hover:shadow-gray-200 transition1"
         >
-          {loading ? <Loader h={20} w={20} /> : "-"}
+          {downLoading ? <Loader h={20} w={20} /> : "-"}
         </button>
         <p>{quantity}</p>
         <button
-          onClick={up}
-          disabled={loading || stock === quantity}
+          onClick={upFN}
+          disabled={upLoading || stock === quantity}
           className={`${
-            loading || stock === quantity
+            upLoading || stock === quantity
               ? "text-gray-200"
               : "text-blue-500 border-blue-500 hover:bg-blue-50 hover:shadow-xl hover:shadow-blue-200 transition1"
           } border rounded-lg text-[25px] w-[35px] h-[35px] flex justify-center items-center`}
         >
-          {loading ? <Loader h={20} w={20} /> : "+"}
+          {upLoading ? <Loader h={20} w={20} /> : "+"}
         </button>
       </div>
 
       <button
+        onClick={deleteFN}
+        disabled={deleteLoading}
         className="text-gray-500 rounded-lg iconSize"
-        onClick={deleteHandler}
       >
-        {loading ? <Loader h={20} w={20} /> : icons.trash}
+        {deleteLoading ? <Loader h={20} w={20} /> : icons.trash}
       </button>
     </div>
   );

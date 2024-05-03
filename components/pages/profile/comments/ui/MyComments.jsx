@@ -8,8 +8,6 @@ const MyComments = ({ comments }) => {
     return <p>No Comments!</p>;
   }
 
-  // TODO: delete comment server action
-
   return (
     <div className="space-y-[20px]">
       {comments.map((el) => {

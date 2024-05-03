@@ -127,7 +127,7 @@ export const getProduct = async (id) => {
   }
 };
 
-export const addProductComment = async (formData, productId, userId) => {
+export const addProductComment = async (data) => {
   try {
     await connectDB();
 
@@ -140,7 +140,11 @@ export const addProductComment = async (formData, productId, userId) => {
       };
     }
 
-    const { title, description } = formData;
+    const {
+      form: { title, description },
+      productId,
+      userId,
+    } = data;
 
     const product = await Products.findById(productId);
     const user = await User.findById(userId);
@@ -170,7 +174,7 @@ export const addProductComment = async (formData, productId, userId) => {
   }
 };
 
-export const deleteProductComment = async (commentId, productId) => {
+export const deleteProductComment = async (data) => {
   try {
     await connectDB();
     const session = getServerSession();
@@ -182,6 +186,8 @@ export const deleteProductComment = async (commentId, productId) => {
         code: 422,
       };
     }
+
+    const { commentId, productId } = data;
 
     const comment = await Comments.findOneAndDelete(commentId);
 

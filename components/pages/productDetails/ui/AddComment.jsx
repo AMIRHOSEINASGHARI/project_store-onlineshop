@@ -5,14 +5,28 @@ import { useRouter } from "next/navigation";
 import { addProductComment } from "@/actions/product.action";
 import toast from "react-hot-toast";
 import Loader from "@/components/shared/Loader";
+import useServerAction from "@/hooks/callServerAction";
 
 const AddComment = ({ productId, session }) => {
   const router = useRouter();
-  const [loading, setIsLoading] = useState(false);
   const [form, setForm] = useState({
     title: "",
     description: "",
   });
+
+  const { loading, fn } = useServerAction(
+    addProductComment,
+    {
+      form,
+      productId,
+      userId: session?.userId,
+    },
+    () =>
+      setForm({
+        title: "",
+        description: "",
+      })
+  );
 
   const changeHandler = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -30,19 +44,7 @@ const AddComment = ({ productId, session }) => {
       return;
     }
 
-    setIsLoading(() => true);
-    const result = await addProductComment(form, productId, session?.userId);
-    setIsLoading(() => false);
-
-    if (result.code !== 200) {
-      toast.error(result.message);
-    } else {
-      toast.success(result.message);
-      setForm({
-        title: "",
-        description: "",
-      });
-    }
+    fn();
   };
 
   return (

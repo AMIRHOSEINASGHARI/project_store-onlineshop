@@ -1,4 +1,4 @@
-import { addProductComment, getProducts } from "@/actions/product.action";
+import { getProducts } from "@/actions/product.action";
 import ProductCard from "./ui/ProductCard";
 import Pagination from "./ui/Pagination";
 import SearchProducts from "./ui/SearchProducts";

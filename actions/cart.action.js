@@ -73,7 +73,7 @@ export const getShippingData = async () => {
   }
 };
 
-export const addToCart = async (productId) => {
+export const addToCart = async (data) => {
   try {
     const session = getServerSession();
     if (!session) {
@@ -95,6 +95,8 @@ export const addToCart = async (productId) => {
         code: 404,
       };
     }
+
+    const { productId } = data;
 
     const product = await Products.findById(productId);
 
@@ -151,7 +153,7 @@ export const addToCart = async (productId) => {
   }
 };
 
-export const decreaseFromCart = async (productId) => {
+export const decreaseFromCart = async (data) => {
   try {
     const session = getServerSession();
     if (!session) {
@@ -173,6 +175,8 @@ export const decreaseFromCart = async (productId) => {
         code: 404,
       };
     }
+
+    const { productId } = data;
 
     const existingCartItemIndex = user.cart.items.findIndex((item) =>
       item.productId.equals(productId)
@@ -207,7 +211,7 @@ export const decreaseFromCart = async (productId) => {
   }
 };
 
-export const deleteFromCart = async (productId) => {
+export const deleteFromCart = async (data) => {
   try {
     const session = getServerSession();
     if (!session) {
@@ -229,6 +233,8 @@ export const deleteFromCart = async (productId) => {
         code: 404,
       };
     }
+
+    const { productId } = data;
 
     const existingCartItemIndex = user.cart.items.findIndex((item) =>
       item.productId.equals(productId)
