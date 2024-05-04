@@ -1,9 +1,13 @@
+// next
 import Image from "next/image";
 import Link from "next/link";
-import { isLikedByUser, reducePrice, shorterText } from "@/utils/functions";
-import AddToCart from "./AddToCart";
-import AddToFave from "@/components/reusable/AddToFave";
+// actions
 import { getProductLikes } from "@/actions/fave.action";
+// utils
+import { isLikedByUser, reducePrice, shorterText } from "@/utils/functions";
+// components
+import AddToFave from "@/components/reusable/AddToFave";
+import AddToCart from "./AddToCart";
 
 const ProductSection = async (props) => {
   const {

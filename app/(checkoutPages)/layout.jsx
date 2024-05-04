@@ -1,5 +1,8 @@
+// next
 import { redirect } from "next/navigation";
+// utils
 import { getServerSession } from "@/utils/session";
+// components
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 

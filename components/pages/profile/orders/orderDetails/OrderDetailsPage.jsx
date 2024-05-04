@@ -1,11 +1,17 @@
+// next
 import Image from "next/image";
 import Link from "next/link";
+// actions
 import { getOrderDetails } from "@/actions/order.action";
+// utils
+import { reducePrice, shorterText } from "@/utils/functions";
+// constants
+import { icons, productColumn } from "@/constants";
+// components
 import ProfilePageHeader from "../../shared/ProfilePageHeader";
 import moment from "moment";
+// antd
 import { Table } from "antd";
-import { icons, productColumn } from "@/constants";
-import { reducePrice, shorterText } from "@/utils/functions";
 
 const OrderDetailsPage = async ({ id }) => {
   try {

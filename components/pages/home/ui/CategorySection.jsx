@@ -1,7 +1,10 @@
+// next
 import Link from "next/link";
 import Image from "next/image";
-import TextHeader from "@/components/reusable/TextHeader";
+// constants
 import { categories } from "@/constants";
+// components
+import TextHeader from "@/components/reusable/TextHeader";
 
 const CategorySection = () => {
   // TODO: there is a bug in '/products?category=...' fix it later

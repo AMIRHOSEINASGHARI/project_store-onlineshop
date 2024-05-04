@@ -1,8 +1,12 @@
+// next
 import Image from "next/image";
-import moment from "moment";
+// utils
 import { shorterText } from "@/utils/functions";
-import ReadMoreButton from "@/components/reusable/ReadMoreButton";
+// constants
 import { icons } from "@/constants";
+// components
+import moment from "moment";
+import ReadMoreButton from "@/components/reusable/ReadMoreButton";
 
 const BlogCard = (props) => {
   const { _id, image, title, description, likes, createdAt } = props._doc;

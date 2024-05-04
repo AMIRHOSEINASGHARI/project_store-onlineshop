@@ -1,5 +1,7 @@
+// next
 import Link from "next/link";
 import Image from "next/image";
+// utils
 import { reducePrice, shorterText } from "@/utils/functions";
 
 const ProductCard = (props) => {

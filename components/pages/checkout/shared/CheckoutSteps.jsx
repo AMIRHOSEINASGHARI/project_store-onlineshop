@@ -1,7 +1,9 @@
 "use client";
 
-import { Steps } from "antd";
+// next
 import { usePathname } from "next/navigation";
+// antd
+import { Steps } from "antd";
 
 const CheckoutSteps = () => {
   const pathname = usePathname();

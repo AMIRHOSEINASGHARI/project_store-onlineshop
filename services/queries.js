@@ -1,3 +1,4 @@
+// configs
 import api from "@/configs/api";
 
 export const getSession = () => {

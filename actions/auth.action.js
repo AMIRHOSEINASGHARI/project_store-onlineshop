@@ -1,12 +1,16 @@
 "use server";
 
-import connectDB from "@/utils/connectDB";
-import { User } from "@/utils/models/user";
-import { hashPassword, verifyPassword } from "@/utils/functions";
-import { sign } from "jsonwebtoken";
-import { SECRET_KEY, SESSION_EXPIRATION } from "@/utils/vars";
+// next
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+// utils
+import connectDB from "@/utils/connectDB";
+import { hashPassword, verifyPassword } from "@/utils/functions";
+import { SECRET_KEY, SESSION_EXPIRATION } from "@/utils/vars";
+// models
+import { User } from "@/utils/models/user";
+// jwt
+import { sign } from "jsonwebtoken";
 
 export const createUser = async (data) => {
   try {

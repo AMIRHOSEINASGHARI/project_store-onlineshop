@@ -1,10 +1,15 @@
 "use client";
 
-import { icons } from "@/constants";
-import { Drawer } from "antd";
-import CartItemCard from "./CartItemCard";
+// react
 import { Fragment } from "react";
+// next
 import Link from "next/link";
+// constants
+import { icons } from "@/constants";
+// components
+import CartItemCard from "./CartItemCard";
+// antd
+import { Drawer } from "antd";
 
 const CartDrawer = ({ openCart, setOpenCart, cart, session }) => {
   const closeDrawer = () => {

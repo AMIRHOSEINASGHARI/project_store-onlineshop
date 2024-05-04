@@ -1,16 +1,23 @@
 "use client";
 
+// react
 import { useState } from "react";
+// next
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import MobileNavMenu from "./MobileNavMenu";
-import DesktopNavMenu from "./DesktopNavMenu";
-import { icons, images } from "@/constants";
+// react query
 import { useQuery } from "@tanstack/react-query";
+// services
 import { QUERY_KEY } from "@/services/queryKeys";
 import { getUserCart } from "@/services/queries";
+// hooks
 import useSession from "@/hooks/session";
+// constants
+import { icons, images } from "@/constants";
+// components
+import MobileNavMenu from "./MobileNavMenu";
+import DesktopNavMenu from "./DesktopNavMenu";
 import Loader from "./Loader";
 import CartDrawer from "./cart/CartDrawer";
 

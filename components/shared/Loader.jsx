@@ -1,3 +1,4 @@
+// components
 import { TailSpin } from "react-loader-spinner";
 
 const Loader = ({ h, w, color }) => {

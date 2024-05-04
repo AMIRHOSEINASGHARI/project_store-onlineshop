@@ -1,3 +1,4 @@
+// components
 import TextHeader from "@/components/reusable/TextHeader";
 import AddComment from "./AddComment";
 

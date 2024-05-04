@@ -1,8 +1,10 @@
 "use client";
 
-import { navLinks } from "@/constants";
+// next
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+// constants
+import { navLinks } from "@/constants";
 
 const DesktopNavMenu = () => {
   const pathname = usePathname();

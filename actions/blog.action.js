@@ -1,6 +1,8 @@
 "use server";
 
+// utils
 import connectDB from "@/utils/connectDB";
+// models
 import { Blogs } from "@/utils/models/blogs";
 
 // Gets All Blogs

@@ -1,11 +1,14 @@
 "use server";
 
+// next
+import { revalidatePath } from "next/cache";
+// utils
 import connectDB from "@/utils/connectDB";
+import { getServerSession } from "@/utils/session";
+// models
 import { Comments } from "@/utils/models/comment";
 import { Products } from "@/utils/models/product";
 import { User } from "@/utils/models/user";
-import { getServerSession } from "@/utils/session";
-import { revalidatePath } from "next/cache";
 
 // Gets All Products By Filter
 export const getProducts = async (searchParams) => {

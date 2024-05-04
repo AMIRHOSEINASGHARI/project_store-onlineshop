@@ -1,14 +1,22 @@
 "use client";
 
+// next
 import Link from "next/link";
-import { icons } from "@/constants";
-import { reducePrice, shorterText } from "@/utils/functions";
 import Image from "next/image";
-import { deleteFromCart } from "@/actions/cart.action";
+// react query
 import { useQueryClient } from "@tanstack/react-query";
+// actions
+import { deleteFromCart } from "@/actions/cart.action";
+// services
 import { QUERY_KEY } from "@/services/queryKeys";
-import Loader from "../Loader";
+// utils
+import { reducePrice, shorterText } from "@/utils/functions";
+// hooks
 import useServerAction from "@/hooks/callServerAction";
+// constants
+import { icons } from "@/constants";
+// components
+import Loader from "../Loader";
 
 const CartItemCard = ({
   productId: { image, title, price, discount, _id },

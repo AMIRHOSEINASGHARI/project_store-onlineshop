@@ -1,9 +1,11 @@
-import Image from "next/image";
+// next
 import Link from "next/link";
-import TextHeader from "@/components/reusable/TextHeader";
-import { icons } from "@/constants";
+// actions
 import { getLatestProducts } from "@/actions/product.action";
-import { reducePrice, shorterText } from "@/utils/functions";
+// constants
+import { icons } from "@/constants";
+// components
+import TextHeader from "@/components/reusable/TextHeader";
 import ProductCard from "../../products/ui/ProductCard";
 
 const NewArrival = async () => {

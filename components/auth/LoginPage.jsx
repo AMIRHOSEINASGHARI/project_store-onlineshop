@@ -1,13 +1,19 @@
 "use client";
 
+// react
 import { useState } from "react";
+// next
 import Link from "next/link";
 import Image from "next/image";
+// actions
+import { loginUser } from "@/actions/auth.action";
+// hooks
+import useServerAction from "@/hooks/callServerAction";
+// constants
 import { icons, images } from "@/constants";
+// components
 import Loader from "../shared/Loader";
 import toast from "react-hot-toast";
-import { loginUser } from "@/actions/auth.action";
-import useServerAction from "@/hooks/callServerAction";
 
 const LoginPage = () => {
   const [form, setForm] = useState({

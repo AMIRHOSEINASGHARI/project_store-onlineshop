@@ -1,6 +1,8 @@
 "use client";
 
+// react
 import { useState } from "react";
+// components
 import toast from "react-hot-toast";
 
 const useServerAction = (asyncAction, fnInput, afterAction) => {

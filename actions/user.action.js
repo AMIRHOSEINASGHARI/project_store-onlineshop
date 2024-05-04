@@ -1,15 +1,19 @@
 "use server";
 
+// next
+import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
+// utils
 import connectDB from "@/utils/connectDB";
+import { getServerSession } from "@/utils/session";
+import { SECRET_KEY, SESSION_EXPIRATION } from "@/utils/vars";
+// models
 import { Comments } from "@/utils/models/comment";
 import { Order } from "@/utils/models/order";
 import { Products } from "@/utils/models/product";
 import { User } from "@/utils/models/user";
-import { getServerSession } from "@/utils/session";
-import { SECRET_KEY, SESSION_EXPIRATION } from "@/utils/vars";
+// jwt
 import { sign } from "jsonwebtoken";
-import { revalidatePath } from "next/cache";
-import { cookies } from "next/headers";
 
 export const getUser = async () => {
   try {

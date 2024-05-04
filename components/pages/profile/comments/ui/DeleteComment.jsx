@@ -1,9 +1,13 @@
 "use client";
 
+// actions
 import { deleteProductComment } from "@/actions/product.action";
-import Loader from "@/components/shared/Loader";
-import { icons } from "@/constants";
+// hooks
 import useServerAction from "@/hooks/callServerAction";
+// constants
+import { icons } from "@/constants";
+// components
+import Loader from "@/components/shared/Loader";
 
 const DeleteComment = ({ commentId, productId }) => {
   const { loading, fn } = useServerAction(deleteProductComment, {

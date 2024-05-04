@@ -1,11 +1,16 @@
 "use client";
 
+// react
 import { useState } from "react";
+// next
 import { useRouter } from "next/navigation";
+// actions
 import { addProductComment } from "@/actions/product.action";
-import toast from "react-hot-toast";
-import Loader from "@/components/shared/Loader";
+// hooks
 import useServerAction from "@/hooks/callServerAction";
+// components
+import Loader from "@/components/shared/Loader";
+import toast from "react-hot-toast";
 
 const AddComment = ({ productId, session }) => {
   const router = useRouter();

@@ -1,5 +1,8 @@
+// next
 import { cookies } from "next/headers";
+// jwt
 import { verify } from "jsonwebtoken";
+// vars
 import { SECRET_KEY } from "./vars";
 
 export const getServerSession = () => {

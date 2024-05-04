@@ -1,5 +1,6 @@
 "use client";
 
+// next
 import { useRouter } from "next/navigation";
 
 const Pagination = ({ totalPages, searchParams }) => {

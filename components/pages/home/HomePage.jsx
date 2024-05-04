@@ -1,3 +1,4 @@
+// components
 import BestSeller from "./ui/BestSeller";
 import CategorySection from "./ui/CategorySection";
 import HeroSection from "./ui/HeroSection";

@@ -1,5 +1,6 @@
 "use client";
 
+// actions
 import { signOut } from "@/actions/auth.action";
 
 const SignOut = ({

@@ -1,4 +1,6 @@
+// next
 import Link from "next/link";
+// utils
 import { calculateTotalDiscount, calculateTotalPrice } from "@/utils/functions";
 
 const RightBar = ({ cart, nextRoute, buttonTitle, buttonClassName }) => {

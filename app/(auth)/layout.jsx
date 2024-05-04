@@ -1,5 +1,7 @@
-import { getServerSession } from "@/utils/session";
+// next
 import { redirect } from "next/navigation";
+// utils
+import { getServerSession } from "@/utils/session";
 
 const AuthLayout = ({ children }) => {
   const session = getServerSession();

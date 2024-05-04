@@ -1,9 +1,12 @@
+// next
 import { NextResponse } from "next/server";
+// utils
 import connectDB from "@/utils/connectDB";
+import { getServerSession } from "@/utils/session";
+// models
 import { Comments } from "@/utils/models/comment";
 import { Products } from "@/utils/models/product";
 import { User } from "@/utils/models/user";
-import { getServerSession } from "@/utils/session";
 
 export async function GET() {
   try {

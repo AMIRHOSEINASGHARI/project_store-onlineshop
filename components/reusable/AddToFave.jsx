@@ -1,10 +1,15 @@
 "use client";
 
-import { likeAction } from "@/actions/fave.action";
-import { icons } from "@/constants";
-import Loader from "../shared/Loader";
+// next
 import { useRouter } from "next/navigation";
+// actions
+import { likeAction } from "@/actions/fave.action";
+// hooks
 import useServerAction from "@/hooks/callServerAction";
+// constants
+import { icons } from "@/constants";
+// components
+import Loader from "../shared/Loader";
 
 const AddToFave = ({ type, userId, productId, blogId, isLikedByUser }) => {
   const router = useRouter();

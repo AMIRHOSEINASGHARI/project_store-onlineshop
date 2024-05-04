@@ -1,8 +1,11 @@
-import { Inter } from "next/font/google";
+// css
 import "./globals.css";
-
-import { Toaster } from "react-hot-toast";
+// fonts
+import { Inter } from "next/font/google";
+// providers
 import ReactQueryClientProvider from "@/providers/ReactQueryClientProvider";
+// components
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 

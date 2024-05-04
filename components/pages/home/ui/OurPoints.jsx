@@ -1,5 +1,7 @@
-import TextHeader from "@/components/reusable/TextHeader";
+// constants
 import { ourPoints } from "@/constants";
+// components
+import TextHeader from "@/components/reusable/TextHeader";
 
 const OurPoints = () => {
   return (

@@ -1,4 +1,6 @@
+// next
 import { NextResponse } from "next/server";
+// utils
 import { getServerSession } from "@/utils/session";
 
 export async function GET() {

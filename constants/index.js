@@ -1,3 +1,4 @@
+// react icons
 import {
   PiBasketThin,
   PiCurrencyDollarSimpleThin,

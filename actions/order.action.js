@@ -1,11 +1,14 @@
 "use server";
 
+// next
+import { revalidatePath } from "next/cache";
+// utils
 import connectDB from "@/utils/connectDB";
+import { getServerSession } from "@/utils/session";
+// models
 import { Order } from "@/utils/models/order";
 import { Products } from "@/utils/models/product";
 import { User } from "@/utils/models/user";
-import { getServerSession } from "@/utils/session";
-import { revalidatePath } from "next/cache";
 
 export const createOrder = async (data) => {
   try {

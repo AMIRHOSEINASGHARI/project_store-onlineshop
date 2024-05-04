@@ -1,9 +1,13 @@
 "use client";
 
+// react
 import { useState } from "react";
-import { categories, icons, sortProducts } from "@/constants";
-import { Drawer, Radio, Switch } from "antd";
+// next
 import { useRouter } from "next/navigation";
+// constants
+import { categories, icons, sortProducts } from "@/constants";
+// antd
+import { Drawer, Radio, Switch } from "antd";
 
 const FilterProducts = () => {
   const [open, setOpen] = useState(false);

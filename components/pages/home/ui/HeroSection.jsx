@@ -1,5 +1,7 @@
-import { icons, images } from "@/constants";
+// next
 import Image from "next/image";
+// constants
+import { icons, images } from "@/constants";
 
 const HeroSection = () => {
   return (

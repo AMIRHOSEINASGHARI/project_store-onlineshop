@@ -1,5 +1,7 @@
+// next
 import Link from "next/link";
 import Image from "next/image";
+// constants
 import { images } from "@/constants";
 
 const ProductBanner = () => {

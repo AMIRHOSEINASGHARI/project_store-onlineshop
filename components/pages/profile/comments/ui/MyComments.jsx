@@ -1,7 +1,9 @@
+// next
 import Link from "next/link";
-import moment from "moment";
 import Image from "next/image";
+// components
 import DeleteComment from "./DeleteComment";
+import moment from "moment";
 
 const MyComments = ({ comments }) => {
   if (comments.length === 0) {

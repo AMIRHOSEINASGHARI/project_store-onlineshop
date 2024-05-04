@@ -1,4 +1,6 @@
+// actions
 import { getProducts } from "@/actions/product.action";
+// components
 import ProductCard from "./ui/ProductCard";
 import Pagination from "./ui/Pagination";
 import SearchProducts from "./ui/SearchProducts";

@@ -1,5 +1,6 @@
 "use client";
 
+// constants
 import { icons } from "@/constants";
 
 const LikeBlog = ({ id }) => {

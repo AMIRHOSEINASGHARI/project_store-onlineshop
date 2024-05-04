@@ -1,9 +1,14 @@
+// next
 import Link from "next/link";
-import TextHeader from "@/components/reusable/TextHeader";
-import { icons } from "@/constants";
-import moment from "moment";
-import { shorterText } from "@/utils/functions";
+// actions
 import { getLatestBlogs } from "@/actions/blog.action";
+// utils
+import { shorterText } from "@/utils/functions";
+// constants
+import { icons } from "@/constants";
+// components
+import TextHeader from "@/components/reusable/TextHeader";
+import moment from "moment";
 
 const LatestBlogs = async () => {
   const data = await getLatestBlogs();

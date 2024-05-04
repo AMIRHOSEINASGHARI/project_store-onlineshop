@@ -1,6 +1,9 @@
+// next
 import Image from "next/image";
 import Link from "next/link";
+// constants
 import { icons, images, profilePages } from "@/constants";
+// components
 import SignOut from "@/components/shared/SignOut";
 
 const ProfileSidebar = ({ session }) => {

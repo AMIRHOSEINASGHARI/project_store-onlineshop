@@ -1,8 +1,12 @@
 "use client";
 
+// next
 import Link from "next/link";
+// constants
 import { icons, orderColumn } from "@/constants";
+// antd
 import { Table } from "antd";
+// components
 import moment from "moment";
 
 const MyOrders = ({ orders }) => {

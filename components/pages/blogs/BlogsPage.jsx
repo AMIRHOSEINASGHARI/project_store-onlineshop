@@ -1,4 +1,6 @@
+// actions
 import { getBlogs } from "@/actions/blog.action";
+// components
 import BlogCard from "./ui/BlogCard";
 
 const BlogsPage = async () => {

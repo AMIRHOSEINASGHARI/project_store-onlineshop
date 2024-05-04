@@ -1,6 +1,9 @@
+// next
 import Link from "next/link";
 import Image from "next/image";
+// constants
 import { images } from "@/constants";
+// components
 import TextHeader from "@/components/reusable/TextHeader";
 
 const SpecialOffer = () => {

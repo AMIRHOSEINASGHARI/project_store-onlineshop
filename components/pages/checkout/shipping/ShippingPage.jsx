@@ -1,12 +1,17 @@
 "use client";
 
-import RightBar from "../shared/RightBar";
+// next
 import Link from "next/link";
-import { icons } from "@/constants";
-import EmptyCart from "@/components/shared/cart/EmptyCart";
+// react query
 import { useQuery } from "@tanstack/react-query";
+// services
 import { QUERY_KEY } from "@/services/queryKeys";
 import { getShippingData } from "@/services/queries";
+// constants
+import { icons } from "@/constants";
+// components
+import RightBar from "../shared/RightBar";
+import EmptyCart from "@/components/shared/cart/EmptyCart";
 import Loader from "@/components/shared/Loader";
 import CartProductCard from "../shared/CartProductCard";
 import CheckoutSteps from "../shared/CheckoutSteps";

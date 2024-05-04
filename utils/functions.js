@@ -1,3 +1,4 @@
+// bcriptjs
 import { compare, hash } from "bcryptjs";
 
 export const shorterText = (text, maxCharacter) => {

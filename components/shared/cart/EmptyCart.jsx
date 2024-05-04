@@ -1,5 +1,7 @@
+// next
 import Image from "next/image";
 import Link from "next/link";
+// constants
 import { images } from "@/constants";
 
 const EmptyCart = () => {

@@ -1,15 +1,21 @@
 "use client";
 
+// react query
+import { useQueryClient } from "@tanstack/react-query";
+// services
+import { QUERY_KEY } from "@/services/queryKeys";
+// actions
 import {
   addToCart,
   decreaseFromCart,
   deleteFromCart,
 } from "@/actions/cart.action";
-import Loader from "@/components/shared/Loader";
-import { useQueryClient } from "@tanstack/react-query";
-import { QUERY_KEY } from "@/services/queryKeys";
-import { icons } from "@/constants";
+// hooks
 import useServerAction from "@/hooks/callServerAction";
+// constants
+import { icons } from "@/constants";
+// components
+import Loader from "@/components/shared/Loader";
 
 const CountButtons = ({ quantity, productId, stock }) => {
   const queryClient = useQueryClient();
@@ -42,7 +48,7 @@ const CountButtons = ({ quantity, productId, stock }) => {
       <div className="flex items-center gap-4">
         <button
           onClick={downFN}
-          disabled={downLoading}
+          disabled={downLoading || upLoading || deleteLoading}
           className="rounded-lg text-[25px] w-[35px] h-[35px] flex justify-center items-center border hover:bg-gray-50 hover:shadow-xl hover:shadow-gray-200 transition1"
         >
           {downLoading ? <Loader h={20} w={20} /> : "-"}
@@ -50,7 +56,9 @@ const CountButtons = ({ quantity, productId, stock }) => {
         <p>{quantity}</p>
         <button
           onClick={upFN}
-          disabled={upLoading || stock === quantity}
+          disabled={
+            downLoading || upLoading || deleteLoading || stock === quantity
+          }
           className={`${
             upLoading || stock === quantity
               ? "text-gray-200"
@@ -63,7 +71,7 @@ const CountButtons = ({ quantity, productId, stock }) => {
 
       <button
         onClick={deleteFN}
-        disabled={deleteLoading}
+        disabled={downLoading || upLoading || deleteLoading}
         className="text-gray-500 rounded-lg iconSize"
       >
         {deleteLoading ? <Loader h={20} w={20} /> : icons.trash}

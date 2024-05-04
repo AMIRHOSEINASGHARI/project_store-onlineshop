@@ -1,5 +1,8 @@
+// next
 import Link from "next/link";
+// constants
 import { icons, profilePages } from "@/constants";
+// components
 import SignOut from "@/components/shared/SignOut";
 
 const BottomBar = () => {

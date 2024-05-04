@@ -1,4 +1,6 @@
+// actions
 import { getUser } from "@/actions/user.action";
+// components
 import ProfilePageHeader from "../shared/ProfilePageHeader";
 import MyOrders from "./ui/MyOrders";
 

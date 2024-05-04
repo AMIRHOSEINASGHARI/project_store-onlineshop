@@ -1,8 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
-import { icons } from "@/constants";
+// react
+import { useState } from "react";
+// next
 import { useRouter } from "next/navigation";
+// constants
+import { icons } from "@/constants";
 
 // TODO: there is a bug in this cmp
 const SearchProducts = () => {

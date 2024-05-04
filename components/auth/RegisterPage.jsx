@@ -1,14 +1,20 @@
 "use client";
 
+// react
 import { useState } from "react";
+// next
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+// actions
 import { createUser } from "@/actions/auth.action";
+// hooks
+import useServerAction from "@/hooks/callServerAction";
+// constants
 import { icons, images } from "@/constants";
+// components
 import Loader from "../shared/Loader";
 import toast from "react-hot-toast";
-import useServerAction from "@/hooks/callServerAction";
 
 const RegisterPage = () => {
   const router = useRouter();

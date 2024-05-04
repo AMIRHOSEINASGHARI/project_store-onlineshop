@@ -1,9 +1,12 @@
+// actions
 import { getProduct } from "@/actions/product.action";
+// utils
+import { getServerSession } from "@/utils/session";
+// components
 import ProductSection from "./ui/ProductSection";
 import ProductComments from "./ui/ProductComments";
 import ProductReview from "./ui/ProductReview";
 import RelatedProducts from "./ui/RelatedProducts";
-import { getServerSession } from "@/utils/session";
 
 const ProductDetailsPage = async ({ id }) => {
   const data = await getProduct(id);

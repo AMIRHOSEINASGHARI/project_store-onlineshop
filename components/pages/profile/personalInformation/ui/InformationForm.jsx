@@ -1,9 +1,13 @@
 "use client";
 
+// react
 import { useState } from "react";
+// actions
 import { updateUserInfo } from "@/actions/user.action";
-import Loader from "@/components/shared/Loader";
+// constants
 import { icons } from "@/constants";
+// components
+import Loader from "@/components/shared/Loader";
 import moment from "moment";
 import toast from "react-hot-toast";
 

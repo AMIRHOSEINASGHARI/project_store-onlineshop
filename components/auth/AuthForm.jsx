@@ -1,3 +1,4 @@
+// components
 import RegisterPage from "./RegisterPage";
 import LoginPage from "./LoginPage";
 

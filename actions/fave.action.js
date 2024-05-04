@@ -1,12 +1,15 @@
 "use server";
 
+// next
+import { revalidatePath } from "next/cache";
+// utils
 import connectDB from "@/utils/connectDB";
+import { getServerSession } from "@/utils/session";
+// models
 import { Blogs } from "@/utils/models/blogs";
 import { Like } from "@/utils/models/like";
 import { Products } from "@/utils/models/product";
 import { User } from "@/utils/models/user";
-import { getServerSession } from "@/utils/session";
-import { revalidatePath } from "next/cache";
 
 export const likeAction = async (data) => {
   try {

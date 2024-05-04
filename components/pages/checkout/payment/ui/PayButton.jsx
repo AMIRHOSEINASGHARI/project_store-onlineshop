@@ -1,11 +1,17 @@
 "use client";
 
+// next
 import { useRouter } from "next/navigation";
+// react query
 import { useQueryClient } from "@tanstack/react-query";
+// actions
 import { createOrder } from "@/actions/order.action";
-import Loader from "@/components/shared/Loader";
-import useServerAction from "@/hooks/callServerAction";
+// services
 import { QUERY_KEY } from "@/services/queryKeys";
+// hooks
+import useServerAction from "@/hooks/callServerAction";
+// components
+import Loader from "@/components/shared/Loader";
 
 const PayButton = ({ data }) => {
   const router = useRouter();

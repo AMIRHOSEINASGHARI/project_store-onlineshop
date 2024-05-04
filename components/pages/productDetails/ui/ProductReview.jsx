@@ -1,5 +1,7 @@
-import TextHeader from "@/components/reusable/TextHeader";
+// utils
 import { reducePrice } from "@/utils/functions";
+// components
+import TextHeader from "@/components/reusable/TextHeader";
 import moment from "moment";
 
 const ProductReview = (props) => {

@@ -1,7 +1,10 @@
+// next
 import Image from "next/image";
 import Link from "next/link";
-import TextHeader from "@/components/reusable/TextHeader";
+// constants
 import { icons } from "@/constants";
+// components
+import TextHeader from "@/components/reusable/TextHeader";
 
 // TODO: soon, fetch data and make this dynamic
 const products = [

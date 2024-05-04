@@ -1,9 +1,11 @@
 "use server";
 
+// utils
 import connectDB from "@/utils/connectDB";
+import { getServerSession } from "@/utils/session";
+// models
 import { Products } from "@/utils/models/product";
 import { User } from "@/utils/models/user";
-import { getServerSession } from "@/utils/session";
 
 export const getCart = async () => {
   try {

@@ -1,22 +1,30 @@
 "use client";
 
+// react
 import { Fragment, useState } from "react";
+// next
 import Link from "next/link";
+import Image from "next/image";
+// react query
 import { useQuery } from "@tanstack/react-query";
-import CheckoutSteps from "../shared/CheckoutSteps";
+// services
 import { QUERY_KEY } from "@/services/queryKeys";
 import { getUserData } from "@/services/queries";
-import Loader from "@/components/shared/Loader";
-import EmptyCart from "@/components/shared/cart/EmptyCart";
-import RightBar from "../shared/RightBar";
-import { icons } from "@/constants";
-import { Radio } from "antd";
-import Image from "next/image";
+// utils
 import {
   calculateTotalDiscount,
   calculateTotalPrice,
   reducePrice,
 } from "@/utils/functions";
+// constants
+import { icons } from "@/constants";
+// antd
+import { Radio } from "antd";
+// components
+import CheckoutSteps from "../shared/CheckoutSteps";
+import Loader from "@/components/shared/Loader";
+import EmptyCart from "@/components/shared/cart/EmptyCart";
+import RightBar from "../shared/RightBar";
 import PayButton from "./ui/PayButton";
 
 const PaymentPage = () => {

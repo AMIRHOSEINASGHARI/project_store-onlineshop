@@ -1,15 +1,24 @@
 "use client";
 
+// react
 import { useEffect } from "react";
+// next
 import { useRouter } from "next/navigation";
-import Loader from "@/components/shared/Loader";
+// react query
 import { useQuery } from "@tanstack/react-query";
-import { QUERY_KEY } from "@/services/queryKeys";
-import { isInCart } from "@/utils/functions";
-import { icons } from "@/constants";
+// services
 import { getUserCart } from "@/services/queries";
+import { QUERY_KEY } from "@/services/queryKeys";
+// actions
 import { addToCart } from "@/actions/cart.action";
+// utils
+import { isInCart } from "@/utils/functions";
+// hooks
 import useServerAction from "@/hooks/callServerAction";
+// constants
+import { icons } from "@/constants";
+// components
+import Loader from "@/components/shared/Loader";
 
 const AddToCart = ({ productId, session }) => {
   const router = useRouter();

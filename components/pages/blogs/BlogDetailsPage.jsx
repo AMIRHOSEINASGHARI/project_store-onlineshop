@@ -1,10 +1,15 @@
+// next
 import Image from "next/image";
 import Link from "next/link";
-import moment from "moment";
-import { icons } from "@/constants";
-import { createSlug } from "@/utils/functions";
-import LikeBlog from "./ui/LikeBlog";
+// actions
 import { getBlog } from "@/actions/blog.action";
+// utils
+import { createSlug } from "@/utils/functions";
+// constants
+import { icons } from "@/constants";
+// components
+import moment from "moment";
+import LikeBlog from "./ui/LikeBlog";
 
 const BlogDetailsPage = async ({ id }) => {
   const data = await getBlog(id);

@@ -1,8 +1,12 @@
-import { redirect } from "next/navigation";
-import Navbar from "@/components/shared/Navbar";
-import { images } from "@/constants";
-import { getServerSession } from "@/utils/session";
+// next
 import Image from "next/image";
+import { redirect } from "next/navigation";
+// utils
+import { getServerSession } from "@/utils/session";
+// constants
+import { images } from "@/constants";
+// components
+import Navbar from "@/components/shared/Navbar";
 import ProfileSidebar from "@/components/pages/profile/shared/ProfileSidebar";
 import BottomBar from "@/components/pages/profile/shared/BottomBar";
 

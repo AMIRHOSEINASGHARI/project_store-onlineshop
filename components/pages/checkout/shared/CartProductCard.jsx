@@ -1,8 +1,12 @@
+// next
 import Image from "next/image";
 import Link from "next/link";
-import CountButtons from "./CountButtons";
+// utils
 import { reducePrice } from "@/utils/functions";
+// constants
 import { icons } from "@/constants";
+// components
+import CountButtons from "./CountButtons";
 
 const CartProductCard = (props) => {
   const {

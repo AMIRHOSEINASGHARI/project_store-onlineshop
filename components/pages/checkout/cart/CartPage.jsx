@@ -1,10 +1,13 @@
 "use client";
 
-import EmptyCart from "@/components/shared/cart/EmptyCart";
-import RightBar from "../shared/RightBar";
+// react query
 import { useQuery } from "@tanstack/react-query";
+// services
 import { QUERY_KEY } from "@/services/queryKeys";
 import { getUserCart } from "@/services/queries";
+// components
+import EmptyCart from "@/components/shared/cart/EmptyCart";
+import RightBar from "../shared/RightBar";
 import Loader from "@/components/shared/Loader";
 import CartProductCard from "../shared/CartProductCard";
 import CheckoutSteps from "../shared/CheckoutSteps";
