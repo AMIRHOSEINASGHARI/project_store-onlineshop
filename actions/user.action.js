@@ -12,8 +12,10 @@ import { Comments } from "@/utils/models/comment";
 import { Order } from "@/utils/models/order";
 import { Products } from "@/utils/models/product";
 import { User } from "@/utils/models/user";
+import { Like } from "@/utils/models/like";
 // jwt
 import { sign } from "jsonwebtoken";
+import { Blogs } from "@/utils/models/blogs";
 
 export const getUser = async () => {
   try {
@@ -41,6 +43,22 @@ export const getUser = async () => {
       .populate({
         path: "orders",
         model: Order,
+      })
+      .populate({
+        path: "likes",
+        model: Like,
+        populate: {
+          path: "product",
+          model: Products,
+        },
+      })
+      .populate({
+        path: "likes",
+        model: Like,
+        populate: {
+          path: "blog",
+          model: Blogs,
+        },
       })
       .select("-password")
       .lean();

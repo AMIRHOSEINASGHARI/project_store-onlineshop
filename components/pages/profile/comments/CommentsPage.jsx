@@ -15,9 +15,7 @@ const CommentsPage = async () => {
     return (
       <div>
         <ProfilePageHeader title="My Comments" />
-        <MyComments
-          comments={JSON.parse(JSON.stringify(data?.user?.comments))}
-        />
+        <MyComments comments={data?.user?.comments} />
       </div>
     );
   } catch (error) {
