@@ -8,9 +8,10 @@ import { icons } from "@/constants";
 import TextHeader from "@/components/reusable/TextHeader";
 import ProductCard from "../../products/ui/ProductCard";
 
+export const dynamic = "force-dynamic";
+
 const NewArrival = async () => {
   const data = await getLatestProducts();
-  console.log(data);
 
   if (data.code !== 200) {
     return <h1>Error!</h1>;
