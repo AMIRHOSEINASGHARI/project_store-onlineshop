@@ -1,5 +1,7 @@
+import CategoriesPage from "@/components/pages/categories/CategoriesPage";
+
 const Categories = () => {
-  return <div>Categories</div>;
+  return <CategoriesPage />;
 };
 
 export default Categories;
