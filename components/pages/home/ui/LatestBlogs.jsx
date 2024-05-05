@@ -10,8 +10,6 @@ import { icons } from "@/constants";
 import TextHeader from "@/components/reusable/TextHeader";
 import moment from "moment";
 
-export const dynamic = "force-dynamic";
-
 const LatestBlogs = async () => {
   const data = await getLatestBlogs();
 
