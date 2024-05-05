@@ -5,3 +5,7 @@ const Likes = () => {
 };
 
 export default Likes;
+
+export const metadata = {
+  title: "Likes",
+};

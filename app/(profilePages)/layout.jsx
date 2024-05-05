@@ -41,3 +41,11 @@ const ProfileLayout = ({ children }) => {
 };
 
 export default ProfileLayout;
+
+export const metadata = {
+  title: {
+    template: "Profile | %s",
+    default: "Profile",
+    absolute: "Profile",
+  },
+};

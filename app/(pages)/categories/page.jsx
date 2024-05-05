@@ -5,3 +5,7 @@ const Categories = () => {
 };
 
 export default Categories;
+
+export const metadata = {
+  title: `Categories`,
+};

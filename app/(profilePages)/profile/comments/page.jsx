@@ -5,3 +5,7 @@ const Comments = () => {
 };
 
 export default Comments;
+
+export const metadata = {
+  title: "Comments",
+};

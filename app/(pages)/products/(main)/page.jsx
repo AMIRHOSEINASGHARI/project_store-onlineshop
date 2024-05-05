@@ -5,3 +5,7 @@ const Products = ({ searchParams }) => {
 };
 
 export default Products;
+
+export const metadata = {
+  title: `Products`,
+};

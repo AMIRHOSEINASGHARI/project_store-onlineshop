@@ -3,3 +3,7 @@ const AboutUs = () => {
 };
 
 export default AboutUs;
+
+export const metadata = {
+  title: `About Us`,
+};

@@ -5,3 +5,7 @@ const Blogs = () => {
 };
 
 export default Blogs;
+
+export const metadata = {
+  title: `Blogs`,
+};

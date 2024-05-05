@@ -5,3 +5,7 @@ const Payment = () => {
 };
 
 export default Payment;
+
+export const metadata = {
+  title: `Payment`,
+};

@@ -5,3 +5,7 @@ const Shipping = () => {
 };
 
 export default Shipping;
+
+export const metadata = {
+  title: `Shipping`,
+};

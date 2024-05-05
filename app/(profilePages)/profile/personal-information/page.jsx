@@ -5,3 +5,7 @@ const PersonalInformation = () => {
 };
 
 export default PersonalInformation;
+
+export const metadata = {
+  title: "Personal Information",
+};

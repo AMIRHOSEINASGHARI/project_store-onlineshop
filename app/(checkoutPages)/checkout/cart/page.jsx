@@ -5,3 +5,7 @@ const Cart = () => {
 };
 
 export default Cart;
+
+export const metadata = {
+  title: `Cart`,
+};

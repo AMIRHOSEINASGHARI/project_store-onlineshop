@@ -5,3 +5,7 @@ const Orders = () => {
 };
 
 export default Orders;
+
+export const metadata = {
+  title: "Orders",
+};
