@@ -2,9 +2,10 @@
 import Image from "next/image";
 import Link from "next/link";
 // actions
-import { getBlog } from "@/actions/blog.action";
+import { getBlog, getBlogLikes } from "@/actions/blog.action";
 // utils
-import { createSlug } from "@/utils/functions";
+import { createSlug, isLikedByUser } from "@/utils/functions";
+import { getServerSession } from "@/utils/session";
 // constants
 import { icons } from "@/constants";
 // components
@@ -13,13 +14,15 @@ import LikeBlog from "./ui/LikeBlog";
 
 const BlogDetailsPage = async ({ id }) => {
   const data = await getBlog(id);
+  const session = getServerSession();
 
   if (data.code !== 200) {
     return <h1>Error!</h1>;
   }
 
-  const { _id, title, description, image, keywords, likes, createdAt } =
-    data.blog;
+  const { _id, title, description, image, keywords, createdAt } = data.blog;
+
+  const likes = await getBlogLikes(_id);
 
   return (
     <main className="flex flex-col gap-[15px]">
@@ -31,7 +34,7 @@ const BlogDetailsPage = async ({ id }) => {
         </div>
         <div className="flex items-center gap-[5px]">
           <div className="iconSize">{icons.heart}</div>
-          <p className="subtitle">{likes.length}</p>
+          <p className="subtitle">{likes.likes.length}</p>
         </div>
       </div>
       <div className="w-full flex justify-center cardShadow rounded-xl p-3">
@@ -47,7 +50,11 @@ const BlogDetailsPage = async ({ id }) => {
         </div>
       </div>
       <p className="text-justify">{description}</p>
-      <LikeBlog id={JSON.parse(JSON.stringify(_id))} />
+      <LikeBlog
+        blogId={JSON.parse(JSON.stringify(_id))}
+        userId={JSON.parse(JSON.stringify(session?.userId))}
+        isLikedByUser={isLikedByUser(likes?.likes, session?.userId)}
+      />
       <div className="mt-[30px] border-t py-[10px]">
         <h1 className="mb-[6px]">Keywords:</h1>
         <div className="flex flex-wrap gap-[5px]">

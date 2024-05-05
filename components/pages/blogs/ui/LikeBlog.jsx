@@ -1,21 +1,33 @@
 "use client";
 
+// actions
+import { likeAction } from "@/actions/fave.action";
+// hooks
+import useServerAction from "@/hooks/callServerAction";
 // constants
 import { icons } from "@/constants";
+// components
+import Loader from "@/components/shared/Loader";
 
-const LikeBlog = ({ id }) => {
-  // TODO: server action to like blog
+const LikeBlog = ({ blogId, isLikedByUser, userId }) => {
+  const { loading, fn } = useServerAction(likeAction, {
+    type: "blog",
+    userId,
+    blogId,
+    isLikedByUser,
+  });
 
   return (
-    <div className="flex items-center gap-3 justify-end">
+    <div className="flex items-center gap-1 justify-end">
       <p className="subtitle">Like this blog</p>
-      <button
-        type="button"
-        className="rounded-xl group flex items-center justify-center px-4 py-2 hover:bg-red-100 transition1 bg-red-50 iconSize"
-      >
-        <div className="animate-bounce group-hover:animate-none">
-          {icons.redHeart}
-        </div>
+      <button onClick={fn} className={`text-[20px] rounded-full p-2`}>
+        {loading ? (
+          <Loader h={20} w={20} />
+        ) : isLikedByUser ? (
+          icons.redHeart
+        ) : (
+          icons.heart
+        )}
       </button>
     </div>
   );

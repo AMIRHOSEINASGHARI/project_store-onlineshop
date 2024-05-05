@@ -84,28 +84,55 @@ export const likeAction = async (data) => {
       }
     }
     if (type === "blog") {
-      const newLike = await Like.create({
-        type,
-        userId,
-        blog: blogId,
-        product: undefined,
-      });
-
       const blog = await Blogs.findById(blogId);
-      blog.likes.push(newLike._id);
-      await blog.save();
-
       const user = await User.findById(userId);
-      user.likes.push(newLike._id);
-      await user.save();
 
-      revalidatePath("/products");
+      if (!isLikedByUser) {
+        const newLike = await Like.create({
+          type,
+          user: userId,
+          blog: blogId,
+          product: undefined,
+        });
 
-      return {
-        message: "blog liked",
-        status: "success",
-        code: 200,
-      };
+        blog.likes.push(newLike._id);
+        await blog.save();
+        user.likes.push(newLike._id);
+        await user.save();
+
+        revalidatePath("/blogs");
+
+        return {
+          message: "Blog liked successfully",
+          status: "success",
+          code: 200,
+        };
+      } else {
+        const deletedLike = await Like.findOneAndDelete({
+          blog: blogId,
+          user: userId,
+        });
+
+        const blog_like_index = blog.likes.findIndex((item) =>
+          item.equals(deletedLike._id)
+        );
+        const user_like_index = user.likes.findIndex((item) =>
+          item.equals(deletedLike._id)
+        );
+
+        blog.likes.splice(blog_like_index, 1);
+        await blog.save();
+        user.likes.splice(user_like_index, 1);
+        await user.save();
+
+        revalidatePath("/blogs");
+
+        return {
+          message: "Blog unliked",
+          status: "success",
+          code: 200,
+        };
+      }
     }
   } catch (error) {
     return {
