@@ -108,7 +108,19 @@ export const getLatestProducts = async () => {
 export const getProduct = async (id) => {
   try {
     await connectDB();
-    const product = await Products.findOne({ _id: id }).lean();
+    const product = await Products.findById(id)
+      .populate({
+        path: "comments",
+        model: Comments,
+        populate: {
+          path: "senderId",
+          model: User,
+        },
+      })
+      .lean();
+
+    const comments = product.comments.filter((item) => item.published);
+
     const productCategory = product.category;
     const relatedProducts = await Products.find({
       category: productCategory,
@@ -118,6 +130,7 @@ export const getProduct = async (id) => {
     return {
       product,
       relatedProducts,
+      comments,
       status: "success",
       code: 200,
     };

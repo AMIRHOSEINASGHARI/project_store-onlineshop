@@ -21,7 +21,7 @@ const ProductDetailsPage = async ({ id }) => {
       <ProductSection {...data.product} session={session} />
       <ProductReview {...data.product} />
       <ProductComments
-        comments={data.product.comments}
+        comments={data.comments}
         productId={id}
         session={session}
       />

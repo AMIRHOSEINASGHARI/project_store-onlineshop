@@ -146,7 +146,6 @@ export const addToCart = async (data) => {
       code: 200,
     };
   } catch (error) {
-    console.log(error);
     return {
       message: "Server Error!",
       status: "failed",
@@ -204,7 +203,6 @@ export const decreaseFromCart = async (data) => {
       code: 200,
     };
   } catch (error) {
-    console.log(error);
     return {
       message: "Server Error!",
       status: "failed",
@@ -258,7 +256,6 @@ export const deleteFromCart = async (data) => {
       code: 200,
     };
   } catch (error) {
-    console.log(error);
     return {
       message: "Server Error!",
       status: "failed",

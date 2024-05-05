@@ -1,6 +1,7 @@
 // components
 import TextHeader from "@/components/reusable/TextHeader";
 import AddComment from "./AddComment";
+import ShowComments from "./ShowComments";
 
 const ProductComments = ({ comments, productId, session }) => {
   return (
@@ -11,11 +12,7 @@ const ProductComments = ({ comments, productId, session }) => {
       />
       <AddComment productId={productId} session={session} />
       {comments.length > 0 && (
-        <div>
-          {comments.map((comment) => (
-            <div key={comment._id}>{comment.title}</div>
-          ))}
-        </div>
+        <ShowComments comments={JSON.parse(JSON.stringify(comments))} />
       )}
     </section>
   );
