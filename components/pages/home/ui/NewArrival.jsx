@@ -10,6 +10,7 @@ import ProductCard from "../../products/ui/ProductCard";
 
 const NewArrival = async () => {
   const data = await getLatestProducts();
+  console.log(data);
 
   if (data.code !== 200) {
     return <h1>Error!</h1>;

@@ -8,5 +8,5 @@ const Login = () => {
 export default Login;
 
 export const metadata = {
-  title: `${process.env.HEAD_BASE_TITLE} | Login`,
+  title: `Login`,
 };

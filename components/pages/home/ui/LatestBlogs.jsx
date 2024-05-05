@@ -12,6 +12,7 @@ import moment from "moment";
 
 const LatestBlogs = async () => {
   const data = await getLatestBlogs();
+  console.log(data);
 
   if (data.code !== 200) {
     return <h1>Error!</h1>;
@@ -20,6 +21,7 @@ const LatestBlogs = async () => {
   if (data.blogs.length === 0) {
     return <h1>No Blogs Yet!</h1>;
   }
+
   return (
     <section>
       <div className="textHeaderPosition">

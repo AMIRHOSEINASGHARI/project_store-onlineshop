@@ -8,6 +8,7 @@ import FilterProducts from "./ui/FilterProducts";
 
 const ProductsPage = async ({ searchParams }) => {
   const data = await getProducts(searchParams);
+  console.log(data);
 
   if (data.code !== 200) {
     return <h1>Error!</h1>;

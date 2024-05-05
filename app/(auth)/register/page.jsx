@@ -8,5 +8,5 @@ const Register = () => {
 export default Register;
 
 export const metadata = {
-  title: `${process.env.HEAD_BASE_TITLE} | Register`,
+  title: `Register`,
 };

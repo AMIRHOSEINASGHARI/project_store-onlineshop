@@ -73,6 +73,7 @@ export const getProducts = async (searchParams) => {
       code: 200,
     };
   } catch (error) {
+    console.log(error);
     return {
       products: null,
       status: "failed",
@@ -96,6 +97,7 @@ export const getLatestProducts = async () => {
       code: 200,
     };
   } catch (error) {
+    console.log(error);
     return {
       products: null,
       status: "failed",

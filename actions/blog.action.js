@@ -17,6 +17,7 @@ export const getBlogs = async () => {
       code: 200,
     };
   } catch (error) {
+    console.log(error);
     return {
       blogs: null,
       status: "failed",
@@ -56,6 +57,7 @@ export const getLatestBlogs = async () => {
       code: 200,
     };
   } catch (error) {
+    console.log(error);
     return {
       blogs: null,
       status: "failed",
