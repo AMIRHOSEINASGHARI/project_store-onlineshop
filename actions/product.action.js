@@ -44,10 +44,15 @@ export const getProducts = async (searchParams) => {
     const totalProducts = await Products.countDocuments({
       ...query,
       ...filters,
+      published: true,
     });
     const totalPages = Math.ceil(totalProducts / perPage);
 
-    const products = await Products.find({ ...filters, ...query })
+    const products = await Products.find({
+      ...filters,
+      ...query,
+      published: true,
+    })
       .sort({
         ...(sort == 1
           ? { createdAt: -1 }
@@ -86,7 +91,7 @@ export const getProducts = async (searchParams) => {
 export const getLatestProducts = async () => {
   try {
     await connectDB();
-    const products = await Products.find({ stock: { $gt: 0 } })
+    const products = await Products.find({ stock: { $gt: 0 }, published: true })
       .limit(8)
       .sort({ createdAt: -1 })
       .lean();
@@ -127,6 +132,7 @@ export const getProduct = async (id) => {
     const relatedProducts = await Products.find({
       category: productCategory,
       stock: { $gt: 0 },
+      published: true,
     }).lean();
 
     return {

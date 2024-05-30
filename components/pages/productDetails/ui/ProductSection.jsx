@@ -19,6 +19,7 @@ const ProductSection = async (props) => {
     discount,
     description,
     category,
+    published,
     session,
   } = props;
 
@@ -45,45 +46,54 @@ const ProductSection = async (props) => {
         )}
       </div>
       <div className="space-y-2 lg:w-[50%]">
+        {!published && (
+          <p className="bg-red-100 text-red-500 p-1 rounded-lg border-x-2 text-center font-bold text-[14px] border-red-500">
+            Draft Mode! Come back later
+          </p>
+        )}
         <h1 className="font-black text-[30px]">{title}</h1>
-        <div className="flex items-center gap-3">
-          <Link
-            target="_blank"
-            href={`/products?category=${category}`}
-            className="capitalize font-medium"
-          >
-            {category}
-          </Link>
-          <p className="text-gray-300">|</p>
-          {stock > 0 ? (
-            <p className="text-green-500">In Stock</p>
-          ) : (
-            <p className="text-red-500">Out of stock!</p>
-          )}
-          {stock > 0 && stock <= 10 && (
-            <>
-              <p className="text-gray-300">|</p>
-              <p className="text-red-600 font-medium text-[12px]">
-                Only {stock} Remains
-              </p>
-            </>
-          )}
-        </div>
+        {published && (
+          <div className="flex items-center gap-3">
+            <Link
+              target="_blank"
+              href={`/products?category=${category}`}
+              className="capitalize font-medium"
+            >
+              {category}
+            </Link>
+            <p className="text-gray-300">|</p>
+            {stock > 0 ? (
+              <p className="text-green-500">In Stock</p>
+            ) : (
+              <p className="text-red-500">Out of stock!</p>
+            )}
+            {stock > 0 && stock <= 10 && (
+              <>
+                <p className="text-gray-300">|</p>
+                <p className="text-red-600 font-medium text-[12px]">
+                  Only {stock} Remains
+                </p>
+              </>
+            )}
+          </div>
+        )}
         <div>
-          {stock > 0 && (
-            <>
-              <div className="flex items-center gap-5 mb-[20px]">
-                <h1 className="text-blue-500 font-bold text-[30px]">
-                  $ {reducePrice(discount, price).toLocaleString()}
-                </h1>
-                {discount > 0 && (
-                  <span className="text-gray-400 line-through text-[15px]">
-                    {price.toLocaleString()}
-                  </span>
-                )}
-              </div>
-            </>
-          )}
+          {published
+            ? stock > 0 && (
+                <>
+                  <div className="flex items-center gap-5 mb-[20px]">
+                    <h1 className="text-blue-500 font-bold text-[30px]">
+                      $ {reducePrice(discount, price).toLocaleString()}
+                    </h1>
+                    {discount > 0 && (
+                      <span className="text-gray-400 line-through text-[15px]">
+                        {price.toLocaleString()}
+                      </span>
+                    )}
+                  </div>
+                </>
+              )
+            : null}
           {description && (
             <div>
               <h3 className="font-bold text-[17px]">Description</h3>
@@ -94,6 +104,7 @@ const ProductSection = async (props) => {
             <AddToCart
               productId={JSON.parse(JSON.stringify(_id))}
               session={session}
+              published={published}
             />
           )}
           {stock === 0 && (

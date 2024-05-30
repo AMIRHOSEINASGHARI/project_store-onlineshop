@@ -20,7 +20,7 @@ import { icons } from "@/constants";
 // components
 import Loader from "@/components/shared/Loader";
 
-const AddToCart = ({ productId, session }) => {
+const AddToCart = ({ productId, session, published }) => {
   const router = useRouter();
   const { data, isLoading, isFetching, isError, refetch } = useQuery({
     queryKey: [QUERY_KEY.user_cart],
@@ -65,8 +65,10 @@ const AddToCart = ({ productId, session }) => {
   }
 
   const buttonOptions = {
-    className: `text-white font-semibold w-full py-3 rounded-lg flex justify-center ${
-      loading || isFetching ? "bg-gray-100" : "bg-black"
+    className: `font-semibold w-full py-3 rounded-lg flex justify-center ${
+      loading || isFetching || !published
+        ? "bg-gray-100 text-black"
+        : "bg-black text-white"
     }`,
     disabled:
       loading ||
@@ -91,10 +93,10 @@ const AddToCart = ({ productId, session }) => {
         type="button"
         className={buttonOptions.className}
         onClick={addHandler}
-        disabled={buttonOptions.disabled}
+        disabled={!published || buttonOptions.disabled}
       >
         {(loading || isFetching) && <Loader h={20} w={20} />}
-        {buttonOptions.text}
+        {published ? buttonOptions.text : "Draft Mode"}
       </button>
     </div>
   );
