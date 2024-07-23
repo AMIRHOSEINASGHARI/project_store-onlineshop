@@ -126,19 +126,8 @@ export const getProduct = async (id) => {
       })
       .lean();
 
-    const comments = product.comments.filter((item) => item.published);
-
-    const productCategory = product.category;
-    const relatedProducts = await Products.find({
-      category: productCategory,
-      stock: { $gt: 0 },
-      published: true,
-    }).lean();
-
     return {
       product,
-      relatedProducts,
-      comments,
       status: "success",
       code: 200,
     };
@@ -148,6 +137,63 @@ export const getProduct = async (id) => {
       status: "failed",
       code: 500,
     };
+  }
+};
+
+export const getProductComments = async (id) => {
+  try {
+    await connectDB();
+    const product = await Products.findById(id)
+      .populate({
+        path: "comments",
+        model: Comments,
+        populate: {
+          path: "senderId",
+          model: User,
+        },
+      })
+      .lean();
+
+    const comments = product.comments.filter((comment) => comment.published);
+
+    return {
+      comments,
+      status: "success",
+      code: 200,
+    };
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const getRelatedProducts = async (id) => {
+  try {
+    await connectDB();
+    const product = await Products.findById(id)
+      .populate({
+        path: "comments",
+        model: Comments,
+        populate: {
+          path: "senderId",
+          model: User,
+        },
+      })
+      .lean();
+
+    const productCategory = product.category;
+    const relatedProducts = await Products.find({
+      category: productCategory,
+      stock: { $gt: 0 },
+      published: true,
+    }).lean();
+
+    return {
+      relatedProducts,
+      status: "success",
+      code: 200,
+    };
+  } catch (error) {
+    throw new Error(error);
   }
 };
 
