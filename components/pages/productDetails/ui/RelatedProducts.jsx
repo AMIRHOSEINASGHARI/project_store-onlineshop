@@ -1,16 +1,19 @@
 // components
 import TextHeader from "@/components/reusable/TextHeader";
 import ProductCard from "../../products/ui/ProductCard";
+import { getRelatedProducts } from "@/actions/product.action";
 
-const RelatedProducts = ({ relatedProducts }) => {
+const RelatedProducts = async ({ id }) => {
+  const data = await getRelatedProducts(id);
+
   return (
     <section>
       <div className="textHeaderPosition">
         <TextHeader title="Related Products" />
       </div>
-      {relatedProducts.length > 0 ? (
+      {data.relatedProducts.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-          {relatedProducts.map((el) => (
+          {data.relatedProducts.map((el) => (
             <ProductCard {...el} key={el._id} />
           ))}
         </div>

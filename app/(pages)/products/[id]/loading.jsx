@@ -2,10 +2,12 @@
 
 import Loader from "@/components/shared/Loader";
 
-export default function Loading() {
+const Loading = () => {
   return (
-    <main className="w-full flex justify-center">
+    <div className="w-full h-[30vh] flex items-center justify-center">
       <Loader />
-    </main>
+    </div>
   );
-}
+};
+
+export default Loading;

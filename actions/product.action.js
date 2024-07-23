@@ -14,6 +14,19 @@ import { User } from "@/utils/models/user";
 export const getProducts = async (searchParams) => {
   try {
     await connectDB();
+
+    if (!searchParams) {
+      const products = await Products.find({
+        published: true,
+      });
+
+      return {
+        products,
+        status: "success",
+        code: 200,
+      };
+    }
+
     const { page, search, has_selling_stock, has_discount, sort, category } =
       searchParams;
 
