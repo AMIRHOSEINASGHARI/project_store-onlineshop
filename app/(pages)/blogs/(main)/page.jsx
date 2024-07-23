@@ -1,6 +1,6 @@
 import BlogsPage from "@/components/pages/blogs/BlogsPage";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 86400; // 1d * 24h * 60m * 60s
 
 const Blogs = () => {
   return <BlogsPage />;

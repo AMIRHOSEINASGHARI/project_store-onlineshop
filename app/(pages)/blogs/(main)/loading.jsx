@@ -1,3 +1,5 @@
+"use client";
+
 import Skeleton from "@/components/shared/skeleton/Skeleton";
 
 export default function Loading() {
