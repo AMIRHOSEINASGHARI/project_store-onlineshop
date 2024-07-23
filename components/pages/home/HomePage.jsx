@@ -1,3 +1,5 @@
+// react
+import { Suspense } from "react";
 // components
 import BestSeller from "./ui/BestSeller";
 import CategorySection from "./ui/CategorySection";
@@ -7,6 +9,8 @@ import NewArrival from "./ui/NewArrival";
 import OurPoints from "./ui/OurPoints";
 import ProductBanner from "./ui/ProductBanner";
 import SpecialOffer from "./ui/SpecialOffer";
+import NewArrivalSkeleton from "@/components/shared/skeleton/pages/home/NewArrivalSkeleton";
+import LatestBlogsSkeleton from "@/components/shared/skeleton/pages/home/LatestBlogsSkeleton";
 
 const HomePage = () => {
   return (
@@ -15,9 +19,13 @@ const HomePage = () => {
       <OurPoints />
       <BestSeller />
       <CategorySection />
-      <NewArrival />
+      <Suspense fallback={<NewArrivalSkeleton />}>
+        <NewArrival />
+      </Suspense>
       <ProductBanner />
-      <LatestBlogs />
+      <Suspense fallback={<LatestBlogsSkeleton />}>
+        <LatestBlogs />
+      </Suspense>
       <SpecialOffer />
     </main>
   );

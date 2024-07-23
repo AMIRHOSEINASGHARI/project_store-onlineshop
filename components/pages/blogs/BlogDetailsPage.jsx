@@ -12,6 +12,8 @@ import { icons } from "@/constants";
 import moment from "moment";
 import LikeBlog from "./ui/LikeBlog";
 
+// TODO: there is a bug in liking blogs
+
 const BlogDetailsPage = async ({ id }) => {
   const data = await getBlog(id);
   const session = getServerSession();

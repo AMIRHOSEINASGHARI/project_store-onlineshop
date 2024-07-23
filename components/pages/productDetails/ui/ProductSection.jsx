@@ -9,6 +9,8 @@ import { isLikedByUser, reducePrice, shorterText } from "@/utils/functions";
 import AddToFave from "@/components/reusable/AddToFave";
 import AddToCart from "./AddToCart";
 
+// TODO: there is a bug in liking products
+
 const ProductSection = async (props) => {
   const {
     _id,
