@@ -15,13 +15,15 @@ import { addToCart } from "@/actions/cart.action";
 import { isInCart } from "@/utils/functions";
 // hooks
 import useServerAction from "@/hooks/callServerAction";
+import useSession from "@/hooks/session";
 // constants
 import { icons } from "@/constants";
 // components
 import Loader from "@/components/shared/Loader";
 
-const AddToCart = ({ productId, session, published }) => {
+const AddToCart = ({ productId, published }) => {
   const router = useRouter();
+  const { data: session } = useSession();
   const { data, isLoading, isFetching, isError, refetch } = useQuery({
     queryKey: [QUERY_KEY.user_cart],
     queryFn: getUserCart,
@@ -29,12 +31,13 @@ const AddToCart = ({ productId, session, published }) => {
     staleTime: 0,
     enabled: false,
   });
+
   const { loading, fn } = useServerAction(addToCart, { productId }, () =>
     refetch()
   );
 
   const addHandler = async () => {
-    if (!session) {
+    if (session?.status !== "authorized") {
       router.push("/login");
       return;
     }
@@ -43,10 +46,10 @@ const AddToCart = ({ productId, session, published }) => {
   };
 
   useEffect(() => {
-    if (session) {
+    if (session?.status === "authorized") {
       refetch();
     }
-  }, [session]);
+  }, [session?.status]);
 
   if (isError) {
     return (

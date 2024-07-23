@@ -7,12 +7,14 @@ import { useRouter } from "next/navigation";
 // actions
 import { addProductComment } from "@/actions/product.action";
 // hooks
+import useSession from "@/hooks/session";
 import useServerAction from "@/hooks/callServerAction";
 // components
 import Loader from "@/components/shared/Loader";
 import toast from "react-hot-toast";
 
-const AddComment = ({ productId, session }) => {
+const AddComment = ({ productId }) => {
+  const { data: session, isLoading, isError } = useSession();
   const router = useRouter();
   const [form, setForm] = useState({
     title: "",
@@ -24,7 +26,7 @@ const AddComment = ({ productId, session }) => {
     {
       form,
       productId,
-      userId: session?.userId,
+      userId: session?.session?.userId,
     },
     () =>
       setForm({
@@ -40,7 +42,7 @@ const AddComment = ({ productId, session }) => {
   const submitForm = async (e) => {
     e.preventDefault();
 
-    if (!session) {
+    if (session?.status !== "authorized") {
       router.push("/login");
       return;
     }
@@ -51,6 +53,18 @@ const AddComment = ({ productId, session }) => {
 
     fn();
   };
+
+  if (isLoading) {
+    return (
+      <div className="w-full my-3 flex justify-center items-center">
+        <Loader h={15} w={15} />
+      </div>
+    );
+  }
+
+  if (isError) {
+    return "error";
+  }
 
   return (
     <div className="my-[20px]">
