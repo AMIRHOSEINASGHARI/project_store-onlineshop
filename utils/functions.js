@@ -20,6 +20,13 @@ export const reducePrice = (discount, price) => {
   return finalValue;
 };
 
+export const applyDiscount = (price, discount) => {
+  const discounted_value = (price * discount) / 100;
+  const final_value = price - discounted_value;
+
+  return +final_value.toFixed(2);
+};
+
 export const hashPassword = async (password) => {
   const hashedPassword = await hash(password, 12);
   return hashedPassword;
