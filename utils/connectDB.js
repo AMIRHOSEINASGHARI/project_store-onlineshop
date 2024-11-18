@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 // mongoose
 import mongoose from "mongoose";
 
