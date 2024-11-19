@@ -10,21 +10,21 @@ import CountButtons from "./CountButtons";
 
 const CartProductCard = (props) => {
   const {
-    productId: { image, title, price, discount, _id, stock },
+    productId: { images, title, price, discount, _id, stock },
     quantity,
   } = props;
 
   return (
     <div className="cardShadow3 rounded-xl px-4 py-6 flex">
       <div className="flex max-lg:flex-col lg:items-center gap-10 w-full">
-        <div className="p-4 flex items-center justify-center max-lg:w-full">
+        <div className="p-4 flex items-center justify-center max-lg:w-full rounded-xl overflow-hidden">
           <Image
-            src={image}
+            src={images[0]}
             width={200}
             height={200}
             alt={title}
             priority
-            className="object-cover"
+            className="object-cover w-full h-full"
           />
         </div>
         <div className="flex flex-col gap-3 w-full">

@@ -19,7 +19,7 @@ import { icons } from "@/constants";
 import Loader from "../Loader";
 
 const CartItemCard = ({
-  productId: { image, title, price, discount, _id },
+  productId: { images, title, price, discount, _id },
   quantity,
 }) => {
   const queryClient = useQueryClient();
@@ -32,7 +32,7 @@ const CartItemCard = ({
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-[20px]">
-        <Image src={image} width={35} height={35} priority alt={title} />
+        <Image src={images[0]} width={35} height={35} priority alt={title} />
         <div>
           <Link
             href={`/products/${_id}`}
